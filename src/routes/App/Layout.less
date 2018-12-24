@@ -1,0 +1,119 @@
+@import '../../themes/vars.less';
+
+.layout {
+  position: relative;
+  height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  .sider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: @siderWidth;
+    box-shadow: @shadow-1-right;
+    background: #fff;
+    z-index: 1;
+
+    .contact {
+      position: absolute;
+      padding: 15px;
+      width: 100%;
+      bottom: 0;
+      text-align: center;
+      box-shadow: @shadow-1-up;
+    }
+  }
+
+  .content {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .main {
+    position: absolute;
+    top: 0;
+    left: @siderWidth;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+/* ngprogress 进度条 */
+:global {
+  #nprogress {
+    pointer-events: none;
+
+    .bar {
+      background: @orange;
+      position: fixed;
+      z-index: 1024;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 3px;
+    }
+
+    .peg {
+      display: block;
+      position: absolute;
+      right: 0;
+      width: 100px;
+      height: 100%;
+      box-shadow: 0 0 10px @orange, 0 0 5px @orange;
+      opacity: 1;
+      transform: rotate(3deg) translate(0px, -4px);
+    }
+
+    .spinner {
+      display: block;
+      position: fixed;
+      z-index: 1031;
+      top: 15px;
+      right: 15px;
+    }
+
+    .spinner-icon {
+      width: 18px;
+      height: 18px;
+      box-sizing: border-box;
+      border: solid 2px transparent;
+      border-top-color: @orange;
+      border-left-color: @orange;
+      border-radius: 50%;
+
+      :local {
+        animation: nprogress-spinner 400ms linear infinite;
+      }
+    }
+  }
+
+  .nprogress-custom-parent {
+    overflow: hidden;
+    position: relative;
+
+    #nprogress {
+      .bar,
+      .spinner {
+        position: absolute;
+      }
+    }
+  }
+}
+
+@keyframes nprogress-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

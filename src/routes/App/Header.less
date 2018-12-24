@@ -1,0 +1,78 @@
+@import '../../themes/vars.less';
+
+@header-height: 65px;
+@font-color: #fff;
+
+.header {
+  position: relative;
+  width: 100%;
+  height: @header-height;
+  line-height: @header-height;
+  padding: 0;
+  font-size: 16px;
+  color: @font-color;
+  background-image: url('../../assets/header-background.png');
+  background-repeat:no-repeat; background-size:100% 100%;
+  //background: @primary-color;
+
+  .rightWrapper {
+    float: right;
+  }
+
+  .button {
+    display: inline-block;
+    width: 47px;
+    margin: 0 20px;
+    text-align: center;
+    font-size: 18px;
+    transition: @transition-ease-in;
+  }
+
+  .logo {
+    display: inline-block;
+    width: 210px;
+    text-align: center;
+    user-select: none;
+
+    img {
+      vertical-align: middle;
+      height: 30px;
+      user-select: none;
+    }
+  }
+
+  .dropDown {
+    display: inline-block;
+    height: @header-height;
+    padding: 0 1em;
+    color: @font-color;
+
+    .userAvatar {
+      vertical-align: middle;
+    }
+  }
+}
+
+.username {
+  padding: 0 0.5em;
+}
+
+.default {
+  display: inline-block;
+  padding: 0 3px;
+  margin: 0 0 0 5px;
+  background: @orange;
+  border-radius: 2px;
+  color: #fff;
+}
+
+.selected {
+  display: inline-block;
+  width: 16px;
+}
+
+.chooseBtn {
+  text-align: center;
+  color: @primary-color;
+  cursor: pointer;
+}

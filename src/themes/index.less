@@ -1,0 +1,169 @@
+@import './vars.less';
+@import './aek.less';
+
+@th-background-color: #ecf0f7;
+
+// 覆盖全局样式
+body {
+  overflow: auto;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #e6e6e6;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+// 覆盖antd全局样式
+:global {
+  #root {
+    height: 100%;
+    width: 100%;
+  }
+
+  #printRoot {
+    display: none;
+  }
+
+  .ant-tabs-nav-container {
+    font-weight: 600;
+    color: @text-color-secondary;
+  }
+
+  .ant-modal-content {
+    border-radius: 10px;
+  }
+
+  .ant-modal-header {
+    padding: 8px 16px;
+    background: rgba(22, 180, 205, 0.12);
+
+    .ant-modal-title {
+      color: @text-color-secondary;
+    }
+  }
+
+  .ant-modal-close-x {
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+  }
+
+  .ant-input-number {
+    &.aek-fill {
+      width: 100%;
+    }
+  }
+
+  .ant-form-item-control-wrapper {
+    .ant-form-explain {
+      font-size: 12px;
+      line-height: 18px;
+    }
+  }
+
+  .ant-upload {
+    &.ant-upload-select-picture-card {
+      border-width: 2px;
+    }
+  }
+  // 去除表格斑马纹
+  .no-zebra {
+    .ant-table-row-level-0:nth-child(even) {
+      background: initial;
+    }
+  }
+
+  .ant-table-row-level-0:nth-child(even) {
+    background: #f9f9f9;
+  }
+
+  .ant-table {
+    .ant-table-thead > tr > th {
+      text-align: center;
+      white-space: nowrap;
+      color: @text-color-secondary;
+      background: @th-background-color;
+    }
+
+    &.ant-table-small,
+    &.ant-table-middle {
+      .ant-table-placeholder {
+        padding-top: 150px;
+        padding-bottom: 150px;
+        background-image: url('../assets/table-no-data.png');
+        background-repeat: no-repeat;
+        background-position: center;
+
+        & > span {
+          display: none;
+        }
+      }
+      .ant-table-thead > tr > th {
+        background: @th-background-color;
+      }
+
+      .ant-table-body > table {
+        padding: 0;
+      }
+    }
+
+    .ant-table-placeholder {
+      padding-top: 150px;
+      padding-bottom: 150px;
+      background-image: url('../assets/table-no-data.png');
+      background-repeat: no-repeat;
+      background-position: center;
+
+      & > span {
+        display: none;
+      }
+    }
+  }
+
+  .ant-form-item-control {
+    vertical-align: middle;
+  }
+
+  .ant-select-dropdown-menu-item {
+    padding: 12px 16px !important;
+  }
+
+  a:focus {
+    text-decoration: none;
+  }
+}
+
+@media (min-width: 1600px) {
+  .ant-col-xl-48 {
+    width: 20%;
+  }
+
+  .ant-col-xl-96 {
+    width: 40%;
+  }
+}
+
+@media print {
+  :global {
+    body {
+      overflow: visible !important;
+      height: 100% !important;
+
+      & > * {
+        display: none !important;
+      }
+
+      #printRoot {
+        display: block !important;
+        * {
+          color: #000 !important;
+          border-color: #000 !important;
+        }
+      }
+    }
+  }
+}

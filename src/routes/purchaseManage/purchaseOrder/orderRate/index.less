@@ -1,0 +1,38 @@
+.supplierInfo{
+  border-bottom: 1px dashed #e9e9e9;
+  .topRight{
+    padding: 20px;
+    .avatar {
+      height: 60px;
+      width: 60px;
+      line-height: 60px;
+      border-radius: 50%;
+    }
+    .dealerBasic{
+      margin-left: 20px;
+      display: inline-block;
+      text-align: start;
+      vertical-align: top;
+    }
+  }
+}
+.rateFrom{
+  .textArea {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    resize: none;
+  }
+  :global .ant-form-item-label{
+    text-align: center;
+  }
+}
+
+// popover虽然写在表单中，但文档流中在body上
+.pointer{
+  height: 50px;
+  width: 50px;
+  margin-left: 46px;
+  background-repeat: no-repeat;
+  background-size: 50px;
+  background-image: url('../../../../assets/pointer.png');
+}

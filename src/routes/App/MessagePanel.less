@@ -1,0 +1,71 @@
+@import "../../themes/vars.less";
+
+.msgPopover {
+  width: 350px;
+
+  :global {
+
+    .ant-popover-inner {
+      border-radius: 10px;
+      .ant-popover-title {
+        background: #f6f6f6;
+        border-radius: 10px 10px 0 0;
+      }
+      .ant-popover-inner-content {
+        padding: 0;
+      }
+    }
+
+  }
+
+}
+
+.msgContent {
+
+  .msgWrap {
+    max-height: 50vh;
+    overflow-y: auto;
+
+    .msgRow {
+      position: relative;
+      padding: 10px 0;
+      cursor: pointer;
+
+      &+.msgRow {
+        border-top: 1px solid @border-color-base;
+      }
+    }
+  }
+
+  .msgTime {
+    text-align: right;
+    margin: 5px 0 0 0;
+  }
+
+  .msgBtnWrap {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    text-align: center;
+
+    .msgBtn {
+      cursor: pointer;
+      vertical-align: middle;
+    }
+  }
+
+
+  .msgContentFooter {
+    line-height: 30px;
+    text-align: center;
+    border-top: 1px solid @borderBase;
+    background: #f9f9f9;
+  }
+
+  .noMsg {
+    padding: 15px 0;
+    text-align: center;
+  }
+
+}

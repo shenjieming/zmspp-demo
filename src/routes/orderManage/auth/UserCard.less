@@ -1,0 +1,33 @@
+@import "../../../themes/vars.less";
+
+@avatar: 76px;
+
+.card {
+  display: inline-block;
+  margin: 5px;
+  width: 225px;
+  box-shadow: @shadow-2;
+  border-radius: @border-radius-base;
+
+  &:hover {
+    box-shadow: 0 1px 10px rgba(0, 0, 0, .3);
+  }
+
+  .content {
+    text-align: center;
+
+    .avatar {
+      width: @avatar;
+      height: @avatar;
+      line-height: @avatar;
+      border-radius: 50%;
+    }
+  }
+
+  .pad10 {
+    display: inline-block;
+    padding: 10px 0;
+  }
+}
+
+

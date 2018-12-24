@@ -1,0 +1,154 @@
+@import '../../themes/vars.less';
+
+@header-height: 65px;
+@footer-height: 150px;
+
+.wrap {
+  height: 100%;
+  position: relative;
+  background-image: url('../../assets/login-background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .header {
+    padding: 0 28px;
+    height: @header-height;
+    line-height: @header-height;
+    background: transparent;
+    border-bottom: 1px solid @primary-color;
+    box-sizing: border-box;
+
+    .logo {
+      vertical-align: middle;
+      user-select: none;
+      height: 30px;
+    }
+
+    .title {
+      float: right;
+      vertical-align: middle;
+      font-size: 16px;
+      color: #fff;
+      user-select: none;
+
+      a {
+        color: #fff;
+      }
+    }
+  }
+
+  .content {
+    position: absolute;
+    top: @header-height;
+    left: 0;
+    right: 0;
+    bottom: @footer-height;
+
+    .contentWrap {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      transform: translateY(-50%);
+      text-align: center;
+    }
+
+    .innerWrap {
+      display: inline-block;
+      position: relative;
+      width: 1000px;
+    }
+
+    .text {
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      color: #fff;
+      text-align: left;
+      user-select: none;
+
+      & > div:first-child {
+        font-size: 30px;
+      }
+    }
+
+    .form {
+      float: right;
+      text-align: left;
+
+      .login {
+        width: 300px;
+        background: #fff;
+        border-radius: @border-radius-base;
+
+        .formContent {
+          padding: 15px 15px 30px;
+        }
+
+        .radio {
+          width: 100%;
+          height: 55px;
+          font-size: 16px;
+          line-height: 55px;
+          text-align: center;
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          border-bottom-width: 2px;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          box-shadow: none !important;
+
+          &::before {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .forget {
+      color: @text-color;
+      float: right;
+
+      &:hover {
+        color: @primary-color;
+      }
+    }
+
+    .loginButton {
+      width: 100%;
+    }
+    .visibleIcon {
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .passwordInput {
+      :global(.ant-input) {
+        padding-right: 40px;
+      }
+    }
+    .captchaInput {
+      :global(.ant-input) {
+        padding-right: 85px;
+      }
+    }
+  }
+
+  .footer {
+    display: table;
+    position: absolute;
+    bottom: 0;
+    height: @footer-height;
+    width: 100%;
+    background: #494a4e;
+    color: #fff;
+    text-align: center;
+
+    .footerText {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+}

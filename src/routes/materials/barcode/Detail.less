@@ -1,0 +1,31 @@
+@import "../../../themes/vars.less";
+
+.border {
+  border-right: 1px dotted @borderBase;
+}
+
+.item {
+  padding: 0 0 1em 0;
+}
+
+.label {
+  display: inline-block;
+  padding: 0 1em 0 0;
+  vertical-align: top;
+}
+
+.value {
+  display: inline-block;
+  padding: 0 1em;
+  color: @text-color-secondary;
+
+  &.red {
+    color: @red;
+  }
+}
+
+.first {
+  .value;
+  padding: 0 1em 0 0;
+}
+

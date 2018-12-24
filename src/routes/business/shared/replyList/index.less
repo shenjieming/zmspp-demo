@@ -1,0 +1,27 @@
+@import '../../../../themes/vars.less';
+
+.listTitle {
+  height: 40px;
+  font-size: 16px;
+  line-height: 40px;
+  padding-left: 10px;
+  border-bottom: 1px solid @light-gray;
+}
+.item {
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  border-bottom: 1px dashed #e2e2e2;
+  padding-left: 24px;
+  position: relative;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  .badge {
+    position: absolute;
+    left: 8px;
+  }
+  &.current {
+    background-color: #edf9fb;
+  }
+}

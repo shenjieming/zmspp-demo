@@ -1,0 +1,117 @@
+@import '../../themes/vars.less';
+@header-height: 60px;
+@footer-height: 150px;
+.wrap {
+  height: 100vh;
+  position: relative;
+  .header {
+    width: 100%;
+    background-color: @primary-color;
+    padding: 0 20px;
+    line-height: 60px;
+    color: #ffffff;
+    align-self: baseline;
+    height: @header-height;
+    line-height: @header-height;
+    border-bottom: 1px solid @primary-color;
+    box-sizing: border-box;
+
+    .title {
+      float: right;
+      font-size: 16px;
+      font-weight: 100;
+      color: #ffffff;
+    }
+    .logo {
+      vertical-align: middle;
+      height: 53px;
+      user-select: none;
+    }
+  }
+  .content {
+    background-color: #ffffff;
+    height: e('calc(100% - 60px - 150px)');
+    min-height: 670px;
+    width: 100%;
+    .form {
+      width: 580px;
+      margin: 0 auto;
+      padding-top: 80px;
+      .contentWrap {
+        .formContent {
+          justify-content: center;
+          background: #fff;
+          .regist {
+            width: 100%;
+            .left {
+              display: inline-block;
+              width: 30%;
+              vertical-align: top;
+            }
+            .right {
+              display: inline-block;
+              width: 70%;
+            }
+          }
+          .forget {
+            width: 100%;
+           :global{
+            .ant-input-affix-wrapper .ant-input-suffix {
+              right: 0;
+            }
+           }
+          }
+        }
+      }
+      .registTabsButton {
+        width: 70%;
+      }
+    }
+    .notesContent {
+      line-height: 22px;
+      padding: 20px;
+      word-break: break-all;
+      word-wrap: break-word;
+      width: 800px;
+      margin: 0 auto;
+      padding: 50px;
+      h1,h3 {
+        font-weight: 600;
+      }
+      h1 {
+        margin-bottom: 30px;
+      }
+      h3 {
+        margin-bottom: 20px;
+      }
+    }
+  }
+  .registButton {
+    width: 100%;
+  }
+  .footer {
+    display: table;
+    height: @footer-height;
+    width: 100%;
+    background: #494a4e;
+    color: #fff;
+    text-align: center;
+    .footerText {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+  .success {
+    .left {
+      float: left;
+      width: 30%;
+      > img {
+        width: 95%;
+      }
+    }
+    .right {
+      float: left;
+      width: 70%;
+    }
+  }
+}

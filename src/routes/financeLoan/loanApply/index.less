@@ -1,0 +1,191 @@
+@import '../../../themes/vars.less';
+
+.aek-title {
+  background: #f9f9f9;
+  padding-bottom: 20px;
+  // 步骤条标题
+  .aek-breadcrumb-title {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    text-align: center;
+    padding: 5px 0;
+    .aek-breadcrumb-title-list {
+      padding: 15px 0px;
+      &:not(:last-child) {
+        border-right: 1px solid #DCDCDC;
+      }
+    }
+    .aek-title-selected {
+      color: @primary-color;
+    }
+  }
+}
+.aek-content {
+  background-color: #ffffff;
+  min-height: e('calc(100% - 80px)');
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  .aek-content-title {
+    width: 100%;
+    padding: 5px 0 5px 10px;
+    border-bottom: 1px solid #DCDCDC;
+    font-size: 14px;
+    color: #757575;
+  }
+  .aek-content-main {
+    padding: 10px;
+    min-height: e('calc(100% - 80px)');
+  }
+  .aek-info {
+    color: @red;
+    font-size: @font-mid;
+    font-weight: 500;
+  }
+  .aek-total {
+    font-size: @font-mid;
+    font-weight: 600;
+  }
+  .aek-invoice-content {
+    width: 100%;
+    border-bottom: 1px solid #DCDCDC;
+    padding-top: 10px;
+    padding-bottom: 5px;
+  }
+  .aek-invoice-list {
+    display: inline-block;
+    width: 90%;
+    padding-top: 10px;
+    border-right: 1px solid #DCDCDC;
+  }
+  .aek-invoice-delete {
+    width: 10%;
+    line-height: 109px;
+    vertical-align: top;
+    display: inline-block;
+    font-size: 20px;
+    text-align: center;
+  }
+  .aek-invoice-add {
+    text-align: center;
+    font-size: 20px;
+    padding: 20px 0;
+  }
+  .aek-photo-content {
+    width: 100%;
+    min-height: 130px;
+  }
+
+  .aek-photo-list {
+    float: left;
+    width:120px;
+    height: 150px;
+    margin: 0 5px;
+    text-align: left;
+    border: 1px solid #DCDCDC;
+  }
+  .aek-photo-wall {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    height: 120px;
+    border-bottom: 1px solid #DCDCDC;
+    :global {
+      .ant-upload-list-picture-card .ant-upload-list-item {
+        margin: 0;
+        width: 120px;
+        height: 120px;
+        border: 0;
+        border-radius: 0;
+      }
+    }
+  }
+  .aek-photo-title {
+    text-align: center;
+    padding-top: 5px;
+  }
+  .aek-fourth-title {
+    font-size: 24px;
+    color: @text-color-secondary;
+    padding: 10px 0;
+    border-bottom: 1px dashed #AAAAAA;
+  }
+  .aek-fourth-content {
+    width: 700px;
+    padding-top: 20px;
+  }
+}
+.aek-popover-photo-content {
+  width: 100%;
+  min-height: 170px;
+  max-height: 340px;
+  overflow-y: scroll;
+  .aek-photo-list {
+    float: left;
+    width:120px;
+    height: 150px;
+    margin: 5px;
+    text-align: left;
+    border: 1px solid #DCDCDC;
+  }
+  .aek-photo-wall {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    height: 120px;
+    border-bottom: 1px solid #DCDCDC;
+    :global {
+      .ant-upload-list-picture-card .ant-upload-list-item {
+        margin: 0;
+        width: 120px;
+        height: 120px;
+        border: 0;
+        border-radius: 0;
+      }
+    }
+    .aek-photo-check {
+      position: absolute;
+      left: 8px;
+      top: 5px;
+    }
+    .aek-photo-delete {
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      right: 6px;
+      bottom: 8px;
+      text-align: center;
+      z-index: 100;
+      cursor: pointer;
+      color: @red;
+    }
+  }
+  .aek-photo-title {
+    text-align: center;
+    padding-top: 5px;
+  }
+  .aek-photo-head {
+    height: 20px;
+    padding: 0 5px;
+  }
+}
+.aek-modal-title {
+  font-size: @font-small;
+  border-bottom: 1px dashed #B8B8B8;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #757575;
+}
+.aek-tooltip-list {
+  width: 100px;
+  height: 110px;
+  text-align: center;
+  display: inline-block;
+  margin: 5px;
+  vertical-align: top;
+  & image {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+

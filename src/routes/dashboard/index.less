@@ -1,0 +1,76 @@
+@import '../../themes/vars.less';
+
+.left {
+  width: calc(~'100% - 242px');
+  height: 100%;
+  box-shadow: @aek-shadow;
+  overflow: hidden;
+
+  .content {
+    height: calc(~'100% - 40px');
+    padding: 20px;
+
+    .graph {
+      height: calc(~'100% - 262px');
+    }
+  }
+}
+
+.right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 227px;
+  height: 100%;
+  box-shadow: @aek-shadow;
+  overflow: hidden;
+
+  .content {
+    height: calc(~'100% - 40px');
+    overflow: auto;
+  }
+}
+
+.title {
+  padding: 0 13px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 39px;
+  border-bottom: 1px solid @primary-color;
+}
+
+.item {
+  position: relative;
+  padding: 20px 13px;
+  border-bottom: 1px solid @borderBase;
+}
+
+.block {
+  position: absolute;
+  left: 0;
+  top: 24px;
+  height: 1em;
+  width: 5px;
+  font-size: 14px;
+  background: @orange;
+}
+
+.subTitle {
+  position: relative;
+  font-size: 14px;
+  color: @text-color-secondary;
+  font-weight: bold;
+}
+
+.number {
+  padding: 0 5px;
+  font-weight: bold;
+}
+
+.link {
+  color: @text-color;
+
+  &:hover {
+    color: @primary-color;
+  }
+}

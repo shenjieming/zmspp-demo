@@ -1,0 +1,73 @@
+@import '../../themes/vars.less';
+:global {
+  .rdw-editor-main {
+    min-height: 300px;
+    border: 1px solid #F1F1F1;
+    border-top: 0;
+  }
+  .rdw-editor-toolbar {
+    margin-bottom: 5px;
+  }
+  .rdw-image-modal-upload-option-label {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: auto;
+    display: inherit;
+    justify-content: left;
+    align-items: left;
+  }
+  .public-DraftStyleDefault-block {
+    margin: 0;
+    line-height: normal;
+  }
+  .rdw-editor-wrapper {
+    width: 960px;
+  }
+  .editor-container {
+    width: 960px;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    line-height: normal;
+    ol {
+      display: block;
+      list-style-type: decimal;
+      -webkit-margin-before: 1em;
+      -webkit-margin-after: 1em;
+      -webkit-margin-start: 0px;
+      -webkit-margin-end: 0px;
+      -webkit-padding-start: 40px;
+    }
+    ul {
+      display: block;
+      list-style-type: disc;
+      -webkit-margin-before: 1em;
+      -webkit-margin-after: 1em;
+      -webkit-margin-start: 0px;
+      -webkit-margin-end: 0px;
+      -webkit-padding-start: 40px;
+    }
+    .image-dialog {
+      .tab-panel {
+        .image-content {
+          height: 300px;
+        }
+      }
+    }
+  }
+  .editor-default {
+    .editor-toolbar {
+      box-shadow: none;
+      -webkit-box-shadow: none;
+    }
+    .editor-contenteditable-div {
+      min-height: 600px;
+      .editable-range {
+        min-height: 600px;
+        margin-right: 10px;
+      }
+      p {
+        margin: 0;
+      }
+    }
+  }
+}

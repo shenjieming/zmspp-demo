@@ -1,0 +1,43 @@
+
+.maskLayer {
+  position: fixed;
+  bottom: 0;
+  width: 0;
+  height: calc(~'100vh');
+  z-index: 1;
+  right: 0;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+.maskLayerShow {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.table-head-config {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0px;
+  background-color: #ffffff;
+  height: auto;
+  z-index: 2;
+  overflow: hidden;
+
+  .table-head-content {
+    height: 100%;
+    min-height: 200px;
+    overflow-y: scroll;
+    .table-head-li {
+      padding: 5px 5px;
+      line-height: 28px;
+    }
+  }
+}
+
+.table-head-config-show {
+  width: 350px;
+  padding: 10px;
+}

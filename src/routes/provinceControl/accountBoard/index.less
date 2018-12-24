@@ -1,0 +1,101 @@
+@import '../../../themes/vars.less';
+
+.left {
+  display: inline-block;
+  width: 200px;
+  height: 100%;
+  overflow: auto;
+  padding-right: 10px;
+  border-right: 1px dashed #e9e9e9;
+  .title {
+    border-bottom: 1px solid #bebebe;
+    font-weight: 600;
+    padding-bottom: 10px;
+  }
+  .periodItem {
+    padding: 0px 10px;
+    border-top: 1px dashed #bebebe;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    &:first-child {
+      border-top: none;
+    }
+    &.currentItem {
+      background-color: #e5e5e5;
+    }
+    .errorPoint {
+      float: right;
+    }
+  }
+}
+.center {
+  display: inline-block;
+  width: calc(~'100% - 400px');
+  height: 100%;
+  overflow: auto;
+  padding: 0px 10px;
+  border-right: 1px dashed #e9e9e9;
+  .cardArea {
+    margin: 20px 0px;
+    .aekCard {
+      border-bottom: 10px solid rgba(236, 123, 13, 0.5);
+      box-shadow: 0px 0px 6px rgb(117, 117, 117);
+      border-radius: 5px;
+      margin-right: 8px;
+      background-repeat: no-repeat;
+      background-position-x: right;
+      background-position-y: bottom;
+      background-size: 70px;
+      background-image: url('../../../assets/lkc-icon.png');
+    }
+    .card {
+      border-bottom: 10px solid rgba(117, 117, 117, 0.5);
+      box-shadow: 0px 0px 6px rgb(117, 117, 117);
+      border-radius: 5px;
+      margin: 0px 8px;
+      background-repeat: no-repeat;
+      background-position-x: right;
+      background-position-y: bottom;
+      background-size: 70px;
+      background-image: url('../../../assets/provice-icon.png');
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+    & > div {
+      width: calc(~"25% - 12px");
+      display: inline-block;
+      padding: 10px;
+      vertical-align: middle;
+      @media (min-width: 1600px) {
+        background-size: 50px;
+      }
+    }
+  }
+  .graphContainer {
+    padding: 10px;
+    height: 330px;
+    background-color: rgba(238, 238, 238, 0.35);
+  }
+  .bigFont {
+    font-size: 18px;
+    font-weight: bold;
+    @media (min-width: 1600px) {
+      font-size: 30px;
+    }
+  }
+}
+.right {
+  display: inline-block;
+  width: 200px;
+  height: 100%;
+  overflow: auto;
+  padding: 0px 0px 0px 10px;
+  .errorArea {
+    padding: 10px;
+    & > div {
+      margin-bottom: 10px;
+    }
+  }
+}

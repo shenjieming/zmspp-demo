@@ -1,0 +1,90 @@
+@import "../../../themes/vars.less";
+
+@height: 40px;
+
+.barcodeInput {
+  height: @height;
+  width: 100%;
+}
+
+.label {
+  display: inline-block;
+  padding-right: 1em;
+}
+
+.short {
+  width: 80px;
+}
+
+.long {
+  width: 200px;
+}
+
+.short,
+.long {
+  margin: 0 .5em;
+}
+
+.wrap {
+  padding: 0 0 0 15px;
+
+  &>div {
+    padding: 5px 0;
+  }
+}
+
+.codeLength {
+  display: inline-block;
+  padding: 0 .5em;
+  text-align: center;
+}
+
+.idx {
+  width: 30px;
+  height: 30px;
+  font-weight: 700;
+  text-align: center;
+
+  &.index {
+    height: auto;
+  }
+
+  .sub {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    font-weight: 400;
+  }
+}
+
+
+
+.barcode {
+  display: flex;
+  align-items: center;
+  height: @height;
+  width: 100%;
+  padding: @input-padding-vertical-base @input-padding-horizontal;
+  border: @border-width-base @border-style-base @input-border-color;
+  border-radius: @border-radius-base;
+  font-size: 22px;
+}
+
+.barcodeIndex {
+  .barcode;
+  padding: 0 @input-padding-horizontal;
+  height: inherit;
+  border: none;
+  font-size: 12px;
+}
+
+.lowLight {
+  color: #fff;
+  background: #ccc;
+  border-radius: 50%;
+
+  &.highLight {
+    background: @primary-color;
+  }
+}

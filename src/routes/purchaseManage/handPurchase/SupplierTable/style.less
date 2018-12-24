@@ -1,0 +1,81 @@
+@import "../../../../themes/default.less";
+
+.supplier {
+  height: 100%;
+  overflow: hidden;
+  .select {
+    height: 64px;
+    .search {
+      margin: 18px 0 22px 20px;
+      width: 253px;
+    }
+  }
+  .table {
+    height: calc(~'100% - 64px');
+    overflow: hidden;
+    & > div.index {
+      display: inline-block;
+      width: 20px;
+      height: 100%;
+      vertical-align:top;
+      & > a {
+        display: block;
+        width: 20px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        color: @text-color,
+      }
+      & > a:hover {
+        color: @primary-color,
+      }
+    }
+    & > div.main {
+      display: inline-block;
+      width: calc(~'100% - 20px');
+      height: 100%;
+      overflow: hidden;
+      padding-right: 4px;
+      .title {
+        height: 30px;
+        line-height: 30px;
+        padding-left: 8px;
+        margin-right: 4px;
+        background-color: #E5E5E5;
+      }
+      .item {
+        height: 32px;
+        line-height: 32px;
+        margin-right: 4px;
+        padding-left: 8px;
+        border: 1px solid #E5E5E5;
+        border-top: 0;
+        cursor: pointer;
+        .icon {
+          margin-right: 6px;
+          :global {
+            font-size: 16px;
+            color: transparent;
+            transition: color .4s;
+            vertical-align: middle;
+            cursor: pointer;
+          }
+        }
+      }
+      .item:hover {
+        .icon {
+          :global {
+            color: #108EE9;
+          }
+        }
+      }
+      .seled {
+        background-color: @primary-1;
+        color: @primary-color,
+      }
+    }
+  }
+}
+
+
+

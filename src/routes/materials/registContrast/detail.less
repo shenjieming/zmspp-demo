@@ -1,0 +1,22 @@
+.content {
+  & > div {
+    height: 100%;
+    overflow-y: scroll;
+    width: 50%;
+    display: inline-block;
+    padding: 10px;
+  }
+  .aek-shadow {
+    height: 100%;
+    width: e('calc(50% - 5px)');
+    display: inline-block;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 1px 0 6px rgba(0, 0, 0, 0.2);
+    :global {
+      .ant-upload-list-picture-card {
+        text-align: left;
+      }
+    }
+  }
+}

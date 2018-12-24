@@ -1,0 +1,631 @@
+@import './vars.less';
+@import '/iconfont/iconfont.css';
+
+// AEK自定义样式
+:global {
+  /* 布局样式 */
+  .aek-horizontal-block {
+    padding: 5px 0 10px;
+  }
+
+  .aek-layout {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 0 15px 15px 15px;
+    background: #f9f9f9;
+
+    & > .bread {
+      line-height: 50px;
+      height: 50px;
+    }
+
+    & > .content {
+      position: relative;
+      min-height: calc(~'100% - 50px');
+      padding: 10px;
+      box-shadow: @aek-shadow;
+      background: #fff;
+
+      & > .aek-layout-hor {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        height: auto;
+      }
+    }
+
+    & > .full-content {
+      .content;
+      min-height: inherit;
+      height: calc(~'100% - 50px');
+      padding: 0;
+      box-shadow: unset;
+    }
+  }
+
+  .home-banner-alert {
+    & + .aek-layout {
+      height: calc(~'100% - 34px');
+    }
+  }
+
+  .aek-layout-hor {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+
+    .left {
+      display: inline-block;
+      width: 290px;
+      height: 100%;
+      border-right: 1px dashed @border-color-split;
+      overflow: auto;
+      box-sizing: border-box;
+    }
+
+    .right {
+      display: inline-block;
+      width: calc(~'100% - 290px');
+      height: 100%;
+      overflow: auto;
+    }
+  }
+
+  /* end */
+
+  /* 阴影 */
+  .aek-table-shadow {
+    .ant-table {
+      box-shadow: @aek-shadow;
+    }
+  }
+
+  .aek-shadow {
+    box-shadow: @aek-shadow;
+  }
+
+  .aek-shadow-top {
+    box-shadow: @shadow-1-up;
+  }
+
+  .aek-shadow-bottom {
+    box-shadow: @shadow-1-down;
+  }
+
+  .aek-shadow-left {
+    box-shadow: @shadow-1-left;
+  }
+
+  .aek-shadow-right {
+    box-shadow: @shadow-1-right;
+  }
+
+  /* 组件 */
+
+  .aek-input-border-bottom {
+    .ant-input {
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      border-radius: 0;
+
+      &:focus {
+        box-shadow: 0 0 0 transparent !important;
+      }
+    }
+  }
+
+  .aek-table-no-allcheck {
+    .ant-table-thead {
+      .ant-table-selection {
+        display: none;
+      }
+    }
+  }
+
+  // 标题
+  .aek-sub-head {
+    margin: 10px 10px 10px 0;
+    font-size: 15px;
+
+    &::before {
+      content: '';
+      padding: 0 4px 0 0;
+      margin: 0 0.5em 0 0;
+      height: 1em;
+      background: @primary-color;
+    }
+  }
+  // 表单信息分栏标题
+  .aek-form-head {
+    color: @text-color-secondary;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  // 背景
+  .aek-barcode {
+    font-size: 24px;
+    font-weight: bold;
+    height: 50px;
+    width: 400px;
+    border: 1px solid #757575;
+    background: url(../assets/barcode.png) repeat-x 0 0 !important;
+  }
+
+  // 模态框
+  .aek-modal {
+    .ant-modal {
+      top: 0;
+      padding: 0;
+      height: 100%;
+
+      .ant-modal-content {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+      }
+
+      .ant-modal-body {
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+    }
+  }
+
+  .aek-modal-scroll {
+    .aek-modal;
+    .ant-modal-body {
+      height: 80vh;
+      overflow-y: none;
+      padding: 0;
+    }
+  }
+
+  // 全屏操作
+  .aek-fullScreen {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    padding: 15px;
+    overflow-x: auto;
+  }
+
+  // 占位填充
+  .aek-fill-15 {
+    display: inline-block;
+    width: 15px;
+  }
+
+  /*
+    设置div间距
+    命名规则 aek-(m: margin, p: padding)(方向 tb: 上下, lr: 左右, t: 上, 下: b, 左: l, 右: r)(大小)
+  */
+  .aek-m10 {
+    margin: 10px;
+  }
+  .aek-m15 {
+    margin: 15px;
+  }
+  .aek-m20 {
+    margin: 20px;
+  }
+  .aek-m30 {
+    margin: 30px;
+  }
+
+  .aek-p10 {
+    padding: 10px;
+  }
+  .aek-p15 {
+    padding: 15px;
+  }
+  .aek-p20 {
+    padding: 20px;
+  }
+  .aek-p30 {
+    padding: 30px;
+  }
+
+  .aek-mtb10 {
+    margin: 10px 0;
+  }
+  .aek-mtb15 {
+    margin: 15px 0;
+  }
+  .aek-mtb20 {
+    margin: 20px 0;
+  }
+  .aek-mtb30 {
+    margin: 30px 0;
+  }
+
+  .aek-ptb10 {
+    padding: 10px 0;
+  }
+  .aek-ptb15 {
+    padding: 15px 0;
+  }
+  .aek-ptb20 {
+    padding: 20px 0;
+  }
+  .aek-ptb30 {
+    padding: 0 30px;
+  }
+
+  .aek-mlr10 {
+    margin: 0 10px;
+  }
+  .aek-mlr15 {
+    margin: 0 15px;
+  }
+  .aek-mlr20 {
+    margin: 0 20px;
+  }
+  .aek-mlr30 {
+    margin: 0 30px;
+  }
+
+  .aek-plr10 {
+    padding: 0 10px;
+  }
+  .aek-plr15 {
+    padding: 0 15px;
+  }
+  .aek-plr20 {
+    padding: 0 20px;
+  }
+  .aek-plr30 {
+    padding: 0 30px;
+  }
+
+  .aek-mt10 {
+    margin: 10px 0 0 0;
+  }
+  .aek-mt15 {
+    margin: 15px 0 0 0;
+  }
+  .aek-mt20 {
+    margin: 20px 0 0 0;
+  }
+  .aek-mt30 {
+    margin: 30px 0 0 0;
+  }
+
+  .aek-pt10 {
+    padding: 10px 0 0 0;
+  }
+  .aek-pt15 {
+    padding: 15px 0 0 0;
+  }
+  .aek-pt20 {
+    padding: 20px 0 0 0;
+  }
+  .aek-pt30 {
+    padding: 30px 0 0 0;
+  }
+
+  .aek-mb10 {
+    margin: 0 0 10px 0;
+  }
+  .aek-mb15 {
+    margin: 0 0 15px 0;
+  }
+  .aek-mb20 {
+    margin: 0 0 20px 0;
+  }
+  .aek-mb30 {
+    margin: 0 0 30px 0;
+  }
+
+  .aek-pb10 {
+    padding: 0 0 10px 0;
+  }
+  .aek-pb15 {
+    padding: 0 0 15px 0;
+  }
+  .aek-pb20 {
+    padding: 0 0 20px 0;
+  }
+  .aek-pb30 {
+    padding: 0 0 30px 0;
+  }
+
+  .aek-ml10 {
+    margin: 0 0 0 10px;
+  }
+  .aek-ml15 {
+    margin: 0 0 0 15px;
+  }
+  .aek-ml20 {
+    margin: 0 0 0 20px;
+  }
+  .aek-ml30 {
+    margin: 0 0 0 30px;
+  }
+
+  .aek-pl10 {
+    padding: 0 0 0 10px;
+  }
+  .aek-pl15 {
+    padding: 0 0 0 15px;
+  }
+  .aek-pl20 {
+    padding: 0 0 0 20px;
+  }
+  .aek-pl30 {
+    padding: 0 0 0 30px;
+  }
+
+  .aek-mr10 {
+    margin: 0 10px 0 0;
+  }
+  .aek-mr15 {
+    margin: 0 15px 0 0;
+  }
+  .aek-mr20 {
+    margin: 0 20px 0 0;
+  }
+  .aek-mr30 {
+    margin: 0 30px 0 0;
+  }
+
+  .aek-pr10 {
+    padding: 0 10px 0 0;
+  }
+  .aek-pr15 {
+    padding: 0 15px 0 0;
+  }
+  .aek-pr20 {
+    padding: 0 20px 0 0;
+  }
+  .aek-pr30 {
+    padding: 0 30px 0 0;
+  }
+
+  //左右浮动
+  .aek-fl {
+    float: left;
+  }
+  .aek-fr {
+    float: right;
+  }
+  .aek-clearfix {
+    &::after {
+      content: ' ';
+      display: table;
+      clear: both;
+    }
+  }
+
+  // 行内
+  .aek-inline-block {
+    display: inline-block;
+  }
+  // 链接
+  .aek-link {
+    color: @primary-color;
+    text-decoration: underline;
+
+    &:hover {
+      color: @primary-5;
+      text-decoration: unset;
+    }
+  }
+
+  // 颜色
+  .aek-primary-color {
+    color: @primary-color;
+  }
+
+  .aek-deep-blue {
+    color: #008aff;
+  }
+
+  .aek-green {
+    color: #5cb85c;
+  }
+
+  .aek-gray {
+    color: @gray;
+  }
+
+  .aek-red {
+    color: @red;
+  }
+
+  .aek-orange {
+    color: @orange;
+  }
+
+  .aek-light-gray {
+    color: @light-gray;
+  }
+
+  // 文本大小
+  .aek-font-large {
+    font-size: @font-large;
+  }
+
+  .aek-font-mid {
+    font-size: 14px;
+  }
+
+  .aek-font-small {
+    font-size: @font-small;
+  }
+
+  // 文本样式
+  .aek-text-overflow {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-right: 5px;
+  }
+
+  .aek-text-bold {
+    font-weight: 600;
+  }
+
+  .aek-text-right {
+    text-align: right;
+  }
+
+  .aek-text-center {
+    text-align: center;
+  }
+  /* 三种文本样式 1.主要文本 2.辅助文本　3.不可用文本 */
+  .aek-text-primary {
+    color: @text-color;
+  }
+
+  .aek-text-help {
+    color: @text-color-secondary;
+  }
+
+  .aek-text-disable {
+    color: @last-text-color;
+  }
+
+  .aek-border-bottom {
+    height: 30px;
+    line-height: 20px;
+    border-bottom: 1px solid #bebebe;
+    font-weight: 600;
+    .aek-border-bottom-left {
+      font-weight: normal;
+      float: left;
+    }
+    .aek-border-bottom-right {
+      float: right;
+      text-align: right;
+      font-weight: normal;
+    }
+  }
+  // 色块状态 启用
+  .aek-status-on {
+    background-color: @primary-color;
+    color: #fff;
+    padding: 0 5px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+  // 版本对比table首列背景
+  .aek-bg-columns {
+    background-color: #f6f7fb;
+  }
+  // 版本对比table差异背景
+  .aek-bg-difference.ant-table-row-level-0 {
+    background-color: #e5eef5;
+    &:nth-child(even) {
+      background-color: #e5eef5;
+    }
+  }
+  // 字符串换行
+  .aek-word-break {
+    word-break: break-all;
+  }
+  // 高度固定
+  .aek-full-height {
+    height: @full-screen;
+  }
+
+  /* 表格行状态函数 */
+  .tr-status(@image) {
+    position: relative;
+
+    &::after {
+      content: ' ';
+      display: block;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-image: url(@image);
+      background-position: 0 0;
+      background-repeat: no-repeat;
+      z-index: 999;
+    }
+  }
+
+  // 加急
+  td.aek-urgent {
+    .tr-status('../assets/urgent.png');
+  }
+  // 停用
+  td.aek-disabled {
+    .tr-status('../assets/disabled.png');
+  }
+  // 已添加
+  td.aek-added {
+    .tr-status('../assets/added.png');
+  }
+
+  /* 打印 */
+  .aek-print-title {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  // 文本标题
+  .aek-content-title {
+    border-bottom: 1px solid #bebebe;
+    font-weight: 600;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    .aek-clearfix;
+    .aek-title-left {
+      .aek-fl;
+    }
+    .aek-title-right {
+      .aek-fr;
+      font-weight: normal;
+    }
+  }
+  // 头像描边
+  .aek-avatar-border {
+    border: 2px solid @orange;
+  }
+  // 表格选中行高亮
+  .aek-tr-selected {
+    & > td {
+      background: @light-blue;
+    }
+  }
+  // card组件样式修改（减小默认padding和高度）
+  .aek-card {
+    box-sizing: border-box;
+    box-shadow: @box-shadow-base;
+    & + .aek-card {
+      margin-top: 15px;
+    }
+    &.ant-card-bordered {
+      border: 0;
+    }
+    &.ant-card-wider-padding .ant-card-head,
+    .ant-card-head {
+      height: 40px;
+      line-height: 40px;
+      border-bottom: 1px solid @border-color-base;
+      padding: 0 15px;
+    }
+    &.ant-card-wider-padding .ant-card-body,
+    .ant-card-body {
+      padding: 10px 15px 20px;
+    }
+  }
+  .aek-full-card {
+    .aek-card;
+    min-height: calc(~'100% - 50px');
+  }
+}

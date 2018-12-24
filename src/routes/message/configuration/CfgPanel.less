@@ -1,0 +1,86 @@
+@import '../../../themes/vars.less';
+
+@padding: 0 15px;
+
+.wrap {
+  margin: 0 0 10px;
+  background: #fff;
+
+  .head {
+    padding: @padding;
+    height: 45px;
+    line-height: 45px;
+    font-size: larger;
+    font-weight: 600;
+    background: @sider-bg-color;
+  }
+
+  .content {
+    padding: @padding;
+
+    & + .content {
+      border-top: 1px solid @borderBase;
+    }
+
+    .name {
+      display: inline-block;
+      padding: 10px 0;
+      width: 50%;
+      vertical-align: middle;
+    }
+    .switch {
+      display: inline-block;
+      width: 10%;
+      vertical-align: middle;
+    }
+    .rest {
+      position: relative;
+      display: inline-block;
+      width: 40%;
+      vertical-align: middle;
+    }
+
+    .label {
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+
+    .receiverWrap {
+      display: inline-block;
+      position: relative;
+      width: 250px;
+
+      .receivers {
+        padding: 10px 0 10px 50px;
+      }
+
+      .receiver {
+        display: inline-block;
+        width: 150px;
+
+        & + .receiver {
+          margin-top: 10px;
+        }
+
+        .avatar {
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        .realName {
+          padding-left: 20px;
+        }
+      }
+    }
+
+    .action {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}

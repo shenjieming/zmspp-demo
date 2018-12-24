@@ -1,0 +1,85 @@
+@import "../../../themes/default.less";
+
+:global {
+  .table-hover {
+    .hover-select div.ant-select-selection.ant-select-selection--single {
+      border-color: transparent;
+      background-color: transparent;
+      span.ant-select-arrow:before{
+        color: transparent;
+        transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      }
+      div.ant-select-selection-selected-value {
+        width: 100%;
+        text-align: center;
+        padding-left: 14px;
+      }
+    }
+    .hover-select div.ant-select-selection:focus {
+      box-shadow: none;
+    }
+  }
+  .table-hover:hover {
+    .hover-select div.ant-select-selection.ant-select-selection--single {
+      border-color: #d5d5d5;
+      background-color: #fff;
+      span.ant-select-arrow:before{
+        color: inherit;
+      }
+    }
+    .hover-select div.ant-select-selection:focus {
+      box-shadow: 0 0 0 2px rgba(12, 178, 205, 0.2);
+    }
+  }
+}
+
+.left {
+  background-color: #fff;
+  min-height: 100%;
+}
+
+.cartTabel {
+  margin: 24px 24px 32px;
+  :global {
+    .ant-table-row {
+      &:hover {
+        outline: 0;
+      }
+    }
+    .ant-table-thead > tr > th.ant-table-selection-column {
+      text-align: left;
+      padding-left: 0;
+      min-width: 54px;
+      width: 54px;
+    }
+    .ant-table-tbody > tr > td.ant-table-selection-column {
+      text-align: right;
+      padding-left: 0;
+      min-width: 54px;
+      width: 54px;
+    }
+    .ant-table .ant-table-thead > tr > th {
+      background-color: transparent;
+      border-bottom: 1px dashed #DEDEDE;
+    }
+    .ant-table-middle .ant-table-tbody {
+      tr.ant-table-row.ant-table-row-level-0 {
+        background-color: transparent;
+      }
+      & > tr > td {
+        background-color: transparent;
+        border-bottom: 1px dashed #DEDEDE;
+        padding: 8px;
+      }
+      .ant-table-selection-column {
+        border-bottom: none;
+      }
+    }
+  }
+}
+.Icon {
+  cursor: pointer;
+  color: @text-color;
+  width: 40px;
+  margin-right: -14px;
+}

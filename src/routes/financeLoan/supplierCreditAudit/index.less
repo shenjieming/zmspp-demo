@@ -1,0 +1,32 @@
+@import '../../../themes/vars.less';
+.RequiredBox {
+  border-top: 1px dashed @last-text-color;
+}
+.inlineBox {
+  & > * {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  & > a {
+    vertical-align: top;
+  }
+}
+.rangeContainer {
+  min-width: 500px;
+  max-width: 700px;
+  margin-top: 20px;
+  .fileInput {
+    width: 250px;
+    height: 32px;
+    float: left;
+    margin-right: 30px;
+  }
+}
+.viewContainer {
+  min-width: 500px;
+  max-width: 700px;
+  margin-top: 20px;
+  :global .ant-form-item {
+    margin-bottom: 10px;
+  }
+}

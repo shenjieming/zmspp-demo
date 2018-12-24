@@ -1,0 +1,102 @@
+.viewModel {
+    border: 1px solid #e2dade;
+    min-height: 80px;
+    .firstContainer {
+      :global .anticon {
+        margin-left: 8px;
+        color: #dedede;
+      }
+      :global .ant-checkbox-wrapper {
+        cursor: default;
+        :global .ant-checkbox {
+          cursor: default;
+          &:hover {
+            border-color: #d5d5d5;
+          }
+          :global .ant-checkbox-inner {
+              border-color: #d5d5d5;
+            }
+          :global .ant-checkbox-input {
+            cursor: default;
+          }
+        }
+      }
+      .firstInner {
+        position: relative;
+        border-bottom: 1px solid #e2dade;
+        padding: 20px;
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+      .appLevel {
+        display: inline-block;
+        font-weight: bold;
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+        width: 160px;
+      }
+      .secondContainer {
+        display: inline-block;
+        width: calc(~'100% - 160px');
+        padding-left: 160px;
+        .secondInner {
+          margin-bottom: 10px;
+          &:last-child {
+            margin: 0;
+          }
+          .thirdContainer {
+            margin-top: 10px;
+            .thirdInner {
+              display: inline-block;
+            }
+          }
+        }
+        .menuLevel {
+          font-weight: bold;
+        }
+      }
+      .functionContainer {
+        display: inline-block;
+      }
+    }
+  }
+
+  .editModel {
+    .firstContainer {
+      margin-bottom: 10px;
+
+      :global .anticon {
+        margin-left: 8px;
+        color: #dedede;
+      }
+
+      .appLevel {
+        font-weight: bold;
+        padding-left: 6%;
+      }
+      .secondContainer {
+        display: block;
+        padding-left: 16%;
+        .secondInner {
+          margin-bottom: 10px;
+          &:last-child {
+            margin: 0;
+          }
+          .thirdContainer {
+            margin-top: 10px;
+            .thirdInner {
+              display: inline-block;
+            }
+          }
+        }
+        .menuLevel {
+          font-weight: bold;
+        }
+      }
+      .functionContainer {
+        display: inline-block;
+      }
+    }
+  }

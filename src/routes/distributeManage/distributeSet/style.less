@@ -1,0 +1,39 @@
+.content {
+  & > div {
+    height: 100%;
+    overflow: hidden;
+    width: 50%;
+    display: inline-block;
+    padding: 12px;
+    & > .search {
+      margin-top: 20px;
+      & > form {
+        display: inline-block;
+      }
+      & > button {
+        float: right;
+      }
+    }
+    & > .table {
+      height: calc(~"100% - 110px");
+      overflow: auto;
+      border-top: 1px solid #E9E9E9;
+    }
+  }
+}
+
+.tableLeft {
+  :global {
+    tr {
+      cursor: pointer;
+    }
+  }
+}
+
+.modal {
+  & > div {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+}

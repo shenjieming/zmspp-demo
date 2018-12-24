@@ -1,0 +1,39 @@
+@import '../../../themes/vars.less';
+
+.bottom {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+}
+
+.fullMaxHeight {
+  max-height: calc(~'100% - 192px');
+  overflow-y: scroll;
+}
+
+.tableMaxHeight {
+  max-height: calc(~'100vh - 257px');
+  overflow-y: scroll;
+}
+
+.highLight {
+  td {
+    background: @light-blue;
+  }
+}
+
+.removeZidx {
+  :global {
+    .ant-select-search__field {
+      z-index: inherit;
+    }
+  }
+}
+
+:global .barcodeContainer{
+  height: 66px;
+  :global .ant-spin-nested-loading{
+    width: 400px;
+    display: inline-block;
+  }
+}

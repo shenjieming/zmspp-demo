@@ -1,0 +1,25 @@
+@import "../../themes/default";
+
+.row {
+  margin: 0 0 5px 0;
+}
+
+.itemWrap{
+  position: relative;
+  min-height: @input-height-lg;
+  line-height: @input-height-lg;
+
+  .itemKey {
+    position: absolute;
+    text-align: right;
+    width: 100px;
+    color: @text-color-secondary;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .itemVal {
+    padding: 0 5px 0 100px;
+  }
+}

@@ -1,0 +1,45 @@
+@import "../../../../themes/vars";
+.wrap{
+  p{
+    padding: 8px 0;
+  }
+}
+.stepWrap{
+  color: @primary-color;
+  .currentPoint{
+    display: inline-block;
+    width:40px;
+    height: 32px;
+    span{
+      display: inline-block;
+      background: @primary-color;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      line-height: 32px;
+    }
+  }
+  .otherPoint{
+    display: inline-block;
+    width:40px;
+    height: 32px;
+    span{
+      display: inline-block;
+      background: #757575;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      line-height: 32px;
+    }
+  }
+  .msgWrap{
+    display: inline-block;
+    border-bottom: 1px dashed #E5E5E5;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    .time{
+      margin-top:10px;
+      font-size: 13px;
+    }
+  }
+}

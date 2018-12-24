@@ -1,0 +1,210 @@
+// html{
+//     font-size: 50px;
+// }
+.wrap {
+  user-select: none;
+  font-size: 16px;
+  background-color: #f5f5f9;
+  margin: 0;
+  overflow-y: auto;
+  height: 100VH;
+}
+// 头部
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 36px;
+  width: 100%;
+  line-height: 36px;
+  font-size: 18px;
+  text-align: center;
+  background-color: #fff;
+  z-index: 10;
+  box-shadow: 0 0 7.5px 0 rgba(0, 0, 0, 0.25);
+  .leftBtn {
+    height: 36px;
+    width: 46px;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+.orderInfo {
+  position: fixed;
+  z-index: 10;
+  top: 36px;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 0 7.5px 0 rgba(0, 0, 0, 0.25);
+  padding: 0 10px;
+  margin: 10px 0;
+  font-size: 12px;
+
+  .item {
+    padding: 10px 0;
+    position: relative;
+
+    .rlbox {
+      padding-left: 46px;
+      position: relative;
+      min-height: 40px;
+
+      .logo {
+        position: absolute;
+        left: 0;
+        top: 0;
+        border: 2px solid #16b4cd;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+
+    .text {
+      color: #666;
+      padding: 2.5px 0;
+    }
+  }
+
+  .item + .item {
+    border-top: 1px solid #e5e5e5;
+  }
+}
+// 内容
+.content {
+  margin-top: 36px;
+}
+
+// 列表
+
+.list {
+  .item:first-child {
+    border-top: 0;
+  }
+  .item {
+    position: relative;
+    padding: 10px 70px 10px 10px;
+    font-size: 12px;
+    border: solid rgb(153, 153, 153);
+    border-width: 1px 0;
+    .right {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      color: #333;
+    }
+
+    .sum {
+      position: absolute;
+      right: 10px;
+      top: 15px;
+      color: #757575;
+    }
+  }
+  .item + .item {
+    margin-top: -1px;
+  }
+}
+// 工具条
+.toolbar {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  box-shadow: 0 0 7.5px 0 rgba(0, 0, 0, 0.25);
+  z-index: 10;
+
+  .buttonWrap {
+    padding: 10px;
+  }
+}
+
+// 超出....
+
+.ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// 按钮
+.btn {
+  width: 100%;
+}
+
+.loading, .errorContent{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+// 图标
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.2em;
+  height: 1em;
+  width: 1em;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.icon.phone {
+  background-image: url("../../../assets/icon-phone.png");
+}
+
+.icon.addr {
+  background-image: url("../../../assets/icon-addr.png");
+}
+
+.icon.back {
+  background-image: url("../../../assets/icon-back.png");
+  background-size: 20px;
+}
+
+
+.icon.networkError {
+  height: 60px;
+  width: 60px;
+  background-image: url("../../../assets/h5-error-icon.png");
+}
+
+.result {
+  background-color: #ff9329;
+  color: #fff;
+  text-align: center;
+  line-height: 22px;
+  height: 22px;
+  position: fixed;
+  top: 36px;
+  width: 100%;
+  left: 0;
+  z-index: 11;
+  font-size: 12px;
+}
+
+.result + .orderInfo {
+  top: 46px;
+}
+
+.errorContent{
+  text-align: center;
+  top: 30%;
+  >.text{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #BEBEBE;
+  }
+  .icon.networkError{
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,16 @@
+@import '../../themes/vars.less';
+
+@liHeight: 40px;
+
+.menu {
+  height: calc(~'100% - 133px');
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.link {
+  color: @text-color;
+  &.activeLink {
+    color: @primary-color;
+  }
+}

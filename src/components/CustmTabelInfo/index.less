@@ -1,0 +1,42 @@
+@import '../../themes/mixin.less';
+
+:global {
+  .hover-a {
+    border-bottom: 1px solid transparent;
+    outline: none;
+    display: inline-block;
+    color: @text-color;
+    transition: border-bottom-color .3s;
+  }
+  .hover-edit {
+    color: transparent;
+    margin-left: 10px;
+    transition: color .3s;
+  }
+  .table-row-hover:hover .hover-a {
+    color: @text-color;
+    border-bottom-color: @text-color;
+  }
+  .table-row-hover:hover .hover-edit {
+    color: @primary-color;
+  }
+}
+
+.swrap{
+  & > div.left {
+    display: inline-block;
+    vertical-align: top;
+    width: 60px;
+  }
+  & > div.right {
+    display: inline-block;
+    max-width: 360px;
+    & > * {
+      margin-bottom: 4px;
+    }
+    i {
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+  }
+}

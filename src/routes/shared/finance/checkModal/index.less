@@ -1,0 +1,37 @@
+@import "../../../../themes/default.less";
+.msgWrap {
+  color: #000;
+  padding-left: 15px;
+  padding-right: 5px;
+  .title {
+    border-bottom: 1px solid @border-color-base;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 15px;
+  }
+  .scroll {
+    height: e("calc(100% - 55px)");
+    overflow-y: auto;
+    :global {
+      .inner-table {
+        .ant-table-thead > tr.ant-table-row-hover > td,
+        .ant-table-tbody > tr.ant-table-row-hover > td,
+        .ant-table-thead > tr:hover > td,
+        .ant-table-tbody > tr:hover > td {
+          background: transparent;
+        }
+      }
+    }
+  }
+  .footer {
+    height: 48px;
+    line-height: 48px;
+    text-align: right;
+    font-size: 16px;
+    margin-top: 5px;
+    .textRed {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+}

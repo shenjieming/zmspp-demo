@@ -1,0 +1,35 @@
+@import '../../themes/vars.less';
+
+.wrap {
+  border-radius: @border-radius-base;
+  box-shadow: @box-shadow-base;
+  background: #fff;
+
+  & + .wrap {
+    margin-top: 15px;
+  }
+
+  .titleWrap {
+    padding: 0 20px;
+    font-size: @font-size-base;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #e5e5e5;
+    position: relative;
+    .title {
+      font-size: @font-mid;
+      margin: 0;
+      color: #666666;
+    }
+    .extra {
+      position: absolute;
+      right: 20px;
+      top: 0px;
+    }
+  }
+
+  .content {
+    padding: 16px;
+    border-radius: 0 0 @border-radius-base @border-radius-base;
+  }
+}

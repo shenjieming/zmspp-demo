@@ -1,0 +1,91 @@
+@import '../../../../themes/vars.less';
+
+.info {
+  text-align: right;
+  margin-top: 20px;
+  & > div:last-child {
+    margin-top: 18px;
+    button {
+      margin-left: 10px;
+    }
+  }
+}
+.bottomInfo {
+  position: fixed;
+  bottom: 0;
+  width: calc(~'100% - @{siderWidth} - 30px');
+  height: 60px;
+  background-color: #fff;
+  z-index: 100;
+  & > div {
+    display: inline-block;
+    width: calc(~'(100% - 400px) / 3');
+    font-size: 15px;
+    line-height: 60px;
+    text-align: center;
+  }
+  & > div:nth-last-child(2) {
+    background-color: @primary-color;
+    float: right;
+    width: 200px;
+    cursor: pointer;
+    color: #fff;
+  }
+  & > div:nth-last-child(1) {
+    float: right;
+    width: 200px;
+  }
+  & > div.hover {
+    cursor: not-allowed;
+  }
+}
+.modalInfo {
+  text-align: center;
+  i {
+    color: #0fc27c;
+    font-size: 96px;
+    margin: 50px 0 30px;
+  }
+  p {
+    font-size: 24px;
+  }
+  p:last-child {
+    font-size: 12px;
+    margin: 6px 0 10px;
+  }
+}
+.modalTable {
+  padding: 0 18px 18px;
+  p {
+    text-align: center;
+    padding: 6px;
+  }
+}
+.modalButton {
+  text-align: center;
+  margin: 5px 0 10px;
+  button:first-child {
+    margin-right: 10px;
+  }
+}
+.orderItenInfo {
+  margin-top: 12px;
+  text-align: right;
+  & > div {
+    display: inline-block;
+    margin-left: 26px;
+  }
+}
+.orderItemTitle {
+  & > div {
+    display: inline-block;
+    margin-right: 20px;
+    font-weight: 400;
+  }
+}
+.Icon {
+  cursor: pointer;
+  color: @text-color;
+  padding-right: 14px;
+  margin-right: -14px;
+}

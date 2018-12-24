@@ -1,0 +1,132 @@
+@import '../../../themes/vars.less';
+
+.topContainer {
+  padding: 20px;
+  .vipIcon {
+    display: inline-block;
+    background-image: url('../../../assets/VIP.png');
+    width: 50px;
+    height: 50px;
+    background-size: 100%;
+  }
+  .largeFont {
+    font-size: 20px;
+  }
+}
+.list {
+  padding: 10px 20px;
+  font-size: 14px;
+  & > ul {
+    list-style-type: disc;
+  }
+}
+.outLine {
+  display: inline-block;
+  border: 1px solid @light-gray;
+  padding: 10px;
+  width: 300px;
+  height: 400px;
+  overflow: auto;
+}
+.rightForm {
+  display: inline-block;
+  padding: 10px 50px;
+  width: ~'calc(100% - 300px)';
+  height: 400px;
+  overflow: auto;
+}
+
+.li {
+  width: 280px;
+  height: 50px;
+  line-height: 50px;
+  cursor: pointer;
+  border-bottom: 1px dashed #e2e2e2;
+  padding-left: 5px;
+  a {
+    display: block;
+  }
+}
+.activeLi {
+  background-color: #edf9fb;
+  a {
+    color: @text-color;
+  }
+}
+.timeChoose {
+  .selector {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border: 1px solid @light-gray;
+    margin-right: 20px;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    .priceArea {
+      border-bottom: 1px dashed #e2dade;
+      height: 80%;
+      padding: 14px 0px;
+      .priceText {
+        font-size: 20px;
+      }
+    }
+    .timeArea {
+      padding: 4px;
+    }
+  }
+  .selectorSelected {
+    background-image: url('../../../assets/choosed.png');
+    border: 1px solid @primary-color;
+    background-position: right top;
+    background-size: 30px;
+    background-repeat: no-repeat;
+  }
+}
+.noSupplier {
+  line-height: 50px;
+  text-align: center;
+  color: gray;
+}
+.purchasedList {
+  padding: 20px 40px;
+  width: 740px;
+  .line {
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    border-bottom: 1px dashed #e2e2e2;
+    padding: 0px 15px;
+    a {
+      display: block;
+    }
+  }
+}
+.imgContainer {
+  width: 50%;
+  height: 300px;
+  display: inline-block;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.modalContainer {
+  line-height: 30px;
+  .importantinfo {
+    color: #e2ab06;
+    padding: 1px 2px;
+    background-color: #efefef;
+    font-weight: bold;
+    border-radius: 2px;
+  }
+  .qrCodeWeChatPay {
+    .imgContainer;
+    background-image: url('../../../assets/qrCode_wechat.png');
+  }
+  .qrCodeAliPay {
+    .imgContainer;
+    background-image: url('../../../assets/qrCode_Ali.jpg');
+  }
+}

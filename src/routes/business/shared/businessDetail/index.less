@@ -1,0 +1,91 @@
+@import '../../../../themes/vars.less';
+
+.item {
+  min-height: 50px;
+  padding: 5px 5px 0px 5px;
+  background-color: #fff;
+  box-shadow: @aek-shadow;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  background-image: url('../../../../assets/publishing.png');
+  background-position-x: 100%;
+  background-position-y: 0px;
+  background-repeat: no-repeat;
+  background-size: 170px;
+  .status {
+    float: right;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: '\5fae\8f6f\96c5\9ed1';
+    margin: 10px;
+  }
+  .main {
+    padding: 10px 90px 20px 20px;
+    .title {
+    }
+    .content {
+      margin-top: 14px;
+      .textArea {
+        margin-bottom: 10px;
+        word-break: break-all;
+      }
+    }
+    :global .anticon-cross {
+      display: none;
+    }
+  }
+  .footer {
+    border-top: 1px solid @light-gray;
+    padding: 2px 10px 2px 20px;
+    .eyesIcon {
+      background-image: url('../../../../assets/view.svg');
+      color: @primary-color;
+      display: inline-block;
+      height: 14px;
+      width: 20px;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      margin-top: 7px;
+    }
+    .replyIcon {
+      background-image: url('../../../../assets/reply.svg');
+      color: @primary-color;
+      display: inline-block;
+      height: 14px;
+      width: 20px;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      margin-top: 7px;
+    }
+    .divider {
+      height: 30px;
+      margin: 0 34px;
+      display: inline-block;
+      width: 1px;
+      background: #ccc;
+      vertical-align: top;
+    }
+  }
+  .replyBtn {
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    background-color: #16b4cd;
+    text-align: center;
+    z-index: 100;
+    line-height: 70px;
+    border-radius: 50%;
+    font-size: 18px;
+    color: white;
+    bottom: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0px 40px rgba(22, 180, 205, 0.4);
+    & > * {
+      height: 70px;
+      width: 70px;
+      display: inline-block;
+    }
+  }
+}

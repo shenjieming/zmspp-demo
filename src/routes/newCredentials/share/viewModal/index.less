@@ -1,0 +1,104 @@
+@import '../../../../themes/vars.less';
+.modalWrapper {
+  :global .ant-modal-body {
+    padding: 0px 16px 16px 16px;
+  }
+}
+
+.listContainer {
+  min-height: 200px;
+  :global .ant-timeline {
+    padding: 0px;
+  }
+  .detail {
+    position: fixed;
+    width: 94%;
+    background-color: white;
+    z-index: 100;
+    padding: 20px 0px 10px;
+    top: 38px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  }
+  .certificateBlock {
+    background: #f3f3f3;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+    &.clickable {
+      cursor: pointer;
+    }
+    min-height: 140px;
+    .leftBox {
+      width: 75%;
+      color: @gray;
+      display: inline-block;
+      vertical-align: top;
+      line-height: 24px;
+    }
+    .rightBox {
+      width: 25%;
+      display: inline-block;
+      vertical-align: top;
+      position: relative;
+      .imgBack {
+        width: 100px;
+        height: 100px;
+        background-color: #e5e5e5;
+        border: 1px solid #c0c0c0;
+        margin-top: 10px;
+        img {
+          width: 90px;
+          height: 110px;
+          position: absolute;
+          left: 5px;
+          top: 5px;
+          border: 1px solid #c0c0c0;
+          background-color: #f0f0f0;
+        }
+      }
+    }
+    .orangeBlock {
+      background-color: @orange;
+      color: white;
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .redBlock {
+      background-color: @red;
+      color: white;
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .greenBlock {
+      background-color: @green;
+      color: white;
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+  }
+}
+.position {
+  width: 440px;
+  float: left;
+  text-align: left;
+  :global .ant-input {
+    margin-left: 10px;
+    position: relative;
+    display: inline-block;
+    padding: 4px 7px;
+    width: 200px;
+    height: 28px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #4b4b4b;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #d5d5d5;
+    border-radius: 4px;
+    transition: all 0.3s;
+  }
+}
