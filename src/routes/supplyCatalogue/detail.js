@@ -31,11 +31,14 @@ import BatchCancelModal from './cancelModal'
 // 标准物料同步对照
 import CompaerModal from '../../components/RowTable/ModalCompare'
 import SearchForm from '../../components/SearchFormFilter'
-
+import AddModal from "../materials/material/addMaterialModal"
 import { tableColumns } from './data'
 
 import LkcIcon from '../../components/LkcTable'
 import Styles from './detail.less'
+import ImportExcelModal from "../materials/material/importExcelModal";
+import ImportScheduleModal from "../materials/material/importScheduleModal";
+
 
 
 const namespace = 'supplyCatalogueDetail'
@@ -87,6 +90,26 @@ function SupplyCatalogueDetail({
     otherCodeVisible,
     otherCodeList,
 
+    //后续添加
+    addModalVisible,
+    certificateList,
+    addModalType,
+    currentItem,
+    picLength,
+    productFacId,
+    GoodsCategoryTreeData,
+    brandAddModalList,
+    produceAddModalList,
+    certAddModalList,
+    produceList,
+    selectRegObj,
+    regOptionList,
+    excelModalVisible,
+    importButtonStatus,
+    scheduleList,
+    schedulePagination,
+    scheduleModalVisible,
+
     batchEditModalVisible, // 批量编辑弹框
 
     compareModalVisible, // 标准物料对照弹框
@@ -116,7 +139,52 @@ function SupplyCatalogueDetail({
       zIndex,
     })
   }
-
+  const asyncRegListDelay = debounce((val) => {
+    dispatchAction({
+      type: 'queryOptionRegList',
+      payload: {
+        keywords: val,
+      },
+    })
+  }, 500)
+  const onSearchBrandListFunDelay = debounce((val) => {
+    dispatchAction({
+      type: 'getBrandList',
+      payload: {
+        keywords: val,
+        produceFactoryId: productFacId,
+      },
+    })
+  }, 500)
+  const onSearchProListFunDelay = debounce((val) => {
+    dispatchAction({
+      type: 'getProduceFacList',
+      payload: {
+        keywords: val,
+      },
+    })
+  }, 500)
+  const addModalParam = {
+    picLength,
+    productFacId,
+    GoodsCategoryTreeData,
+    brandAddModalList,
+    produceAddModalList,
+    certAddModalList,
+    produceList,
+    selectRegObj,
+    regOptionList,
+    onSearchProListFun: onSearchProListFunDelay,
+    branOptionList,
+    onSearchBrandListFun: onSearchBrandListFunDelay,
+    asyncRegList: asyncRegListDelay,
+    certificateList,
+    getLoading,
+    dispatchAction,
+    addModalVisible,
+    addModalType,
+    currentItem,
+  }
 
   // 批量绑定注册证
   const handleMenuClick = ({ key }) => {
@@ -737,7 +805,45 @@ function SupplyCatalogueDetail({
   if (tabIndex === '4' || tabIndex === '6') {
     delete tableProps.rowSelection
   }
-
+  const importModalParam = {
+    getLoading,
+    importButtonStatus,
+    excelModalVisible,
+    dispatchAction,
+  }
+  const scheduleModalParam = {
+    scheduleList,
+    schedulePagination,
+    scheduleModalVisible,
+    getLoading,
+    dispatchAction,
+  }
+  const scheduleModalShow = () => {
+    dispatchAction({
+      type: 'importSchedule',
+    })
+  }
+  const menu1 = (
+    <Menu onClick={scheduleModalShow}>
+      <Menu.Item key="1">导入进度</Menu.Item>
+    </Menu>
+  )
+  const importExcel = () => {
+    dispatchAction({
+      payload: { excelModalVisible: true, importButtonStatus: true },
+    })
+  }
+  const addModalShow = () => {
+    dispatchAction({
+      payload: {
+        addModalType: 'create',
+        addModalVisible: true,
+        currentItem: {},
+        productFacId: '',
+        selectRegObj: {},
+      },
+    })
+  }
 
   const packageProps = {
     packageList,
@@ -822,6 +928,12 @@ function SupplyCatalogueDetail({
           ) : (
             ''
           )}
+          <Dropdown.Button type="primary" className="aek-mr15" onClick={importExcel} overlay={menu1}>
+            Excel导入
+          </Dropdown.Button>
+          <Button type="primary" onClick={addModalShow} icon="plus">
+            新增物料
+          </Button>
           <Link to={`/supplyCatalogue/detail/${customerId}/dictionSelect`}>
             <Button type="primary" style={{ marginLeft: '20px' }} icon="plus">
               从平台标准物料中添加
@@ -881,7 +993,9 @@ function SupplyCatalogueDetail({
       {batchEditModalVisible && <BatchModal {...batchProps} />}
       {/* 标准物料同步对照 */}
       <CompaerModal {...compareModalProps} />
-
+      <AddModal {...addModalParam} />
+      <ImportExcelModal {...importModalParam} />
+      <ImportScheduleModal {...scheduleModalParam} />
       <Package {...packageProps} />
       <EditMaterial {...EditProps} />
       <BarCode {...BarCodeProps} />
@@ -934,24 +1048,3 @@ export default connect(({
     accuracy,
     accuracyDecimal,
   }))(SupplyCatalogueDetail)
-
-console.log(connect(({
-                       supplyCatalogueDetail,
-                       loading: { effects },
-                       app: {
-                         constants: {
-                           packageUnit,
-                         },
-                         orgInfo: {
-                           accuracy,
-                           accuracyDecimal,
-                         },
-                       },
-                     }) =>
-  ({
-    supplyCatalogueDetail,
-    effects,
-    packageUnit,
-    accuracy,
-    accuracyDecimal,
-  }))(SupplyCatalogueDetail))

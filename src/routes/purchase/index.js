@@ -88,6 +88,7 @@ function Purchase({ purchase, loading, packageUnit, functionList = {}, effects, 
     rowSelectData,
     customerId,
   }
+
   const funcButtonList = functionList['/purchase'] || [] // 功能按钮数组
   const addButton = funcButtonList.includes('addPurchaseCatalog')
   const batchButton = funcButtonList.includes('batchViewPurchaseCatalog')
@@ -512,11 +513,11 @@ function Purchase({ purchase, loading, packageUnit, functionList = {}, effects, 
   }
   const returnButton = () => {
     const arr = []
-    if (batchButton) {
+    if (true) {
       const button = getBatchButton()
       arr.push(button)
     }
-    if (addButton) {
+    if (true) {
       arr.push(<Dropdown.Button
         onClick={() => {
           toAction({ modalSelsect: true })
@@ -710,11 +711,3 @@ export default connect(
     functionList,
   }),
 )(Purchase)
-console.log(connect(
-  ({ purchase, loading, app: { constants: { packageUnit }, functionList } }) => ({
-    purchase,
-    loading,
-    packageUnit,
-    functionList,
-  }),
-)(Purchase))

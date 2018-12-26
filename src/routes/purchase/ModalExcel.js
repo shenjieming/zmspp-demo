@@ -16,8 +16,8 @@ const propTypes = {
 const getImgUrls = (arr) => {
   const urlArr = []
   for (const item of arr) {
-    if (item.response.code === 200 && item.response.url) {
-      urlArr.push(item.response.url)
+    if (item.response.code === 200 && item.response.content) {
+      urlArr.push(item.response.content)
     }
   }
   return urlArr.join()

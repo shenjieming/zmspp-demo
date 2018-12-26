@@ -48,7 +48,7 @@ const Release = ({ releaseDetail, loading, form: { validateFields } }) => {
             }
             return {
               name: item.name,
-              url: `${item.url || item.response.url}`,
+              url: `${item.url || item.response.content}`,
             }
           }),
         )

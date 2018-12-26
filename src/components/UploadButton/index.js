@@ -48,7 +48,7 @@ const uploadExcelProps = {
   ...uploadProps,
   beforeUpload: handleBeforeUpload(EXCEL_SIZE_LIMIT),
   action: `${IMG_UPLOAD}`,
-  data: getUploadAuth('excel'),
+  // data: getUploadAuth('excel'),
   accept: '.xlsx,.xls',
   listType: undefined,
 }
@@ -57,7 +57,7 @@ const uploadZipProps = {
   multiple: false,
   beforeUpload: handleBeforeUpload(ZIP_SIZE_LIMIT),
   action: `${IMG_UPLOAD}`,
-  data: getUploadAuth('zip'),
+  // data: getUploadAuth('zip'),
   accept: '.rar,.zip',
   listType: undefined,
 }
@@ -103,7 +103,7 @@ const handleFileChange = ({ fileList = [] }) =>
 
 const value2File = el => ({
   uid: el,
-  url: el.endsWith('.pdf') ? pdfImage : el + IMG_COMPRESS,
+  url: el.endsWith('.pdf') ? pdfImage : el,
   status: 'done',
   value: el,
 })

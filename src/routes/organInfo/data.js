@@ -2,7 +2,6 @@ import React from 'react'
 import { Avatar, Upload } from 'antd'
 import { includes } from 'lodash'
 import Logo from '../../assets/lkc-org-logo.png'
-import { IMG_COMPRESS } from '../../utils/config'
 
 const leftData = ({ data, LogoProps }) => {
   const {
@@ -62,7 +61,7 @@ const leftData = ({ data, LogoProps }) => {
         <span>
           <Avatar
             size="large"
-            src={(logoUrl ? `${logoUrl}${IMG_COMPRESS}` : '') || Logo}
+            src={(logoUrl ? `${logoUrl}` : '') || Logo}
             style={{ float: 'left' }}
           />
           <div style={{ float: 'left' }}>

@@ -138,6 +138,7 @@ export default modelExtend({
     },
     // Excel导入
     * excelInput({ payload }, { call, toAction }) {
+      console.log(payload)
       yield call(services.excelInput, payload)
       yield toAction({ excelModalVisible: false })
     },

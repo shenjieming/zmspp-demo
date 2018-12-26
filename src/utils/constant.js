@@ -125,7 +125,7 @@ export default {
     '06': '医疗器械经营备案证',
   },
   // 导入物料模板路径
-  IMPORT_TEMPLATE_URL: `${EXCEL_DOWNLOAD}/excel/template/MaterialsImportTemplate.xls`,
+  IMPORT_TEMPLATE_URL: `${EXCEL_DOWNLOAD} `,
   // 授信模板地址
   CREDIT_TEMPLATE_URL: 'http://res.prod.youcdn.aek56.com/finance/%E6%8E%88%E4%BF%A1%E8%B5%84%E6%96%99%E6%A8%A1%E6%9D%BF.rar',
   FIRST_LEVEL_DOMAIN,

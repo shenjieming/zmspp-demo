@@ -167,7 +167,7 @@ const getModalColumns = add => [
       return (
         <div className={style.modal}>
           <div>
-            <Avatar src={orgLogoUrl ? `${orgLogoUrl}${IMG_COMPRESS}` : Logo} />
+            <Avatar src={orgLogoUrl ? `${orgLogoUrl}` : Logo} />
           </div>
           <div>{orgName}</div>
         </div>

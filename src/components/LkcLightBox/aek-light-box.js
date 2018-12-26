@@ -1560,7 +1560,7 @@ class ReactImageLightbox extends Component {
       const that = this
       const retArr = []
       data.map((item) => {
-        let imgUrl = `${item.src}${IMG_COMPRESS}`
+        let imgUrl = `${item.src}`
         if (item.src.toLowerCase().includes('.pdf')) {
           imgUrl = PdfImage
         }
@@ -1708,7 +1708,7 @@ class ReactImageLightbox extends Component {
             }
             return ''
           }
-          let imgUrl = `${i}${IMG_COMPRESS}`
+          let imgUrl = `${i}`
           if (i.toLowerCase().includes('.pdf')) {
             imgUrl = PdfImage
           }

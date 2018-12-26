@@ -38,7 +38,7 @@ function PicturesWall({
   }
   return (
     <Upload {...props}>
-      {imageUrl ? <img style={{ width: '86px', height: '86px', marginTop: '-15px' }} src={`${imageUrl}${IMG_COMPRESS}`} alt="" /> : uploadButton}
+      {imageUrl ? <img style={{ width: '86px', height: '86px', marginTop: '-15px' }} src={`${imageUrl}`} alt="" /> : uploadButton}
     </Upload>
   )
 }

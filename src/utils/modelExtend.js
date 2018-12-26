@@ -7,7 +7,7 @@ export default function (model) {
 
   return dvaModelExtend(
     {
-      : {
+      reducers: {
         [COMMON_REDUCER](state, { payload = {}, partObj = false }) {
           if (partObj) {
             return defaultsDeep(payload, state)

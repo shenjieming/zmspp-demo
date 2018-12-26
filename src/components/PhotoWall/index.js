@@ -39,7 +39,7 @@ class PhotoWall extends React.Component {
       if (value.endsWith('.pdf')) {
         url = pdfImage
       } else {
-        url = value + IMG_COMPRESS
+        url = value
       }
       return {
         uid,

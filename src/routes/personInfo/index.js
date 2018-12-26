@@ -91,8 +91,7 @@ function PersonInfo({ personInfo, loading }) {
     showUploadList: false,
     onChange(info) {
       if (info.file.status === 'done') {
-        console.log(info)
-        toAction({ imgUrl: `${IMG_ORIGINAL}/${info.file.response.url}` }, 'imgUrl')
+        toAction({ imgUrl: `${IMG_ORIGINAL}/${info.file.response.content}` }, 'imgUrl')
       } else if (info.file.status === 'error') {
         Modal.error({
           content: '图片上传失败',
@@ -107,7 +106,7 @@ function PersonInfo({ personInfo, loading }) {
       <div>
         <div style={{ float: 'left' }}>
           <div>
-            <Avatar size="large" src={(imageUrl ? `${imageUrl}${IMG_COMPRESS}` : '') || UserHead} />
+            <Avatar size="large" src={(imageUrl ? `${imageUrl}` : '') || UserHead} />
           </div>
         </div>
         <div style={{ float: 'left' }}>

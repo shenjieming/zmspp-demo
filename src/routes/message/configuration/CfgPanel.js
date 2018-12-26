@@ -32,7 +32,7 @@ function CfgPanel({ data, onSwitch, onToggle }) {
               <span className={Styles.label}>接收人:</span>
               <div className={Styles.receivers}>
                 {item.receiveUser.map((x) => {
-                  const userImageUrl = x.userImageUrl && x.userImageUrl + IMG_COMPRESS
+                  const userImageUrl = x.userImageUrl
 
                   return (
                     <div key={x.userId} className={Styles.receiver}>

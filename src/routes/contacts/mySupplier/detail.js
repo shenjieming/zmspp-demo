@@ -149,7 +149,7 @@ function MySupplierDetail({
                   if (arr[arr.length - 1] && arr[arr.length - 1].toLowerCase().includes('pdf')) {
                     imgUrl = PDF
                   } else {
-                    imgUrl = `${item}${IMG_COMPRESS}/max/280`
+                    imgUrl = `${item}`
                   }
                   return (
                     <div

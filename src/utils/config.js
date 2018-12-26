@@ -70,9 +70,9 @@ let config = {
   // // 密码
   UPLOAD_PASSWORD: 'aek56.com',
   // 图片上传地址
-  IMG_UPLOAD: 'http://10.18.59.32:9003/aek-mspp/upload',
+  IMG_UPLOAD: 'http://192.168.31.195:9003/aek-mspp/upload',
   // 原始图片查看地址
-  IMG_ORIGINAL: 'http://10.18.59.32:9003/aek-mspp/download',
+  IMG_ORIGINAL: 'http://192.168.31.195:9003/aek-mspp/download',
   // 缩略图服务名
   IMG_COMPRESS: '!compress',
   // 水印图服务名
@@ -117,7 +117,7 @@ let config = {
 
 // 内部测试环境测试
 if (CONFIG_ENV === 'test') {
-  const target = 'http://192.168.1.83:9003/aek-mspp'
+  const target = 'http://192.168.31.195:9003/aek-mspp'
 
   config = Object.assign({}, config, {
     baseURL: target,

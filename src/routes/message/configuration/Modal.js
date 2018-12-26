@@ -7,7 +7,7 @@ const getColumns = ({ handleBtnClick, receiveUsers = [] }) => [
   {
     key: 'imgUrl',
     dataIndex: 'imgUrl',
-    render: text => <Avatar icon="user" src={text && text + IMG_COMPRESS} />,
+    render: text => <Avatar icon="user" src={text} />,
   },
   {
     key: 'realName',

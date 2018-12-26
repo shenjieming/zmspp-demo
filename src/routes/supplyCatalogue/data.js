@@ -199,7 +199,6 @@ const tableColumns = ({ tabIndex, handleMenuClick, customerDetail }) => {
       } else {
         useType = (record.pscStatus === 2 || record.pscStatus === 3) ? 0 : 1
       }
-      console.log(tabIndex, record, useType)
       return (
         <div>
           <p>

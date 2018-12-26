@@ -34,7 +34,7 @@ function Header({ user, orgInfo, orgList, logout, switchOrg, messagePanelProps, 
 
   const { userImageUrl } = user
 
-  const userIcon = typeof userImageUrl === 'string' ? userImageUrl + IMG_COMPRESS : userImageUrl
+  const userIcon = typeof userImageUrl === 'string' ? userImageUrl : userImageUrl
 
   return (
     <div className={styles.header}>
@@ -50,7 +50,7 @@ function Header({ user, orgInfo, orgList, logout, switchOrg, messagePanelProps, 
             <Menu onClick={switchOrg}>
               {orgList.map(({ orgName, orgLogoUrl, orgId, isDefaultOrg }) => {
                 const orgLogo =
-                  typeof orgLogoUrl === 'string' ? orgLogoUrl + IMG_COMPRESS : orgLogoUrl
+                  typeof orgLogoUrl === 'string' ? orgLogoUrl : orgLogoUrl
 
                 return (
                   <MenuItem key={orgId}>

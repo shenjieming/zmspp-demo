@@ -19,7 +19,6 @@ import {
   UPYUN_SAVE_KEY_ZIP,
   ASYNC_SUCCESS_CODE,
   ASYNC_FAIL_CODE,
-  UPYUN_BUCKET,
   UPYUN_SAVE_KEY,
   UPLOAD_KEY,
   baseURL,
@@ -629,9 +628,9 @@ const formatNum = (num, { unit = '￥', format = false } = {}) => {
  * @param {String} url 图片路径
  */
 const getImgCompress = (url) => {
-  if (typeof url === 'string') {
-    return url + IMG_COMPRESS
-  }
+  // if (typeof url === 'string') {
+  //   return url + IMG_COMPRESS
+  // }
   return url
 }
 /**

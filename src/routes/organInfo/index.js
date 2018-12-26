@@ -221,7 +221,7 @@ function OrganInfo({ organInfo, addressList, loading }) {
       'X-Requested-With': null,
     },
     data: getUploadAuth(),
-    action: `${IMG_UPLOAD}/${UPYUN_BUCKET}`,
+    action: `${IMG_UPLOAD}`,
     accept: '.jpg,.png,.bmp,.pdf',
     beforeUpload: handleBeforeUpload,
     showUploadList: false,
@@ -230,7 +230,7 @@ function OrganInfo({ organInfo, addressList, loading }) {
         dispatchAction({
           type: 'uploadImage',
           payload: {
-            logoUrl: `${IMG_ORIGINAL}/${info.file.response.url}`,
+            logoUrl: `${IMG_ORIGINAL}/${info.file.response.content}`,
           },
         })
       } else if (info.file.status === 'error') {

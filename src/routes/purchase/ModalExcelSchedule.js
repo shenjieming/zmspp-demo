@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { Modal, Table } from 'antd'
 import BadgeTextWrap from '../../components/BadgeTextWrap'
 import { getPagination } from '../../utils'
-
+import { IMG_ORIGINAL } from '../../utils/config'
+// import
 const propTypes = {
   scheduleList: PropTypes.array,
   excelPageConfig: PropTypes.object,
@@ -87,7 +88,7 @@ const ScheduleModal = (
                 text="已成功导入"
               />
               <span>
-                {successCount}条数据，失败{failCount}条，<a href={`${filePathBase}${filePathFail}`}>点这里下载</a>电子表格查看具体原因，修改后再导入
+                {successCount}条数据，失败{failCount}条，<a href={`${IMG_ORIGINAL}${filePathFail}`}>点这里下载</a>电子表格查看具体原因，修改后再导入
               </span>
             </p>
           )

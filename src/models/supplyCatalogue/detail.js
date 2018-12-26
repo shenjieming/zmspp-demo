@@ -33,6 +33,7 @@ import {
   allTableData,
 } from '../../services/supplyCatalogue/detail'
 import dvaModelExtend from '../../utils/modelExtend'
+import {importFile, importSchedule} from "../../services/materials/material";
 
 const initState = {
   customerId: '', // 客户Id
@@ -79,6 +80,29 @@ const initState = {
   hatchCancelList: [], // 批量不通过数据
 
   cloneSelectRowData: [], // 拷贝数据
+  addModalVisible: false,
+  certificateList: [], // 注册证异步下拉列表
+  addModalType: '',
+  currentItem: {},
+  picLength: 0,
+  productFacId: '', // 保存厂家id
+  GoodsCategoryTreeData: [],
+  brandAddModalList: [], // 厂家异步下拉列表
+  produceAddModalList: [], // 厂家异步下拉列表
+  certAddModalList: [], // 注册证异步下拉列表,
+  produceList: [], // 厂家列表
+  selectRegObj: {}, // 注册证下拉选中
+  regOptionList: [], // 注册证下拉
+  excelModalVisible: false,
+  importButtonStatus: true,
+  scheduleModalVisible: false,
+  schedulePagination: {
+    // 进度分页
+    current: 1,
+    pageSize: 10,
+    total: null,
+  },
+  scheduleList: [], // 导入进度
 }
 
 const getUrl = [
@@ -541,6 +565,26 @@ export default dvaModelExtend({
         },
       })
     },
+    // 导入excel文件
+    * importFile({ payload }, { call, update }) {
+      yield call(importFile, payload)
+      message.success('正在导入中')
+      yield update({ excelModalVisible: false })
+    },
+    // 导入进度查询
+    * importSchedule({ payload }, { call, update }) {
+      yield update({
+        scheduleModalVisible: true,
+      })
+      const { content: { data, total, current, pageSize } } = yield call(importSchedule, {
+        ...payload,
+        taskType: 1,
+      })
+      yield update({
+        scheduleList: data,
+        schedulePagination: { total, current, pageSize },
+      })
+    }
   },
   reducers: {},
 })
