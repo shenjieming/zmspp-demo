@@ -8,7 +8,6 @@ import {
   REQUEST_HEADER_SYSTEM_CODE,
   SYSTEM_CODE,
   TOKEN,
-  REQUEST_TIMEOUT,
   REQUEST_HEADER_USER_ID,
 } from '../utils/config'
 
@@ -19,7 +18,6 @@ export function setRequestUserId(id) {
 }
 
 const instance = axios.create({
-  timeout: REQUEST_TIMEOUT,
   headers: {
     [REQUEST_HEADER_SYSTEM_CODE]: SYSTEM_CODE,
   },

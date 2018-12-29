@@ -27,7 +27,7 @@ function PicturesWall({
     beforeUpload: beforeFunc,
     onChange: (info) => {
       if (info.file.status === 'done') {
-        handleChange(`${IMG_ORIGINAL}/${info.file.response.url}`)
+        handleChange(`${IMG_ORIGINAL}/${info.file.response.content}`)
       } else if (info.file.status === 'error') {
         Modal.error({
           content: '图片上传失败',

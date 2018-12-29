@@ -141,6 +141,9 @@ export default modelExtend({
     },
     // 获取待审核证件列表
     * getReviewList({ payload }, { call, update }) {
+      yield update({
+        selectedRowKeys: [],
+      })
       const {
         content: { data, current, total, pageSize },
       } = yield call(services.getReviewListData, payload)
@@ -184,7 +187,7 @@ export default modelExtend({
         content.passedCertificates.length) {
         Modal.error({
           content: (<div>
-            <p>成功审核通过{content.passedCertificates.length}本证件</p>
+            <p>成功审核通过{content.checkCertificates.length}本证件</p>
             {
               content.passedCertificates.length ?
                 <div>

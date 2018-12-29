@@ -33,7 +33,7 @@ import {
   allTableData,
 } from '../../services/supplyCatalogue/detail'
 import dvaModelExtend from '../../utils/modelExtend'
-import {importFile, importSchedule} from "../../services/materials/material";
+import * as services from "../../services/purchase";
 
 const initState = {
   customerId: '', // 客户Id
@@ -80,29 +80,66 @@ const initState = {
   hatchCancelList: [], // 批量不通过数据
 
   cloneSelectRowData: [], // 拷贝数据
-  addModalVisible: false,
-  certificateList: [], // 注册证异步下拉列表
-  addModalType: '',
-  currentItem: {},
-  picLength: 0,
-  productFacId: '', // 保存厂家id
-  GoodsCategoryTreeData: [],
-  brandAddModalList: [], // 厂家异步下拉列表
-  produceAddModalList: [], // 厂家异步下拉列表
-  certAddModalList: [], // 注册证异步下拉列表,
-  produceList: [], // 厂家列表
-  selectRegObj: {}, // 注册证下拉选中
-  regOptionList: [], // 注册证下拉
+
+
+
+
+  statistics: {},
+  editModalVisible: false,
+  modalSelsect: false,
+  applyModalVisible: false,
   excelModalVisible: false,
-  importButtonStatus: true,
+  historyModalVisible: false,
+  refuseModalVisible: false,
+  codeMust: false,
   scheduleModalVisible: false,
-  schedulePagination: {
-    // 进度分页
+  importButtonStatus: true,
+  modalType: 'edit',
+  scheduleList: [],
+  tableIdArr: [],
+  suppliersSelect: [],
+  checkedHistoryArr: [],
+  versionDoubleList: [],
+  searchKeys: {
+    current: 1,
+    pageSize: 10,
+  },
+  tableData: [],
+  changeArr: [],
+  selectArr: [],
+  modalTableData: [],
+  modalInitValue: {},
+  refuseModalData: [],
+  orgIdSign: '',
+  compareModalType: '',
+  pageConfig: {
     current: 1,
     pageSize: 10,
     total: null,
   },
-  scheduleList: [], // 导入进度
+  excelPageConfig: {
+    current: 1,
+    pageSize: 10,
+    total: null,
+  },
+  historyPagination: {
+    current: 1,
+    pageSize: 10,
+    total: null,
+    pscId: null,
+  },
+  tableKey: 1,
+  barcodeVisible: false,
+  barcodeList: [],
+  certificateVisible: false,
+  certificateData: {},
+  viewModalVisible: false, // 审核弹框visible
+  certificateDetail: {
+    certificates: [],
+  }, // 证件审核详情
+  selectedRowData: {}, // 选择的行数据
+  refusedReasonVisible: false, // 拒绝原因
+  refusedReasonList: [], // 拒绝原因数组
 }
 
 const getUrl = [
@@ -501,7 +538,35 @@ export default dvaModelExtend({
         yield call(pushUnseToExamineData, payload)
       }
     },
-
+    // 查看Excel导入进度
+    * excelSchedule({ payload }, { call, toAction }) {
+      const req = payload
+      req.taskType = 4
+      const { content } = yield call(services.excelSchedule, req)
+      const { data, total, current } = content
+      yield toAction({
+        scheduleList: data,
+        excelPageConfig: { total, current },
+      })
+    },
+    // 新增物料
+    * addMaterial({ payload }, { call, toAction }) {
+      yield call(services.splAddMaterial, payload)
+      yield [toAction('statistics'), toAction('suppliers'), toAction({ editModalVisible: false })]
+      message.success('新增成功')
+    },
+    // 编辑物料
+    * updateMaterial({ payload }, { call, toAction }) {
+      yield call(services.updateMaterial, payload)
+      yield [
+        toAction('suppliers'),
+        toAction({
+          editModalVisible: false,
+          modalInitValue: {},
+        }),
+      ]
+      message.success('编辑成功')
+    },
     // 批量撤销
     * batchCancel({ payload }, { call, update }) {
       const { content } = yield call(batchCancel, payload)
@@ -515,7 +580,11 @@ export default dvaModelExtend({
       const { content } = yield call(pendingPushDel, payload)
       return content
     },
-
+    // Excel导入
+    * excelInput({ payload }, { call, toAction }) {
+      yield call(services.excelInput, payload)
+      yield toAction({ excelModalVisible: false })
+    },
     * getCertificateList({ payload }, { call, update }) {
       const { content } = yield call(getCertificateList, payload)
       yield update({
@@ -565,26 +634,6 @@ export default dvaModelExtend({
         },
       })
     },
-    // 导入excel文件
-    * importFile({ payload }, { call, update }) {
-      yield call(importFile, payload)
-      message.success('正在导入中')
-      yield update({ excelModalVisible: false })
-    },
-    // 导入进度查询
-    * importSchedule({ payload }, { call, update }) {
-      yield update({
-        scheduleModalVisible: true,
-      })
-      const { content: { data, total, current, pageSize } } = yield call(importSchedule, {
-        ...payload,
-        taskType: 1,
-      })
-      yield update({
-        scheduleList: data,
-        schedulePagination: { total, current, pageSize },
-      })
-    }
   },
   reducers: {},
 })

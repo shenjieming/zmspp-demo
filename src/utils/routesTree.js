@@ -129,6 +129,20 @@ const routesTree = [
           },
         ],
       },
+      {
+        name: '新的往来关系（资装部）',
+        path: 'newContactsRelationZZ',
+        back: true,
+        models: () => [import('../models/contacts/newContactsRelationZZ')],
+        component: () => import('../routes/contacts/newContactsRelationZZ'),
+      },
+      {
+        name: '新的往来关系（后勤部）',
+        path: 'newContactsRelationHQ',
+        back: true,
+        models: () => [import('../models/contacts/newContactsRelationHQ')],
+        component: () => import('../routes/contacts/newContactsRelationHQ'),
+      }
     ],
   },
   /* 消息管理 */
@@ -213,6 +227,12 @@ const routesTree = [
         path: 'newCertificateAudit',
         models: () => [import('../models/newCredentials/certificateAudit')],
         component: () => import('../routes/newCredentials/certificateAudit'),
+      },
+      {
+        name: '二次审核',
+        path: 'recheckCertificateAudit',
+        models: () => [import('../models/newCredentials/certificateAuditRecheck')],
+        component: () => import('../routes/newCredentials/certificateAuditRecheck'),
       },
     ],
   },

@@ -43,6 +43,7 @@ module.exports = {
           '@services': './src/services',
           '@config': './src/utils/config',
           '@shared': './src/shared',
+          '@icon-url': './src/themes/antd-iconfont'
         },
       },
     ],

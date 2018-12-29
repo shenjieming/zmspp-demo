@@ -247,6 +247,20 @@ const Supplier = ({
             </RadioGroup>,
           )}
         </FormItem>
+        <Form.Item{...FORM_ITEM_LAYOUT} label="归属" defaultValue="3">
+          {getFieldDecorator('orgAscription', {
+            validateFirst: true,
+            rules: [
+              { required: true, message: '请选择归属!' },
+            ],
+          })(
+            <Select defaultValue="3">
+              <Option value="1">资装办</Option>
+              <Option value="2">后勤</Option>
+              <Option value="3">全部</Option>
+            </Select>
+          )}
+        </Form.Item>
         <FormItem {...FORM_ITEM_LAYOUT} label="手机号">
           {
             getFieldDecorator('mobile', {

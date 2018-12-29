@@ -36,8 +36,9 @@ import { tableColumns } from './data'
 
 import LkcIcon from '../../components/LkcTable'
 import Styles from './detail.less'
-import ImportExcelModal from "../materials/material/importExcelModal";
-import ImportScheduleModal from "../materials/material/importScheduleModal";
+import ModalEditMaterial from "./ModalEditMaterial";
+import ModalExcel from "./ModalExcel";
+import ModalExcelSchedule from "./ModalExcelSchedule";
 
 
 
@@ -90,25 +91,7 @@ function SupplyCatalogueDetail({
     otherCodeVisible,
     otherCodeList,
 
-    //后续添加
-    addModalVisible,
-    certificateList,
-    addModalType,
-    currentItem,
-    picLength,
-    productFacId,
-    GoodsCategoryTreeData,
-    brandAddModalList,
-    produceAddModalList,
-    certAddModalList,
-    produceList,
-    selectRegObj,
-    regOptionList,
-    excelModalVisible,
-    importButtonStatus,
-    scheduleList,
-    schedulePagination,
-    scheduleModalVisible,
+
 
     batchEditModalVisible, // 批量编辑弹框
 
@@ -120,14 +103,24 @@ function SupplyCatalogueDetail({
 
     hatchCancelList,
     batchCancelModalVisible,
-
     certificateOptionList, // 注册证下拉列表
-
     cloneSelectRowData,
+
+  //  后续添加
+    importButtonStatus,
+    excelModalVisible,
+    scheduleList,
+    excelPageConfig,
+    scheduleModalVisible,
+    editModalVisible,
+    modalInitValue,
+    codeMust,
+    suppliersSelect,
+    modalType,
   } = supplyCatalogueDetail
 
 
-  const { dispatchAction, getLoading } = getBasicFn({ namespace, loading: { effects } })
+  const { toAction, dispatchAction, getLoading, dispatchUrl } = getBasicFn({ namespace, loading: { effects } })
 
   function showConfirm({ title = '', content = '', handleOk, zIndex = 1000 }) {
     confirm({
@@ -164,27 +157,6 @@ function SupplyCatalogueDetail({
       },
     })
   }, 500)
-  const addModalParam = {
-    picLength,
-    productFacId,
-    GoodsCategoryTreeData,
-    brandAddModalList,
-    produceAddModalList,
-    certAddModalList,
-    produceList,
-    selectRegObj,
-    regOptionList,
-    onSearchProListFun: onSearchProListFunDelay,
-    branOptionList,
-    onSearchBrandListFun: onSearchBrandListFunDelay,
-    asyncRegList: asyncRegListDelay,
-    certificateList,
-    getLoading,
-    dispatchAction,
-    addModalVisible,
-    addModalType,
-    currentItem,
-  }
 
   // 批量绑定注册证
   const handleMenuClick = ({ key }) => {
@@ -805,45 +777,7 @@ function SupplyCatalogueDetail({
   if (tabIndex === '4' || tabIndex === '6') {
     delete tableProps.rowSelection
   }
-  const importModalParam = {
-    getLoading,
-    importButtonStatus,
-    excelModalVisible,
-    dispatchAction,
-  }
-  const scheduleModalParam = {
-    scheduleList,
-    schedulePagination,
-    scheduleModalVisible,
-    getLoading,
-    dispatchAction,
-  }
-  const scheduleModalShow = () => {
-    dispatchAction({
-      type: 'importSchedule',
-    })
-  }
-  const menu1 = (
-    <Menu onClick={scheduleModalShow}>
-      <Menu.Item key="1">导入进度</Menu.Item>
-    </Menu>
-  )
-  const importExcel = () => {
-    dispatchAction({
-      payload: { excelModalVisible: true, importButtonStatus: true },
-    })
-  }
-  const addModalShow = () => {
-    dispatchAction({
-      payload: {
-        addModalType: 'create',
-        addModalVisible: true,
-        currentItem: {},
-        productFacId: '',
-        selectRegObj: {},
-      },
-    })
-  }
+
 
   const packageProps = {
     packageList,
@@ -912,13 +846,72 @@ function SupplyCatalogueDetail({
       })
     },
   }
+  // 后续添加
+  const modalEditMaterialProps = {
+    loading: getLoading('addMaterial', 'updateMaterial'),
+    editModalVisible,
+    modalInitValue,
+    codeMust,
+    suppliersSelect,
+    packageUnit,
+    modalType,
+    toAction,
+  }
+  const modalExcelProps = {
+    loading: getLoading('excelInput'),
+    importButtonStatus,
+    excelModalVisible,
+    toAction,
+  }
+  const modalExcelSchedulProps = {
+    scheduleList,
+    excelPageConfig,
+    scheduleModalVisible,
+    loading: getLoading('excelSchedule'),
+    toAction,
+  }
+  const menuClick = (key) => {
+    toAction({ modalSelsect: false })
+    switch (key) {
+      case 'add':
+        toAction('app/getPackageUnit')
+        toAction({ keywords: null }, 'suppliersSelect')
+        toAction({
+          editModalVisible: true,
+          modalType: 'add',
+        })
+        break
+      case 'get':
+        dispatchUrl({ pathname: `/supplyCatalogue/detail/${customerId}/dictionSelect` })
+        break
+      case 'excelInput':
+        toAction({
+          excelModalVisible: true,
+        })
+        break
+      case 'schedule':
+        toAction({
+          scheduleModalVisible: true,
+        })
+        toAction(
+          {
+            current: 1,
+            pageSize: 10,
+          },
+          'excelSchedule',
+        )
+        break
+      default:
+        break
+    }
+  }
   return (
     <div className="aek-layout">
       <div className="bread">
         <div style={{ float: 'left' }}>
           <Breadcrumb routes={routes} />
         </div>
-        <div style={{ float: 'right' }}>
+        <div style={{ float: 'right'}}>
           {(tabIndex !== '4' && tabIndex !== '6') ? (
             <Dropdown overlay={menu()} disabled={selectedRowKeys.length === 0} trigger={['click']}>
               <Button>
@@ -928,17 +921,27 @@ function SupplyCatalogueDetail({
           ) : (
             ''
           )}
-          <Dropdown.Button type="primary" className="aek-mr15" onClick={importExcel} overlay={menu1}>
-            Excel导入
+          &nbsp;&nbsp;
+          <Dropdown.Button
+            onClick={() => {
+              toAction({ modalSelsect: true })
+            }}
+            type="primary"
+            overlay={
+              <Menu
+                onClick={({ key }) => {
+                  menuClick(key)
+                }}
+              >
+                <Menu.Item key="add">手工新增</Menu.Item>
+                {/*<Menu.Item key="get">从平台标准数据中拉取</Menu.Item>*/}
+                <Menu.Item key="excelInput">EXCEL导入</Menu.Item>
+                <Menu.Item key="schedule">EXCEL导入进度</Menu.Item>
+              </Menu>
+            }
+          >
+            添加物料
           </Dropdown.Button>
-          <Button type="primary" onClick={addModalShow} icon="plus">
-            新增物料
-          </Button>
-          <Link to={`/supplyCatalogue/detail/${customerId}/dictionSelect`}>
-            <Button type="primary" style={{ marginLeft: '20px' }} icon="plus">
-              从平台标准物料中添加
-            </Button>
-          </Link>
         </div>
       </div>
       <div className="content">
@@ -989,13 +992,13 @@ function SupplyCatalogueDetail({
         </div>
       </div>
       <RegistModal {...registProps} />
+      <ModalEditMaterial {...modalEditMaterialProps} />
+      <ModalExcel {...modalExcelProps} />
+      <ModalExcelSchedule {...modalExcelSchedulProps} />
       {/* //批量编辑 */}
       {batchEditModalVisible && <BatchModal {...batchProps} />}
       {/* 标准物料同步对照 */}
       <CompaerModal {...compareModalProps} />
-      <AddModal {...addModalParam} />
-      <ImportExcelModal {...importModalParam} />
-      <ImportScheduleModal {...scheduleModalParam} />
       <Package {...packageProps} />
       <EditMaterial {...EditProps} />
       <BarCode {...BarCodeProps} />

@@ -88,7 +88,7 @@ const AddCertificateModal = ({
             thumbUrl = pdfImage
           }
           if (isPlainObject(response) && !val) {
-            val = `${IMG_ORIGINAL}/${response.url}`
+            val = `${IMG_ORIGINAL}/${response.content}`
           }
           return { ...file, url, value: val, thumbUrl }
         }

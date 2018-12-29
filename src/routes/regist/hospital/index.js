@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Form, Input, Button, Row, Col, Icon, Radio, AutoComplete } from 'antd'
+import { Form, Input, Button, Row, Col, Icon, Radio, AutoComplete, Select } from 'antd'
 import { REGEXP_TELEPHONE } from '../../../utils/constant'
 import styles from '../../login/index.less'
 import CountDown from '../../../components/CountUp'

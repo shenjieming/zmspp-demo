@@ -58,8 +58,6 @@ let config = {
   BACK_REQUEST_FAIL: 1000,
   // 系统异常区间(闭区间)
   SYSTEM_ERROR_REGION: 6000,
-  // 请求超时时长(秒)
-  REQUEST_TIMEOUT: 30000,
   /* ajax end */
 
   /* 图片上传设置 */
@@ -76,7 +74,7 @@ let config = {
   // 缩略图服务名
   IMG_COMPRESS: '!compress',
   // 水印图服务名
-  IMG_WATERMARK: '!watermark',
+  IMG_WATERMARK: '/water',
   // 上传密钥
   UPLOAD_KEY: '/rmfhYt8ZWiCPAPlVcTfHW1R7HI=',
   // 又拍云服务名
@@ -128,7 +126,7 @@ if (CONFIG_ENV === 'test') {
   })
 } else if (NODE_ENV === 'production') {
   // 生产环境
-  const target = 'http://192.168.15.180:9003/aek-mspp'
+  const target = 'http://192.168.31.195:9003/aek-mspp'
   let publicPath = './'
   // if (THEME === 'yibei') {
   //   publicPath = 'http://fin.prod.youcdn.aek56.com/'
@@ -140,19 +138,19 @@ if (CONFIG_ENV === 'test') {
     mockURL: target,
     rapMockURL: target,
     devModel: false,
-    IMG_UPLOAD: 'http://10.18.59.32:9003/aek-mspp',
+    // IMG_UPLOAD: 'http://192.168.31.195:9003/aek-mspp/upload',
     publicPath,
-    UPYUN_BUCKET: 'aek-prod-image',
-    UPYUN_BUCKET_EXCEL: 'aek-prod-doc',
-    UPYUN_BUCKET_ZIP: 'aek-prod-finance',
-    IMG_ORIGINAL: 'http://img.prod.youcdn.aek56.com',
-    UPLOAD_KEY: 'TAWioRGrsIMBmiqqKsk0l06E5p8=',
-    UPLOAD_KEY_EXCEL: 'ssKyym8pFmk6rfIrUU1wtU7xRzc=',
-    UPLOAD_KEY_ZIP: 'QLOlnvpb7yDNUqO1IsRorze6XVc=',
-    EXCEL_DOWNLOAD: 'http://doc.prod.youcdn.aek56.com',
-    ZIP_DOWNLOAD: 'http://fin.prod.youcdn.aek56.com',
+    // UPYUN_BUCKET: 'aek-prod-image',
+    // UPYUN_BUCKET_EXCEL: 'aek-prod-doc',
+    // UPYUN_BUCKET_ZIP: 'aek-prod-finance',
+    // IMG_ORIGINAL: 'http://192.168.31.195:9003/aek-mspp/download',
+    // UPLOAD_KEY: 'TAWioRGrsIMBmiqqKsk0l06E5p8=',
+    // UPLOAD_KEY_EXCEL: 'ssKyym8pFmk6rfIrUU1wtU7xRzc=',
+    // UPLOAD_KEY_ZIP: 'QLOlnvpb7yDNUqO1IsRorze6XVc=',
+    // EXCEL_DOWNLOAD: 'http://doc.prod.youcdn.aek56.com',
+    // ZIP_DOWNLOAD: 'http://fin.prod.youcdn.aek56.com',
     // sockURL: 'http://notify.aek56.com:8082/endpoint', 11/30 删除
-    AUTO_LOGIN: 'http://caigou.aek56.com/#/login',
+    // AUTO_LOGIN: 'http://caigou.aek56.com/#/login',
   })
 }
 

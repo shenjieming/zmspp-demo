@@ -1,0 +1,17 @@
+{
+  "name": "antd-iconfont",
+  "version": "3.0.3",
+  "keywords": [
+    "antd",
+    "iconfont",
+    "offline"
+  ],
+  "description": "antd offline iconfont",
+  "main": "iconfont.js",
+  "repository": "https://github.com/builden/antd-iconfont.git",
+  "author": "builden <billdeng@qq.com>",
+  "license": "MIT",
+  "__npminstall_done": "Fri Dec 28 2018 10:17:01 GMT+0800 (GMT+08:00)",
+  "_from": "antd-iconfont@3.0.3",
+  "_resolved": "http://registry.npm.taobao.org/antd-iconfont/download/antd-iconfont-3.0.3.tgz"
+}

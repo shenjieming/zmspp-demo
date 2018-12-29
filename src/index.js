@@ -13,7 +13,6 @@ import {
   REQUEST_FAIL_REGION,
   BACK_REQUEST_FAIL,
   CONSUMER_HOTLINE,
-  REQUEST_TIMEOUT,
   prodEnv,
   IMG_UPLOAD,
   IMG_ORIGINAL,
@@ -63,7 +62,6 @@ uploadConfig({
 moment.defineLocale('zh-cn', momentLocale)
 moment.locale('zh-cn')
 message.config({ top: 100, duration: 3 })
-axios.defaults.timeout = REQUEST_TIMEOUT
 
 let confirmFlag = false
 

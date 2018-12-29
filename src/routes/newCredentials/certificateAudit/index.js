@@ -275,6 +275,7 @@ const CertificatePush = ({ newCertificateAudit, loading }) => {
     tableProps.rowSelection = {
       selectedRowKeys,
       onChange(keys) {
+        console.log(keys)
         dispatchAction({
           payload: {
             selectedRowKeys: keys,

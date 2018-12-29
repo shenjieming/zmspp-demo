@@ -220,7 +220,6 @@ function OrganInfo({ organInfo, addressList, loading }) {
     headers: {
       'X-Requested-With': null,
     },
-    data: getUploadAuth(),
     action: `${IMG_UPLOAD}`,
     accept: '.jpg,.png,.bmp,.pdf',
     beforeUpload: handleBeforeUpload,

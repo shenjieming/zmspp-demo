@@ -22,6 +22,7 @@ import {
   UPYUN_SAVE_KEY,
   UPLOAD_KEY,
   baseURL,
+  UPYUN_BUCKET,
   mockURL,
   rapMockURL,
   UPYUN_BUCKET_EXCEL,

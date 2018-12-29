@@ -276,7 +276,7 @@ const formData = ({
         },
       },
       {
-        label: '产品名称11',
+        label: '产品名称',
         layout: formItemLayout,
         field: 'productName',
         view: getView(),

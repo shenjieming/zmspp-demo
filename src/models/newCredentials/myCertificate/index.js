@@ -439,6 +439,10 @@ export default dvaModelExtend({
     // 注册证新增编辑
     * setRegistSubmit({ payload }, { call, put, select }) {
       const searchData = yield select(({ newMyCertificate }) => newMyCertificate.searchData)
+      console.log(payload)
+      if (payload.validDateStart.length) {
+        payload.validDateStart = payload.validDateStart[0]
+      }
       const { content } = yield call(setRegistSubmitData, payload)
 
       if (content === 0) {

@@ -329,7 +329,7 @@ const Third = ({
                         if (info.file.status === 'done') {
                           fileList[index].invoiceUrl = {
                             ...info.file,
-                            url: `${IMG_ORIGINAL}/${info.file.response.url}`,
+                            url: `${IMG_ORIGINAL}/${info.file.response.content}`,
                           }
                           dispatchAction({
                             payload: {

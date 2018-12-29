@@ -18,6 +18,8 @@ export default {
   excelSchedule: generateRequest(`${requestURL}/materials/excel/import/list`, 'post'),
   // 新增物料
   addMaterial: generateRequest(`${requestURL}/purchase/catalog/use/addMaterial`, 'post'),
+  // 新增物料(供应商)
+  splAddMaterial: generateRequest(`${requestURL}/supply/catalog/use/addMaterial`, 'post'),
   // 编辑物料
   updateMaterial: generateRequest(`${requestURL}/purchase/catalog/use/updateMaterial`, 'post'),
   // 批量停用启用

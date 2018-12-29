@@ -466,18 +466,18 @@ function DictionSelect({
       </div>
       <div className="content">
         <SearchForm {...searchformPorps} />
-        <Alert
-          type="info"
-          message={
-            <span>
-              如果没有找到需要的物料，有注册证、备案证、消毒证的物资请联系客服添加，其他物资请
-              <a className="aek-link" onClick={() => { window.open(IMPORT_TEMPLATE_URL) }}>点击此处下载模板</a>
-              维护好后联系客服添加
-            </span>
-          }
-          showIcon
-          className="aek-mb10"
-        />
+        {/*<Alert*/}
+          {/*type="info"*/}
+          {/*message={*/}
+            {/*<span>*/}
+              {/*如果没有找到需要的物料，有注册证、备案证、消毒证的物资请联系客服添加，其他物资请*/}
+              {/*<a className="aek-link" onClick={() => { window.open(IMPORT_TEMPLATE_URL) }}>点击此处下载模板</a>*/}
+              {/*维护好后联系客服添加*/}
+            {/*</span>*/}
+          {/*}*/}
+          {/*showIcon*/}
+          {/*className="aek-mb10"*/}
+        {/*/>*/}
         <Table
           // rowSelection={selectProps}
           columns={columns}

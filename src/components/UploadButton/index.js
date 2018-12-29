@@ -94,7 +94,7 @@ const handleFileChange = ({ fileList = [] }) =>
           thumbUrl = pdfImage
         }
         if (isPlainObject(response) && !val) {
-          val = `${IMG_ORIGINAL}/${response.url}`
+          val = `${IMG_ORIGINAL}/${response.content}`
         }
         return { ...file, url: url || val, value: val, thumbUrl }
       }
