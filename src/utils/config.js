@@ -96,7 +96,7 @@ let config = {
   // 上传密钥
   UPLOAD_KEY_EXCEL: 'FKMR0jo/7OfxrLnUsruBny3YZ/g=',
   // Excel下载
-  EXCEL_DOWNLOAD: 'http://doc.test.youcdn.aek56.com',
+  EXCEL_DOWNLOAD: 'http://192.168.31.195:9003/aek-mspp/download-temp',
 
   /* Zip上传设置 */
   // 上传大小限制(MB)
@@ -108,7 +108,7 @@ let config = {
   // 上传密钥
   UPLOAD_KEY_ZIP: 'FjyBYes93mi1/UTA3ddmny/YP50=',
   // 下载地址
-  ZIP_DOWNLOAD: 'http://fin.test.youcdn.aek56.com',
+  ZIP_DOWNLOAD: 'http://192.168.31.195:9003/download-temp',
   // 自动登录跳转域名
   AUTO_LOGIN: 'http://localhost:8000/#/login',
 }

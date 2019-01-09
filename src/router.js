@@ -4,7 +4,6 @@ import { Route, routerRedux, Switch } from 'dva/router'
 import dynamic from 'dva/dynamic'
 import App from './routes/App/index'
 import { routes } from './utils/routesTree'
-
 const { ConnectedRouter } = routerRedux
 
 function Routers({ history, app }) {

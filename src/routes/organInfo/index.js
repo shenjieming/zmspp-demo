@@ -19,6 +19,7 @@ const namespace = 'organInfo'
 function OrganInfo({ organInfo, addressList, loading }) {
   const { dispatchAction, getLoading } = getBasicFn({ namespace, loading })
   const {
+    parentOrgList,
     orgDetail,
     certificateList,
     searchData,
@@ -38,6 +39,8 @@ function OrganInfo({ organInfo, addressList, loading }) {
     certificates,
     reason,
     auditStatus,
+    secondGradeList,
+    parentGradeList,
   } = organInfo
   const { orgName, profit, certificateType, orgTypeCode, downloadKey, orgErp } = orgDetail
   // 企业证件
@@ -73,6 +76,17 @@ function OrganInfo({ organInfo, addressList, loading }) {
     orgEditVisible,
     addressOptions,
     addressList,
+    secondGradeList,
+    parentGradeList,
+    parentOrgList,
+    onSearchOrg(e) {
+      dispatchAction({
+        type: 'queryParentOrgList',
+        payload: {
+          orgName: e,
+        },
+      })
+    }
   }
   // 维护经营范围
   const getParentKey = (value, tree) => {
@@ -291,6 +305,12 @@ function OrganInfo({ organInfo, addressList, loading }) {
             key="editEnterprise"
             onClick={() => {
               dispatchAction({ payload: { orgEditVisible: true } })
+              dispatchAction({
+                type: 'firstLevel',
+              })
+              dispatchAction({
+                type: 'secondLevel',
+              })
             }}
           >
             <Icon style={{ marginRight: 8 }} type="edit" />编辑企业资料

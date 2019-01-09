@@ -253,11 +253,11 @@ function Regist({
       dataIndex: 'supplierOrgName',
       title: '供应商',
     },
-    {
-      key: 'certificatePlace',
-      dataIndex: 'certificatePlace',
-      title: '档案存放位置',
-    },
+    // {
+    //   key: 'certificatePlace',
+    //   dataIndex: 'certificatePlace',
+    //   title: '档案存放位置',
+    // },
     {
       key: 'operation',
       dataIndex: 'operation',

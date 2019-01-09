@@ -96,7 +96,7 @@ const ImportModal = (
             className={style.mr16}
             type="primary"
           >导入</Button>
-          <a onClick={() => { window.open(`${EXCEL_DOWNLOAD}/excel/template/PurchaseCatalogImportTemplate.xls`) }}> 下载模板</a>
+          <a onClick={() => { window.open(`${EXCEL_DOWNLOAD}/PurchaseCatalogImportTemplate.xls`) }}> 下载模板</a>
         </div>
         <div className="aek-text-disable">
           <p>备注：</p>

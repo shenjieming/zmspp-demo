@@ -9,7 +9,7 @@ const formItemLayout = {
     span: 16,
   },
 }
-const form = ({ orgDetail, addressList }) => [
+const form = ({ orgDetail, addressList, asyncParentOrgList, parentGradeList, secondGradeList }) => [
   {
     label: '机构名称',
     layout: formItemLayout,
@@ -45,38 +45,54 @@ const form = ({ orgDetail, addressList }) => [
   },
   {
     label: '机构等级',
-    exclude: !(orgDetail.orgTypeCode === '02' || orgDetail.orgTypeCode === '05'),
-    layout: formItemLayout,
-    field: 'parentGrade',
-    view: true,
-    col: 24,
-    options: {
-      initialValue:
-        orgDetail.orgTypeCode === '02'
-          ? `${orgDetail.orgGradeText || ''}${orgDetail.orgParentGradeText || ''}`
-          : orgDetail.orgGradeText,
+    exclude: !(orgDetail.orgTypeCode === '02'),
+    layout: {
+      labelCol: {
+        span: 12,
+      },
+      wrapperCol: {
+        span: 11,
+      },
     },
+    field: 'orgGrade',
+    col: 12,
     component: {
       name: 'Select',
       props: {
         placeholder: '请选择',
+        ...parentGradeList,
+      },
+    },
+  },
+  {
+    label: '',
+    exclude: !(orgDetail.orgTypeCode === '02'),
+    layout: {
+      wrapperCol: {
+        span: 11,
+        offset: 1,
+      },
+    },
+    field: 'orgParentGrade',
+    col: 12,
+    component: {
+      name: 'Select',
+      props: {
+        placeholder: '请选择',
+        ...secondGradeList,
       },
     },
   },
   {
     label: '营利性质',
-    exclude: orgDetail.orgTypeCode !== '02',
+    exclude: orgDetail.orgTypeCode === '02',
     layout: formItemLayout,
     col: 24,
     field: 'profit',
-    view: true,
-    options: {
-      initialValue: orgDetail.profit ? '营利' : '非营利',
-    },
     component: {
       name: 'RadioGroup',
       props: {
-        options: [{ label: '营利', value: 1 }, { label: '非营利', value: 0 }],
+        options: [{ label: '营利性', value: true }, { label: '非营利性', value: false }],
       },
     },
   },
@@ -84,20 +100,28 @@ const form = ({ orgDetail, addressList }) => [
     label: '上级机构',
     layout: formItemLayout,
     field: 'parentOrgName',
-    view: true,
     options: {
       initialValue: orgDetail.parentOrgName,
     },
     col: 24,
     component: {
-      name: 'Input',
+      name: 'Select',
+      props: {
+        placeholder: '无',
+        ...asyncParentOrgList,
+        showSearch: true,
+        defaultActiveFirstOption: false,
+        filterOption: false,
+        notFoundContent: false,
+        allowClear: true,
+        labelInValue: true,
+      },
     },
   },
   {
     label: '法人',
     layout: formItemLayout,
     field: 'legalPerson',
-    view: true,
     options: {
       initialValue: orgDetail.legalPerson,
     },
@@ -112,21 +136,39 @@ const form = ({ orgDetail, addressList }) => [
   {
     label: '机构注册地',
     layout: formItemLayout,
-    view: true,
     field: 'arrayOrgRegAddr',
     options: {
-      initialValue: orgDetail.arrayOrgRegAddr
-        ? orgDetail.arrayOrgRegAddr[3] +
-          orgDetail.arrayOrgRegAddr[4] +
-          orgDetail.arrayOrgRegAddr[5] +
-          orgDetail.registeredAddress
-        : '',
+      getValueFromEvent: (val, selectedOptions) => {
+        const addressArray = [...val]
+        for (const item of selectedOptions) {
+          addressArray.push(item.label)
+        }
+        return addressArray
+      },
     },
     col: 24,
     component: {
       name: 'Cascader',
       props: {
-        placeholder: '请选择',
+        placeholder: '请选择省市区',
+        options: addressList,
+      },
+    },
+  },
+  {
+    label: '',
+    layout: {
+      wrapperCol: {
+        span: 12,
+        offset: 6,
+      },
+    },
+    field: 'registeredAddress',
+    col: 24,
+    component: {
+      name: 'Input',
+      props: {
+        placeholder: '详细地址',
       },
     },
   },

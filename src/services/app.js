@@ -67,7 +67,6 @@ export default {
   chooseDefaultOrg: generateRequest(`${api}/account/user/default/org`, 'post'),
   // 获取个性化配置
   getPersonalityConfig: generateRequest(`${api}/organization/custom-data`, 'get'),
-
   // 获取注册证配置列表
   getRegistList: generateRequest(`${api}/system/dicValue/dicKey`, 'post'),
 }

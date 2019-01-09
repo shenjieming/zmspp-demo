@@ -186,7 +186,7 @@ export default dvaModelExtend(organizationInfo, {
       yield put({ type: 'saveUserData' })
       yield put({ type: 'afterLogin' })
       message.success('登录成功')
-      // yield put({ type: 'startGetMsg' }) 11/30删除
+      yield put({ type: 'startGetMsg' })
     },
     // 保存用户所有信息
     * saveUserData(_, { select }) {
@@ -223,7 +223,7 @@ export default dvaModelExtend(organizationInfo, {
           yield update({ orgInfo, orgList })
           yield put({ type: 'getMenuData' })
           yield put({ type: 'afterLogin' })
-          // yield put({ type: 'startGetMsg' }) 11/30删除
+          yield put({ type: 'startGetMsg' })
         } else {
           yield put(routerRedux.replace('/login'))
         }
@@ -270,7 +270,7 @@ export default dvaModelExtend(organizationInfo, {
       yield put({ type: 'getMenuData' })
       // yield call(services.msgSocketDisconnect)  11/30删除
       yield put(routerRedux.push('/'))
-      // yield put({ type: 'startGetMsg' }) 11/30删除
+      yield put({ type: 'startGetMsg' })
     },
     // 获取地址
     * queryAddress(_, { call, put, select }) {
@@ -330,21 +330,21 @@ export default dvaModelExtend(organizationInfo, {
       yield call(services.setReadOne, { msgId: payload })
     },
     // 打开websocket 11/30删除
-    // * startGetMsg(_, { select, call, update }) {
-    //   const { content: msgDataSource } = yield call(services.getAllNoReadMsg)
-    //   yield update({ msgDataSource })
-    //   const {
-    //     user: { userId },
-    //     orgInfo: { orgId },
-    //   } = yield select(store => store[namespace])
-    //   yield call(services.msgSocketConnect, {
-    //     orgId,
-    //     userId,
-    //     action: (rs) => {
-    //       action({ type: 'receiveMsg', payload: rs })
-    //     },
-    //   })
-    // },
+    * startGetMsg(_, { select, call, update }) {
+      const { content: msgDataSource } = yield call(services.getAllNoReadMsg)
+      yield update({ msgDataSource })
+      const {
+        user: { userId },
+        orgInfo: { orgId },
+      } = yield select(store => store[namespace])
+      // yield call(services.msgSocketConnect, {
+      //   orgId,
+      //   userId,
+      //   action: (rs) => {
+      //     action({ type: 'receiveMsg', payload: rs })
+      //   },
+      // })
+    },
     // 选择默认供应商
     * chooseDefaultOrg({ payload }, { call, update }) {
       const { content } = yield call(services.chooseDefaultOrg, { defaultOrgId: payload })

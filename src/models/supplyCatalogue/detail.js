@@ -551,9 +551,18 @@ export default dvaModelExtend({
     },
     // 新增物料
     * addMaterial({ payload }, { call, toAction }) {
+      console.log(payload)
+      // payload.certificateId = payload.certificateNo
+      if (payload.certificateNo) {
+        payload.certificateId = payload.certificateNo.key
+        payload.certificateNo = payload.certificateNo.label
+      }
       yield call(services.splAddMaterial, payload)
       yield [toAction('statistics'), toAction('suppliers'), toAction({ editModalVisible: false })]
       message.success('新增成功')
+      yield toAction({
+        type: 'getTableData',
+      })
     },
     // 编辑物料
     * updateMaterial({ payload }, { call, toAction }) {
@@ -566,6 +575,9 @@ export default dvaModelExtend({
         }),
       ]
       message.success('编辑成功')
+      yield toAction({
+        type: 'getTableData',
+      })
     },
     // 批量撤销
     * batchCancel({ payload }, { call, update }) {

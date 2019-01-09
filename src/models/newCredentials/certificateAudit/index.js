@@ -184,16 +184,16 @@ export default modelExtend({
     * setPast({ payload }, { call }) {
       const { content } = yield call(services.setPastData, payload)
       if (payload.certificateIds.length !==
-        content.passedCertificates.length) {
+        content.checkCertificates.length) {
         Modal.error({
           content: (<div>
             <p>成功审核通过{content.checkCertificates.length}本证件</p>
             {
-              content.passedCertificates.length ?
+              content.checkCertificates.length ?
                 <div>
                   <p className="aek-mtb10">如下证件已被审核通过：</p>
                   <div>
-                    {getContent(content.passedCertificates)}
+                    {getContent(content.checkCertificates)}
                   </div>
                 </div>
                 : undefined

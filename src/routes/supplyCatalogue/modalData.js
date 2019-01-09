@@ -34,6 +34,7 @@ const viewFormData = ({
     materialsName,
     materialsSku,
     certificateNo,
+    certificateId,
     factoryName,
     brandName,
     materialsUnit,
@@ -75,14 +76,21 @@ const viewFormData = ({
     layout: formItemLayout,
     field: 'certificateNo',
     options: {
-      initialValue: certificateNo,
+      initialValue: (certificateNo && certificateId) ? {
+        label: certificateNo, key: certificateId,
+      } : undefined,
     },
     component: {
-      name: 'Input',
+      name: 'LkcSelect',
       props: {
         placeholder: '请输入',
+        url: '/certificate/my/register/options',
+        optionConfig: {
+          idStr: 'certificateId',
+          nameStr: 'certificateNo',
+        },
       },
-    },
+    }
   },
   {
     label: '厂家',

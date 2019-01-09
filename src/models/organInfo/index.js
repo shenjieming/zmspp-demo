@@ -16,6 +16,7 @@ import {
   downloadFileData,
 } from '@services/home/organInfo'
 import modelExtend from '@utils/modelExtend'
+import {dicKey, getParentOrgList} from "../../services/organization";
 
 // 初始化数据
 const initState = {
@@ -26,7 +27,6 @@ const initState = {
   orgPersonVisible: false, // 组织管理权转让弹框
   orgPersonListPagination: {}, // 组织机构下可转让组织管理关系的人员列表 分页
   orgEditVisible: false, // 编辑企业资料
-
   searchValue: '', // 搜索的值
   expandedKeys: [], // 默认展开的节点
   autoExpandParent: true, // 自动展开
@@ -39,6 +39,37 @@ const initState = {
   certificates: [], // 审核机构详情页  扩展信息
   reason: undefined, // 拒绝原因
   auditStatus: undefined, // 拒绝状态
+  parentOrgList: [],
+  parentGradeList: [],
+  secondGradeList: [],
+  registerAddressChanged: false,
+  workAddressChanged: false,
+  registerAddressVal: '',
+  workAddressVal: '',
+  searchParam: {},
+  personSearchParam: {},
+  longStatus: false,
+  modelTypeQualifications: '',
+  qualificationsModalVisible: false,
+  currentQualifications: {},
+  fileLookModalVisible: false,
+  currentItemFileModal: {},
+  changeStatus: false,
+  tagModalVisible: false,
+  orgStatus: 0, // 组织机构停用启用
+  orgSonPagination: {
+    current: 1,
+    total: null,
+  },
+  orgPersonPagination: {
+    current: 1,
+    pageSize: 10,
+    total: null,
+  },
+  organizeType: [],
+  currentTab: '1',
+  bankLevelList: [],
+  changeTypeVisible: false,
 }
 const riskTypeArr = ['I类', 'II类', 'III类']
 const riskTypeHelperArr = ['IL', 'IIL', 'IIIL']
@@ -91,6 +122,36 @@ export default modelExtend({
     },
   },
   effects: {
+    // 异步查询上级机构下拉列表
+    * queryParentOrgList({ payload }, { select, call, update }) {
+      const { selectOrg } = yield select(({ organInfo }) => organInfo)
+      const { content } = yield call(getParentOrgList, { ...payload })
+      let handleSubmit = content
+      yield update({
+        parentOrgList: handleSubmit,
+      })
+    },
+    // 获取一级
+    * firstLevel({ payload }, { call, update }) {
+      const { content } = yield call(dicKey, { dicKey: 'HOSPITAL_LEVEL' })
+      yield update({
+        parentGradeList: content,
+      })
+    },
+    // 获取甲等
+    * secondLevel({ payload }, { call, update }) {
+      const { content } = yield call(dicKey, { dicKey: 'HOSPITAL_ADMINISTRATIVE_LEVEL' })
+      yield update({
+        secondGradeList: content,
+      })
+    },
+    // 获取银行等级
+    * bankLevel({ payload }, { call, update }) {
+      const { content } = yield call(dicKey, { dicKey: 'BANK_LEVEL' })
+      yield update({
+        bankLevelList: content,
+      })
+    },
     // 获取 组织机构详情
     * getOrgDetail({ payload }, { call, update, select }) {
       const { orgId } = yield select(({ app }) => app.orgInfo)

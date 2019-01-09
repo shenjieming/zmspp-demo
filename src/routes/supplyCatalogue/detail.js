@@ -28,6 +28,7 @@ import { getTabName, getBasicFn } from '../../utils'
 import BatchModal from './batchAddCatalog'
 // 批量撤销
 import BatchCancelModal from './cancelModal'
+import ModalSelsect from './ModalSelsect'
 // 标准物料同步对照
 import CompaerModal from '../../components/RowTable/ModalCompare'
 import SearchForm from '../../components/SearchFormFilter'
@@ -90,7 +91,7 @@ function SupplyCatalogueDetail({
     registSearchData,
     otherCodeVisible,
     otherCodeList,
-
+    modalSelsect,
 
 
     batchEditModalVisible, // 批量编辑弹框
@@ -905,6 +906,13 @@ function SupplyCatalogueDetail({
         break
     }
   }
+  const modalSelsectProps = {
+    visible: modalSelsect,
+    menuClick,
+    onCancel() {
+      toAction({ modalSelsect: false })
+    },
+  }
   return (
     <div className="aek-layout">
       <div className="bread">
@@ -992,6 +1000,7 @@ function SupplyCatalogueDetail({
         </div>
       </div>
       <RegistModal {...registProps} />
+      <ModalSelsect {...modalSelsectProps} />
       <ModalEditMaterial {...modalEditMaterialProps} />
       <ModalExcel {...modalExcelProps} />
       <ModalExcelSchedule {...modalExcelSchedulProps} />

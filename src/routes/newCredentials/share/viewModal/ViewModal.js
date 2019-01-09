@@ -283,11 +283,11 @@ class ViewCertificateModal extends React.Component {
       <div>
         <div className={styles.position}>
           <Form>
-            <FormItem {...FORM_ITEM_LAYOUT} label="档案存放位置">
-              {getFieldDecorator('certificatePlace', {
-                initialValue: certificatePlace,
-              })(<Input />)}
-            </FormItem>
+            {/*<FormItem {...FORM_ITEM_LAYOUT} label="档案存放位置">*/}
+              {/*{getFieldDecorator('certificatePlace', {*/}
+                {/*initialValue: certificatePlace,*/}
+              {/*})(<Input />)}*/}
+            {/*</FormItem>*/}
           </Form>
         </div>
         <Button

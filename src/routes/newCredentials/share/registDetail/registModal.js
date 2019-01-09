@@ -277,7 +277,7 @@ function RegistModal({
       <Spin
         spinning={loading}
       >
-        {resuseReason()}
+        {/*{resuseReason()}*/}
         <Form>
           <GetFormItem
             formData={formDataArray}

@@ -183,11 +183,11 @@ function Other({
         </span>)
       },
     },
-    {
-      key: 'certificatePlace',
-      dataIndex: 'certificatePlace',
-      title: '档案存放位置',
-    },
+    // {
+    //   key: 'certificatePlace',
+    //   dataIndex: 'certificatePlace',
+    //   title: '档案存放位置',
+    // },
     {
       key: 'operation',
       dataIndex: 'operation',
