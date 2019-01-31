@@ -2,7 +2,7 @@ import React from 'react'
 import { message, Modal } from 'antd'
 import { modelExtend, getSetup, getServices } from '../../utils'
 import * as services from '../../services/purchase'
-import {getCodeBarListData, packageListData} from "../../services/supplyCatalogue/detail";
+import {delSkuBarcodeData, getCodeBarListData, packageListData, setCodeBarListData} from "../../services/supplyCatalogue/detail";
 
 const servicesObj = getServices({
   refusedReasonList: '/system/dicValue/dicKey', // 拒绝原因
@@ -73,6 +73,7 @@ const initState = {
   barcodeList: [],
   certificateVisible: false,
   certificateData: {},
+  getCodeBarListData,
   viewModalVisible: false, // 审核弹框visible
   certificateDetail: {
     certificates: [],
@@ -80,6 +81,25 @@ const initState = {
   selectedRowData: {}, // 选择的行数据
   refusedReasonVisible: false, // 拒绝原因
   refusedReasonList: [], // 拒绝原因数组
+  singleCompareVisible: false, // 单条历史
+  singleCompareList: {}, // 单条历史数据
+  registVisible: false, // 注册证弹框
+  registList: [], // 注册证列表
+  registPagitantion: {},
+  registSearchData: {},
+  otherCodeList: [], // 绑定该条码的其他物资
+  otherCodeVisible: false, // 绑定该条码的其他物资弹框
+  customerId: '',
+  batchEditModalVisible: false, // 批量编辑物料
+  batchDataList: [], // 批量编辑列表
+
+  compareModalList: [], // 标准物料对照列表
+  branOptionList: [], // 品牌
+
+  batchCancelModalVisible: false, // 批量撤销
+  hatchCancelList: [], // 批量不通过数据
+
+  cloneSelectRowData: [], // 拷贝数据
 }
 
 export default modelExtend({
@@ -134,6 +154,24 @@ export default modelExtend({
           pageSize: contentMain.pageSize,
           total: contentMain.total,
         },
+      })
+    },
+    // 条码删除
+    * delSkuBarcode({ payload }, { call, put, select }) {
+      yield call(delSkuBarcodeData, payload)
+      const codeBarList = yield select(
+        ({ supplyCatalogueDetail }) => supplyCatalogueDetail.codeBarList,
+      )
+      codeBarList.splice(payload.index, 1)
+      message.success('物资删除成功！')
+      yield put({
+        type: 'updateState',
+        payload: {
+          codeBarList,
+        },
+      })
+      yield put({
+        type: 'getTableData',
       })
     },
     // Excel导入
@@ -348,6 +386,42 @@ export default modelExtend({
         payload: {
           codeBarList: content,
         },
+      })
+    },
+    // 绑定条码
+    * setCodeBarList({ payload }, { select, call, put }) {
+      const { orgInfo } = yield select(({ app }) => app)
+      console.log(orgInfo)
+      // const obj = JSON.parse(localStorage.getItem(orgInfo.orgId))
+      payload.customerOrgId = orgInfo.orgId
+      const data = yield call(setCodeBarListData, payload)
+      let updateData = {
+        codeBarList: data.content.data,
+      }
+      if (data.content && data.content.customCode !== 200) {
+        if (data.content.customCode === 203) {
+          updateData = {
+            otherCodeList: data.content.useData, // 绑定该条码的其他物资
+            otherCodeVisible: true,
+          }
+          yield put({
+            type: 'updateState',
+            payload: updateData,
+          })
+          return
+        }
+        message.error(data.content.customMessages)
+        return
+      }
+      message.success('解析成功', 3)
+      yield put({
+        type: 'updateState',
+        payload: updateData,
+      })
+      payload.func()
+
+      yield put({
+        type: 'getTableData',
       })
     },
     // 查看包装规格维护

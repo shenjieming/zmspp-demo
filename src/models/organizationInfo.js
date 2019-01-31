@@ -14,7 +14,7 @@ export default modelExtend({
   },
   effects: {
     // 是否需要补全
-    * afterLogin({ payload }, { call, toAction }) {
+    * afterLogin({ payload }, { call, toAction, put }) {
       const { content } = yield call(afterLogin, payload)
       if (content.needCompleteInfo === 1) {
         content.auditStatus = 2

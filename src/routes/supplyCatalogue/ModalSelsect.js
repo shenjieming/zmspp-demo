@@ -35,17 +35,15 @@ const ModalSelsect = ({
               <p>手工录入物料信息新增</p>
             </Card>
           </Col>
-          <Col span={10} offset={2}>
-            <Card
-              className={style.cardStyle}
-              onClick={() => { menuClick('get') }}
-            >
-              <p>从平台标准数据中拉取</p>
-              <p>零库存提供了一套与注册证统一的标准字典，您可以从中选择使用</p>
-            </Card>
-          </Col>
-        </Row>
-        <Row>
+          {/*<Col span={10} offset={2}>*/}
+            {/*<Card*/}
+              {/*className={style.cardStyle}*/}
+              {/*onClick={() => { menuClick('get') }}*/}
+            {/*>*/}
+              {/*<p>从平台标准数据中拉取</p>*/}
+              {/*<p>零库存提供了一套与注册证统一的标准字典，您可以从中选择使用</p>*/}
+            {/*</Card>*/}
+          {/*</Col>*/}
           <Col span={10} offset={1}>
             <Card
               className={style.cardStyle}
@@ -55,7 +53,9 @@ const ModalSelsect = ({
               <p>将带有物料数据的Excel文件导入到平台的采购目录中</p>
             </Card>
           </Col>
-          <Col span={10} offset={2}>
+        </Row>
+        <Row>
+          <Col span={10} offset={1}>
             <Card
               className={style.cardStyle}
               onClick={() => { menuClick('schedule') }}

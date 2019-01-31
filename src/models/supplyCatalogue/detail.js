@@ -550,17 +550,19 @@ export default dvaModelExtend({
       })
     },
     // 新增物料
-    * addMaterial({ payload }, { call, toAction }) {
-      console.log(payload)
+    * addMaterial({ payload }, { call, put, toAction }) {
       // payload.certificateId = payload.certificateNo
       if (payload.certificateNo) {
         payload.certificateId = payload.certificateNo.key
         payload.certificateNo = payload.certificateNo.label
       }
+      if (!payload.price) {
+        payload.price = 0
+      }
       yield call(services.splAddMaterial, payload)
       yield [toAction('statistics'), toAction('suppliers'), toAction({ editModalVisible: false })]
       message.success('新增成功')
-      yield toAction({
+      yield put({
         type: 'getTableData',
       })
     },

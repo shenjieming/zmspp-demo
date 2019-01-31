@@ -196,7 +196,6 @@ function App(props) {
       dispatchAction({ type: 'updateState', payload: { menuSelectedKeys: selectedKeys } })
     },
   }
-
   return (
     <div>
       <Helmet>

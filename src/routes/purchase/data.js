@@ -6,12 +6,9 @@ import getComponent from '../../components/GetFormItem/getComponent'
 import { getOption, segmentation, getTreeItem, verticalContent } from '../../utils'
 import { INVITE_TYPE } from '../../utils/constant'
 import DropOption from './DropOption'
-// editor:jarmey start
-// import { getBasicFn } from '../../utils'
-// const namespace = 'purchase'
-// const { dispatchAction } = getBasicFn({ namespace })
-// console.log(dispatchAction)
-// editor:jarmey end
+import { getBasicFn } from '../../utils'
+const namespace = 'purchase'
+const { dispatchAction } = getBasicFn({ namespace })
 const noLabelLayout = {
   wrapperCol: { span: 22 },
 }
@@ -587,55 +584,55 @@ const pendingReviewColumns = ({
     className: 'aek-text-center',
     dataIndex: 'lastEditTime',
   },
-  {
-    title: '操作',
-    dataIndex: 'operation',
-    className: 'aek-text-center',
-    width: 120,
-    render: (
-      text,
-      {
-        pscId,
-        changeType,
-        price,
-        materialsCommenName,
-        inviteType,
-        inviteNo,
-        supplierOrgId,
-        materialsSku,
-        materialsName,
-        materialsUnit,
-        materialsUnitText,
-      },
-    ) => {
-      const data = { pscId, changeType, price, materialsCommenName, inviteType, inviteNo, materialsUnit, materialsUnitText }
-      return (
-        <span>
-          <a
-            onClick={() => {
-              batchReceive([data])
-            }}
-          >
-            接收
-          </a>
-          <span className="ant-divider" />
-          <a
-            onClick={() => {
-              batchRefuse({
-                supplierOrgId,
-                pscId,
-                materialsSku,
-                materialsName,
-                changeTypeStr: { 1: '新增', 2: '修改' }[changeType],
-              })
-            }}
-          >
-            拒绝
-          </a>
-        </span>
-      )
-    },
-  },
+  // {
+  //   title: '操作',
+  //   dataIndex: 'operation',
+  //   className: 'aek-text-center',
+  //   width: 120,
+  //   render: (
+  //     text,
+  //     {
+  //       pscId,
+  //       changeType,
+  //       price,
+  //       materialsCommenName,
+  //       inviteType,
+  //       inviteNo,
+  //       supplierOrgId,
+  //       materialsSku,
+  //       materialsName,
+  //       materialsUnit,
+  //       materialsUnitText,
+  //     },
+  //   ) => {
+  //     const data = { pscId, changeType, price, materialsCommenName, inviteType, inviteNo, materialsUnit, materialsUnitText }
+  //     return (
+  //       <span>
+  //         <a
+  //           onClick={() => {
+  //             batchReceive([data])
+  //           }}
+  //         >
+  //           接收
+  //         </a>
+  //         <span className="ant-divider" />
+  //         <a
+  //           onClick={() => {
+  //             batchRefuse({
+  //               supplierOrgId,
+  //               pscId,
+  //               materialsSku,
+  //               materialsName,
+  //               changeTypeStr: { 1: '新增', 2: '修改' }[changeType],
+  //             })
+  //           }}
+  //         >
+  //           拒绝
+  //         </a>
+  //       </span>
+  //     )
+  //   },
+  // },
 ]
 // 拒绝
 const refusedColumns = ({ showBarcode, showCerticafite, tabStatus, showCerticaAudit }) => [

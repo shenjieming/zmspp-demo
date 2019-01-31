@@ -41,7 +41,8 @@ class OrderDelivery extends React.Component {
       const reg = /^([0-9][.0-9]*)?$/
       if ((!isNaN(value) && reg.test(String(value))) || value === '') {
         if (!this.isValidDeliveNum(value, row, formIndex)) {
-          if (!deliveryQtyCanOverPurchaseQtyFlag) {
+          console.log(row)
+          if (row.deliverQty > (row.purchaseQty - row.deliverQty)) {
             Modal.error({
               content: '客户设置的发货数量不能大于采购数量，如果有疑问请与客户联系！',
               onOk: () => {
@@ -55,29 +56,33 @@ class OrderDelivery extends React.Component {
                 })
               },
             })
-          } else {
-            Modal.confirm({
-              title: '您输入的物资出货数量大于客户采购数量。',
-              content: '您确认需要按此数量出货吗？',
-              onOk: () => {
-                dispatchAction({ type: 'checkRfidNum', payload: { value, row } })
-              },
-              onCancel: () => {
-                dispatchAction({
-                  type: 'updateMaterialItem',
-                  payload: {
-                    target: row,
-                    prop: 'deliverQty',
-                    value: Number(originalValue) || undefined,
-                  },
-                })
-                dispatchAction({
-                  type: 'checkRfidNum',
-                  payload: { value: Number(originalValue), row },
-                })
-              },
-            })
           }
+
+          // if (!deliveryQtyCanOverPurchaseQtyFlag) {
+          //
+          // } else {
+          //   // Modal.error({
+          //   //   title: '您输入的物资出货数量大于客户采购数量。',
+          //   //   content: '您确认需要按此数量出货吗？',
+          //   //   onOk: () => {
+          //   //     dispatchAction({ type: 'checkRfidNum', payload: { value, row } })
+          //   //   },
+          //   //   onCancel: () => {
+          //   //     dispatchAction({
+          //   //       type: 'updateMaterialItem',
+          //   //       payload: {
+          //   //         target: row,
+          //   //         prop: 'deliverQty',
+          //   //         value: Number(originalValue) || undefined,
+          //   //       },
+          //   //     })
+          //   //     dispatchAction({
+          //   //       type: 'checkRfidNum',
+          //   //       payload: { value: Number(originalValue), row },
+          //   //     })
+          //   //   },
+          //   // })
+          // }
         } else {
           dispatchAction({ type: 'checkRfidNum', payload: { value, row } })
           dispatchAction({
@@ -349,6 +354,15 @@ class OrderDelivery extends React.Component {
         // })
       })
     }
+    function disabledDate(current) {
+      // Can not select days before today and today
+      // console.log(current && current < moment().endOf('day'))
+      return current && current < moment().endOf('day').subtract(1, 'days');
+    }
+    function getNowFormatDate() {
+      return moment().endOf('day')
+    }
+    let getToday = getNowFormatDate()
     // 发货前检验
     const deliverCheck = () => {
       validateFieldsAndScroll({ force: true }, (errors, values) => {
@@ -529,7 +543,7 @@ class OrderDelivery extends React.Component {
             <InputNumber
               min={0}
               value={row.deliverQty}
-              precision={2}
+              precision={0}
               onChange={(value) => {
                 if (value === row.deliverQty && value !== '') {
                   return
@@ -612,6 +626,10 @@ class OrderDelivery extends React.Component {
                     max: 30,
                     message: '最多输入30位',
                   },
+                  {
+                    required: true,
+                    message: '请输入批次'
+                  }
                 ],
               })(
                 <Input
@@ -634,6 +652,7 @@ class OrderDelivery extends React.Component {
             <DatePicker
               style={{ width: '100%' }}
               value={row.expiredDate && moment(row.expiredDate)}
+              disabledDate={disabledDate}
               onChange={(value) => {
                 dispatchAction({
                   type: 'updateMaterialItem',
@@ -711,7 +730,6 @@ class OrderDelivery extends React.Component {
                 ],
               })(
                 <Input
-                  readOnly={isReadOnly(row)}
                   onChange={(event) => {
                     dispatchAction({
                       type: 'updateMaterialItem',
@@ -803,18 +821,18 @@ class OrderDelivery extends React.Component {
               )}
               {deliveryCanEnterRfidFlag ? (
                 <div>
-                  <a
-                    disabled={!row.deliverQty}
-                    onClick={() => {
-                      if (!new Decimal(row.deliverQty).isInteger()) {
-                        Modal.warning({ content: '当前配送数量为小数，无需输入RFID' })
-                        return
-                      }
-                      addRFID(row)
-                    }}
-                  >
-                    录入RFID
-                  </a>
+                  {/*<a*/}
+                    {/*disabled={!row.deliverQty}*/}
+                    {/*onClick={() => {*/}
+                      {/*if (!new Decimal(row.deliverQty).isInteger()) {*/}
+                        {/*Modal.warning({ content: '当前配送数量为小数，无需输入RFID' })*/}
+                        {/*return*/}
+                      {/*}*/}
+                      {/*addRFID(row)*/}
+                    {/*}}*/}
+                  {/*>*/}
+                    {/*录入RFID*/}
+                  {/*</a>*/}
                   {row.rfids &&
                     row.rfids.length > 0 && <span className="aek-red">({row.rfids.length})</span>}
                 </div>

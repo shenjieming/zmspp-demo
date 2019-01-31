@@ -216,22 +216,22 @@ const editFormData = ({
       },
     },
   },
-  {
-    label: '单价（元）',
-    layout: formItemLayout,
-    field: 'price',
-    options: {
-      initialValue: price,
-      rules: [{ required: true, message: '必填项不能为空' }],
-    },
-    component: {
-      name: 'LkcInputNumber',
-      props: {
-        placeholder: '请输入',
-        min: 0,
-      },
-    },
-  },
+  // {
+  //   label: '单价（元）',
+  //   layout: formItemLayout,
+  //   field: 'price',
+  //   options: {
+  //     initialValue: price,
+  //     rules: [{ required: true, message: '必填项不能为空' }],
+  //   },
+  //   component: {
+  //     name: 'LkcInputNumber',
+  //     props: {
+  //       placeholder: '请输入',
+  //       min: 0,
+  //     },
+  //   },
+  // },
   {
     label: '通用名称',
     layout: formItemLayout,

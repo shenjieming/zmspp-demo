@@ -157,25 +157,25 @@ const formData = ({
       },
     },
     <div className="aek-form-head aek-mb10">补充信息</div>,
-    {
-      label: '单价',
-      field: 'price',
-      col: 12,
-      layout: FORM_ITEM_LAYOUT,
-      options: {
-        initialValue: price,
-        rules: [{
-          required: true,
-          message: '请输入单价',
-        }],
-      },
-      component: {
-        name: 'LkcInputNumber',
-        props: {
-          placeholder: '请输入单价',
-        },
-      },
-    },
+    // {
+    //   label: '单价',
+    //   field: 'price',
+    //   col: 12,
+    //   layout: FORM_ITEM_LAYOUT,
+    //   options: {
+    //     initialValue: price,
+    //     rules: [{
+    //       required: true,
+    //       message: '请输入单价',
+    //     }],
+    //   },
+    //   component: {
+    //     name: 'LkcInputNumber',
+    //     props: {
+    //       placeholder: '请输入单价',
+    //     },
+    //   },
+    // },
     {
       label: '单位',
       field: 'materialsUnit',

@@ -46,7 +46,6 @@ const BarCode = ({
             payload: {
               pscId: rowSelectData.pscId,
               ...data,
-              customerOrgId: customerId,
               func: () => {
                 inputRef.focus()
                 setFields({ barcode: '' })
@@ -112,12 +111,12 @@ const BarCode = ({
   ]
   return (
     <Modal {...addModalProp}>
-      <Spin
-        spinning={
-          !!effects['purchase/getCodeBarList'] ||
-          !!effects['purchase/setCodeBarList']
-        }
-      >
+      {/*<Spin*/}
+        {/*spinning={*/}
+          {/*!!effects['purchase/getCodeBarList'] ||*/}
+          {/*!!effects['purchase/setCodeBarList']*/}
+        {/*}*/}
+      {/*>*/}
         {configList.indexOf(customerId) < 0 && (
           <span>
             <p>扫描或输入条码进行添加：</p>
@@ -149,7 +148,7 @@ const BarCode = ({
           dataSource={codeBarList}
           rowKey="barcode"
         />
-      </Spin>
+      {/*</Spin>*/}
     </Modal>
   )
 }

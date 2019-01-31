@@ -15,6 +15,7 @@ const asyncValidateFun = asyncValidate({ message: '该用户名已被其他用�
 const asyncMobileValidateFun = asyncValidate({ message: '该手机已绑定其他机构!', url: '/account/mobile/unique/verify', key: 'mobile' })
 // 供应商名称异步校验
 const asyncSupplierFun = asyncValidate({ message: '该机构已被注册!', url: '/organization/check/same/name', key: 'keywords' })
+console.log(asyncSupplierFun)
 const FORM_ITEM_LAYOUT = {
   labelCol: { span: 6 },
   wrapperCol: { span: 16 },
@@ -121,7 +122,7 @@ const Supplier = ({
             validateFirst: true,
             rules: [
               { required: true, message: '请填写供应商名称!' },
-              { max: 40, message: '字符不超过40字符' },
+              { max: 255, message: '字符不超过255字符' },
               { validator: asyncSupplierFun },
             ],
           })(

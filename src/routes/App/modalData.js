@@ -388,7 +388,7 @@ hospitalForm(orgTypeId, {
   field: 'registeredAddress',
   layout: formItemLayout,
   options: {
-    rules: [{ required: true, message: '必填项不能为空' }],
+    rules: [{ required: true, message: '必填项不能为空' },  { max: 40, message: '字符不超过40字符' }],
     initialValue: registeredAddress,
   },
   component: {

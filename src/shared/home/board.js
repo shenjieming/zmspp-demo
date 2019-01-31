@@ -5,7 +5,7 @@ export default {
   GET_STATISTICS: 'getStatistics',
   GET_ORDER: 'getOrder',
   INITIAL_SEARCH_PARAM: {
-    formType: 1,
+    formType: 2,
     endDate: moment(),
     statisticsType: 1,
     startDate: moment().subtract(6, 'days'),

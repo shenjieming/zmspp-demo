@@ -311,6 +311,12 @@ function OrganInfo({ organInfo, addressList, loading }) {
               dispatchAction({
                 type: 'secondLevel',
               })
+              dispatchAction({
+                type: 'queryParentOrgList',
+                payload: {
+                  orgName: '',
+                },
+              })
             }}
           >
             <Icon style={{ marginRight: 8 }} type="edit" />编辑企业资料

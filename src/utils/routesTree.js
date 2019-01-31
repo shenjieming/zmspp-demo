@@ -135,6 +135,14 @@ const routesTree = [
         back: true,
         models: () => [import('../models/contacts/newContactsRelationZZ')],
         component: () => import('../routes/contacts/newContactsRelationZZ'),
+        children: [
+          {
+            name: '供应商详情',
+            path: 'supplierDetail/:id',
+            models: () => [import('../models/contacts/mySupplier/detail.js')],
+            component: () => import('../routes/contacts/mySupplier/detail.js'),
+          },
+        ],
       },
       {
         name: '新的往来关系（后勤部）',
@@ -142,6 +150,14 @@ const routesTree = [
         back: true,
         models: () => [import('../models/contacts/newContactsRelationHQ')],
         component: () => import('../routes/contacts/newContactsRelationHQ'),
+        children: [
+          {
+            name: '供应商详情',
+            path: 'supplierDetail/:id',
+            models: () => [import('../models/contacts/mySupplier/detail.js')],
+            component: () => import('../routes/contacts/mySupplier/detail.js'),
+          },
+        ],
       }
     ],
   },

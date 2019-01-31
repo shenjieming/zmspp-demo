@@ -31,7 +31,6 @@ export default function request(options) {
     .then((response) => {
       const { data } = response
       const { code } = data
-
       if (inRange(code, ...REQUEST_SUCCESS_REGION)) {
         return data
       }

@@ -9,9 +9,9 @@ import AmountPanel from './AmountPanel'
 const RadioButton = Radio.Button
 
 const typesGroupData = [
-  { name: '普耗', value: 1 },
   { name: '寄销', value: 2 },
-  { name: '跟台', value: 3 },
+  // { name: '普耗', value: 1 },
+  // { name: '跟台', value: 3 },
 ]
 
 function Page(props) {

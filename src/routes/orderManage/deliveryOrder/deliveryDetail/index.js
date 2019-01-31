@@ -214,7 +214,7 @@ const DeliveryDetail = ({
                   arr.forEach((item) => {
                     all += item.deliverQty
                   })
-                  if (all > 10000) {
+                  if (all > 10000 && arr.length > 1) {
                     message.error('发货数量已经大于一万条，请减少勾选数量')
                     return
                   }

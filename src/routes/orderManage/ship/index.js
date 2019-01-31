@@ -762,6 +762,7 @@ class Ship extends React.Component {
           <Button
             style={{ float: 'right' }}
             onClick={() => {
+              clearInterval(messageInterval)
               dispatchAction({
                 type: COMMON_REDUCER,
                 payload: { isFullScreen: !isFullScreen },

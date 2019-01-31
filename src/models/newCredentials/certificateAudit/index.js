@@ -181,8 +181,14 @@ export default modelExtend({
       })
     },
     // 审核证件通过
-    * setPast({ payload }, { call }) {
+    * setPast({ payload }, { call, put }) {
       const { content } = yield call(services.setPastData, payload)
+      yield put({
+        type: 'getCustomerList',
+        payload: {
+          certificateStatus: 1,
+        },
+      })
       if (payload.certificateIds.length !==
         content.checkCertificates.length) {
         Modal.error({
@@ -220,8 +226,14 @@ export default modelExtend({
       }
     },
     // 审核证件拒绝
-    * setRefused({ payload }, { call }) {
+    * setRefused({ payload }, { call, put }) {
       const { content } = yield call(services.setRefusedData, payload)
+      yield put({
+        type: 'getCustomerList',
+        payload: {
+          certificateStatus: 1,
+        },
+      })
       if (payload.certificateIds.length !==
         (content.checkCertificates.length + content.rejectedCertificates.length)) {
         Modal.error({

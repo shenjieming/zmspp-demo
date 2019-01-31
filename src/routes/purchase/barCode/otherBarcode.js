@@ -68,7 +68,7 @@ const OtherBarCode = ({
   ]
   return (
     <Modal {...addModalProp} >
-      <Spin spinning={!!effects['purchase/delSkuBarcode']}>
+      {/*<Spin spinning={!!effects['purchase/delSkuBarcode']}>*/}
         <p className="aek-mtb10">该条码绑定的物资如下</p>
         <Table
           style={{ marginTop: '20px' }}
@@ -77,7 +77,7 @@ const OtherBarCode = ({
           dataSource={otherCodeList}
           rowKey="barcode"
         />
-      </Spin>
+      {/*</Spin>*/}
     </Modal>
   )
 }

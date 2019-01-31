@@ -21,7 +21,6 @@ class Page extends React.PureComponent {
 
   render() {
     const { state, loading, orgType } = this.props
-
     if (orgType === '01') {
       return <Redirect to="/personInfo" />
     }

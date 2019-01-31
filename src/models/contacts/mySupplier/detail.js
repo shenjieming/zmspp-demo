@@ -34,6 +34,8 @@ export default modelExtend({
     path: [
       '/contacts/mySupplier/detail/:id',
       '/contacts/newContactsRelation/supplierDetail/:id',
+      '/contacts/newContactsRelationHQ/supplierDetail/:id',
+      '/contacts/newContactsRelationZZ/supplierDetail/:id',
     ],
     initFun({ toAction, id, query }) {
       toAction(initState)

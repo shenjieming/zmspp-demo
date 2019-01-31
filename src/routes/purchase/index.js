@@ -19,8 +19,8 @@ import ContentLayout from '../../components/ContentLayout'
 import PackageSpecifica from '../../components/PackageSpecifica'
 import ViewModal from '../newCredentials/share/viewModal/ViewModal'
 import RefusedModal from '../newCredentials/share/refusedModal/refusedModal'
-// editor: jarmey
-// import BarCode from './barCode'
+import BarCode from './barCode'
+import OtherBarCode from "../purchase/barCode/otherBarcode";
 const confirm = Modal.confirm
 const propTypes = {
   purchase: PropTypes.object,
@@ -36,6 +36,8 @@ function Purchase({ purchase, loading, packageUnit, functionList = {}, effects, 
     tabStatus,
     statistics,
     modalSelsect,
+    otherCodeVisible,
+    otherCodeList,
     suppliersSelect,
     tableData,
     modalInitValue,
@@ -416,6 +418,14 @@ function Purchase({ purchase, loading, packageUnit, functionList = {}, effects, 
       toAction({ modalSelsect: false })
     },
   }
+  // 绑定其他物资的条码
+  const otherBarcodeProps = {
+    dispatch,
+    effects,
+    otherCodeVisible,
+    otherCodeList,
+    rowSelectData,
+  }
   const getBatchButton = () => {
     if (tabStatus === 'refused') {
       return undefined
@@ -627,7 +637,7 @@ function Purchase({ purchase, loading, packageUnit, functionList = {}, effects, 
 
   const contentLayoutProps = {
     breadLeft: [{ name: 'Breadcrumb' }],
-    breadRight: returnButton(),
+    // breadRight: returnButton(),
     content: (
       <span>
         <Spin spinning={getLoading('suppliers')}>
@@ -696,7 +706,8 @@ function Purchase({ purchase, loading, packageUnit, functionList = {}, effects, 
         <ModalCertificate {...modalCertificateProps} />
         <ViewModal {...viewModalProps} />
         <RefusedModal {...refusedModalProps} />
-        {/*<BarCode {...BarCodeProps} />*/}
+        <BarCode {...BarCodeProps} />
+        <OtherBarCode {...otherBarcodeProps} />
       </span>
     ),
   }

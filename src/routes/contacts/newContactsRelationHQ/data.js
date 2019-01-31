@@ -45,7 +45,7 @@ const columns = ({ relationStatus }) => [{
       contactPhone,
       isShowContact: true,
       to: relationType - 1 ?
-        `/contacts/newContactsRelation/customerDetail/${sourceOrgId}` :
+        `/contacts/newContactsRelationHQ/customerDetail/${sourceOrgId}` :
         `/contacts/newContactsRelation/supplierDetail/${sourceOrgId}`,
       query: { status: status - 2 ? 3 : 1, isNewRelation: true },
     }

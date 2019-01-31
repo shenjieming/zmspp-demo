@@ -46,6 +46,9 @@ const form = ({ orgDetail, addressList, asyncParentOrgList, parentGradeList, sec
   {
     label: '机构等级',
     exclude: !(orgDetail.orgTypeCode === '02'),
+    options: {
+      initialValue: orgDetail.orgGrade,
+    },
     layout: {
       labelCol: {
         span: 12,
@@ -67,6 +70,9 @@ const form = ({ orgDetail, addressList, asyncParentOrgList, parentGradeList, sec
   {
     label: '',
     exclude: !(orgDetail.orgTypeCode === '02'),
+    options: {
+      initialValue: orgDetail.orgParentGrade,
+    },
     layout: {
       wrapperCol: {
         span: 11,
@@ -85,8 +91,11 @@ const form = ({ orgDetail, addressList, asyncParentOrgList, parentGradeList, sec
   },
   {
     label: '营利性质',
-    exclude: orgDetail.orgTypeCode === '02',
+    exclude: orgDetail.orgTypeCode !== '02',
     layout: formItemLayout,
+    options: {
+      initialValue: orgDetail.profit,
+    },
     col: 24,
     field: 'profit',
     component: {
@@ -99,9 +108,9 @@ const form = ({ orgDetail, addressList, asyncParentOrgList, parentGradeList, sec
   {
     label: '上级机构',
     layout: formItemLayout,
-    field: 'parentOrgName',
+    field: 'orgParentId',
     options: {
-      initialValue: orgDetail.parentOrgName,
+      initialValue: orgDetail.orgParentId,
     },
     col: 24,
     component: {
@@ -110,11 +119,7 @@ const form = ({ orgDetail, addressList, asyncParentOrgList, parentGradeList, sec
         placeholder: '无',
         ...asyncParentOrgList,
         showSearch: true,
-        defaultActiveFirstOption: false,
-        filterOption: false,
-        notFoundContent: false,
         allowClear: true,
-        labelInValue: true,
       },
     },
   },
@@ -138,6 +143,7 @@ const form = ({ orgDetail, addressList, asyncParentOrgList, parentGradeList, sec
     layout: formItemLayout,
     field: 'arrayOrgRegAddr',
     options: {
+      initialValue: orgDetail.arrayOrgRegAddr,
       getValueFromEvent: (val, selectedOptions) => {
         const addressArray = [...val]
         for (const item of selectedOptions) {
@@ -157,6 +163,10 @@ const form = ({ orgDetail, addressList, asyncParentOrgList, parentGradeList, sec
   },
   {
     label: '',
+    options: {
+      initialValue: orgDetail.registeredAddress,
+      rules: [ { max: 255, message: '字符不超过255字符' }],
+    },
     layout: {
       wrapperCol: {
         span: 12,
@@ -217,11 +227,11 @@ const form = ({ orgDetail, addressList, asyncParentOrgList, parentGradeList, sec
     field: 'officeAddress',
     options: {
       initialValue: orgDetail.officeAddress,
+      rules: [ { max: 255, message: '字符不超过255字符' }],
     },
     col: 24,
     component: {
       name: 'TextArea',
-      maxLength: 200,
       props: {
         placeholder: '请填写详细地址，如街道名称、楼层和门牌号等信息',
       },

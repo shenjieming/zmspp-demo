@@ -206,7 +206,21 @@ const CertificatePush = ({ newCertificateAudit, loading }) => {
       },
     })
   }
+// 搜索的search客户列表
+  let searchCustomerList = []
 
+  if (customerList && customerList.length) {
+    const arr = []
+    customerList.forEach((item) => {
+      if (
+        item.supplierOrgName.indexOf(keywords) > -1 ||
+        item.supplierOrgNameHelper.toLowerCase().indexOf(keywords) > -1
+      ) {
+        arr.push(item)
+      }
+    })
+    searchCustomerList = arr
+  }
   const callback = () => {
     dispatchAction({
       type: 'getCustomerNo',
@@ -239,6 +253,7 @@ const CertificatePush = ({ newCertificateAudit, loading }) => {
   // 批量操作 type:操作类型 refused批量拒绝 否则批量通过
   const handleBatchClick = (type) => {
     if (selectedRowKeys && selectedRowKeys.length) {
+      console.log(type)
       if (type && type === 'refused') {
         showConfirm(type, () => {
           dispatchAction({
@@ -283,68 +298,117 @@ const CertificatePush = ({ newCertificateAudit, loading }) => {
         })
       },
     }
-    content = (
-      <div>
-        <Row className={Styles['aek-content']}>
-          <Col span="18">
-            <div className={Styles['aek-content-block']}>
-              <p className="aek-text-bold">{selectedCustomer.supplierOrgName}</p>
-              <p className="aek-text-help aek-mt10">
-                {`${selectedCustomer.contactName || ''}-${selectedCustomer.contactPhone || ''}`}
-              </p>
-            </div>
-          </Col>
-          <Col span="6">
-            <Link
-              target="_blank"
-              to={`/contacts/mySupplier/detail/${selectedCustomer.supplierOrgId}?status=1`}
-            >
-              <Button size="large">查看供应商信息</Button>
-            </Link>
-          </Col>
-        </Row>
-        <div className="aek-mt20">
-          <Row>
+    if (searchCustomerList.length) {
+      content = (
+        <div>
+          <Row className={Styles['aek-content']}>
             <Col span="18">
-              <Button
-                type="primary"
-                className="aek-mr10"
-                onClick={() => {
-                  handleBatchClick()
-                }}
-              >
-                批量接收
-              </Button>
-              <Button
-                type="primary"
-                onClick={() => {
-                  handleBatchClick('refused')
-                }}
-              >
-                批量拒绝
-              </Button>
+              <div className={Styles['aek-content-block']}>
+                <p className="aek-text-bold">{selectedCustomer.supplierOrgName}</p>
+                <p className="aek-text-help aek-mt10">
+                  {`${selectedCustomer.contactName || ''}-${selectedCustomer.contactPhone || ''}`}
+                </p>
+              </div>
             </Col>
             <Col span="6">
-              <Input.Search
-                defaultValue={reviewSearchData.keywords || ''}
-                placeholder="请输入注册证号或注册产品名称"
-                onSearch={(value) => {
-                  dispatchAction({
-                    type: 'getReviewList',
-                    payload: {
-                      ...reviewSearchData,
-                      keywords: value,
-                      current: 1,
-                      pageSize: 10,
-                    },
-                  })
-                }}
-              />
+              <Link
+                target="_blank"
+                to={`/contacts/mySupplier/detail/${selectedCustomer.supplierOrgId}?status=1`}
+              >
+                <Button size="large">查看供应商信息</Button>
+              </Link>
             </Col>
           </Row>
+          <div className="aek-mt20">
+            <Row>
+              <Col span="18">
+                <Button
+                  type="primary"
+                  className="aek-mr10"
+                  onClick={() => {
+                    handleBatchClick()
+                  }}
+                >
+                  批量接收
+                </Button>
+                <Button
+                  type="primary"
+                  onClick={() => {
+                    handleBatchClick('refused')
+                  }}
+                >
+                  批量拒绝
+                </Button>
+              </Col>
+              <Col span="6">
+                <Input.Search
+                  defaultValue={reviewSearchData.keywords || ''}
+                  placeholder="请输入注册证号或注册产品名称"
+                  onSearch={(value) => {
+                    dispatchAction({
+                      type: 'getReviewList',
+                      payload: {
+                        ...reviewSearchData,
+                        keywords: value,
+                        current: 1,
+                        pageSize: 10,
+                      },
+                    })
+                  }}
+                />
+              </Col>
+            </Row>
+          </div>
         </div>
-      </div>
-    )
+      )
+    } else {
+      content = (
+        <div>
+          <Row className={Styles['aek-content']}>
+          </Row>
+          <div className="aek-mt20">
+            <Row>
+              <Col span="18">
+                <Button
+                  type="primary"
+                  className="aek-mr10"
+                  onClick={() => {
+                    handleBatchClick()
+                  }}
+                >
+                  批量接收
+                </Button>
+                <Button
+                  type="primary"
+                  onClick={() => {
+                    handleBatchClick('refused')
+                  }}
+                >
+                  批量拒绝
+                </Button>
+              </Col>
+              <Col span="6">
+                <Input.Search
+                  defaultValue={reviewSearchData.keywords || ''}
+                  placeholder="请输入注册证号或注册产品名称"
+                  onSearch={(value) => {
+                    dispatchAction({
+                      type: 'getReviewList',
+                      payload: {
+                        ...reviewSearchData,
+                        keywords: value,
+                        current: 1,
+                        pageSize: 10,
+                      },
+                    })
+                  }}
+                />
+              </Col>
+            </Row>
+          </div>
+        </div>
+      )
+    }
   } else if (tabType === 'refused') {
     if (tableProps.rowSelection && Object.keys(tableProps.rowSelection).length) {
       delete tableProps.rowSelection
@@ -454,22 +518,6 @@ const CertificatePush = ({ newCertificateAudit, loading }) => {
         },
       })
     },
-  }
-
-  // 搜索的search客户列表
-  let searchCustomerList = []
-
-  if (customerList && customerList.length) {
-    const arr = []
-    customerList.forEach((item) => {
-      if (
-        item.supplierOrgName.indexOf(keywords) > -1 ||
-        item.supplierOrgNameHelper.toLowerCase().indexOf(keywords) > -1
-      ) {
-        arr.push(item)
-      }
-    })
-    searchCustomerList = arr
   }
   return (
     <div className="aek-layout">

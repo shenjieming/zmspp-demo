@@ -9,11 +9,28 @@ import { setRequestUserId } from '../utils/axiosInstance'
 import { USER_INFO_TEMP } from '../utils/constant'
 import { mockMenuData, mockUser, mockOrgInfo, mockOrgList } from '../utils/menuData'
 import organizationInfo from './organizationInfo'
+import { mockURL, baseURL , subscribeURL } from '../utils/config'
+import axios from '../utils/axiosInstance'
+const api = baseURL
 
 const namespace = 'app'
-
+let messageArray = []
+// 定时器标识符
+let setIntervalFlag = false
 let action = null
-
+const delay = (timeout) => {
+  setTimeout(() => {
+    return new Promise(resolve => {
+      setInterval(()=> {
+        axios.post(`${api}/msg/popup/list`,{}).then(res=>{
+          messageArray = res.data.content
+          setIntervalFlag = true
+          resolve()
+        })
+      }, timeout)
+    })
+  }, timeout)
+}
 const initialState = {
   // 用户登录状态
   isLogin: false,
@@ -185,8 +202,8 @@ export default dvaModelExtend(organizationInfo, {
       yield put(routerRedux.replace(target || '/'))
       yield put({ type: 'saveUserData' })
       yield put({ type: 'afterLogin' })
-      message.success('登录成功')
       yield put({ type: 'startGetMsg' })
+      message.success('登录成功')
     },
     // 保存用户所有信息
     * saveUserData(_, { select }) {
@@ -208,7 +225,7 @@ export default dvaModelExtend(organizationInfo, {
       )
     },
     // 获取localStorage中的缓存用户信息, 获取不到则返回登录页
-    * getStorageUser({ payload }, { put, update }) {
+    * getStorageUser({ payload }, { put, update, call }) {
       const { pathname } = payload
       if (openUrl.includes(pathname)) {
         return
@@ -251,6 +268,7 @@ export default dvaModelExtend(organizationInfo, {
       // yield call(services.msgSocketDisconnect)  11/30 删除
       setRequestUserId(null)
       message.success('注销成功')
+      clearInterval(window.messageInterval)
     },
     // 获取菜单
     * getMenuData(_, { call, put, update }) {
@@ -337,13 +355,10 @@ export default dvaModelExtend(organizationInfo, {
         user: { userId },
         orgInfo: { orgId },
       } = yield select(store => store[namespace])
-      // yield call(services.msgSocketConnect, {
-      //   orgId,
-      //   userId,
-      //   action: (rs) => {
-      //     action({ type: 'receiveMsg', payload: rs })
-      //   },
-      // })
+      yield call(delay, 60000)
+      if (setIntervalFlag) {
+        yield update({ msgDataSource: messageArray })
+      }
     },
     // 选择默认供应商
     * chooseDefaultOrg({ payload }, { call, update }) {
