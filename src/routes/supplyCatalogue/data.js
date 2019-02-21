@@ -56,7 +56,7 @@ const getOpera = (status, handleMenuClick, customerDetail) => [
               </Dropdown>
             </span>
           )
-        } else if (val !== '4') {
+        } else if (val === '2' || val === '3' ) {
           retArr = (
             <span>
               <a
@@ -67,6 +67,16 @@ const getOpera = (status, handleMenuClick, customerDetail) => [
                 编辑
               </a>
               <span className="ant-divider" />
+              <Dropdown overlay={menu(val)}>
+                <a>
+                  更多<Icon type="down" />
+                </a>
+              </Dropdown>
+            </span>
+          )
+        } else if (val === '1') {
+          retArr = (
+            <span>
               <Dropdown overlay={menu(val)}>
                 <a>
                   更多<Icon type="down" />
