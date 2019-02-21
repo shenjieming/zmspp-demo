@@ -114,6 +114,7 @@ const formData = ({
       label: '产品编号',
       field: 'productCode',
       col: 12,
+      view: true,
       layout: FORM_ITEM_LAYOUT,
       options: {
         initialValue: productCode,

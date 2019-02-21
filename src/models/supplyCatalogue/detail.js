@@ -512,9 +512,9 @@ export default dvaModelExtend({
       } else if (tabIndex === '6') {
         // 全部Tab下还要用单一状态进行判断
         if (rowSelectData.pscStatus === 1 || rowSelectData.pscStatus === 4) {
-          yield call(pushUseToExamineData, payload)
+          yield call(saveUseToPushData, payload)
         } else {
-          yield call(pushUnseToExamineData, payload)
+          yield call(saveUnseToPushData, payload)
         }
       } else {
         yield call(saveUnseToPushData, payload)

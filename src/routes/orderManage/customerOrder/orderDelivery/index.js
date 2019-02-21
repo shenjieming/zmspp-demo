@@ -19,6 +19,7 @@ import ConfirmModal from './ConfirmModal'
 import { getDetailTopData, getFormData } from './data'
 import styles from './index.less'
 import BarcodeModal from '../../model'
+import {regexPhone} from "../../../../utils/constant";
 
 const FormItem = Form.Item
 const Option = Select.Option
@@ -41,7 +42,6 @@ class OrderDelivery extends React.Component {
       const reg = /^([0-9][.0-9]*)?$/
       if ((!isNaN(value) && reg.test(String(value))) || value === '') {
         if (!this.isValidDeliveNum(value, row, formIndex)) {
-          console.log(row)
           if (row.deliverQty > (row.purchaseQty - row.deliverQty)) {
             Modal.error({
               content: '客户设置的发货数量不能大于采购数量，如果有疑问请与客户联系！',
@@ -617,9 +617,9 @@ class OrderDelivery extends React.Component {
           title: '批次',
           dataIndex: 'batchNo',
           width: 100,
-          render: (text, row) => (
+          render: (text, row, index) => (
             <FormItem>
-              {getFieldDecorator(`batchNo_${row.itemId}_${row.indexInSame}`, {
+              {getFieldDecorator(`batchNo_${index}`, {
                 initialValue: row.batchNo,
                 rules: [
                   {
@@ -627,9 +627,15 @@ class OrderDelivery extends React.Component {
                     message: '最多输入30位',
                   },
                   {
-                    required: true,
+                    required: row.deliverQty,
                     message: '请输入批次'
                   }
+                  // {  validator: (rule, value, cb) => {
+                  //   if (row.deliverQty && !value) {
+                  //     cb('请输入批次号！')
+                  //   }
+                  // }
+                  // },
                 ],
               })(
                 <Input
@@ -672,7 +678,7 @@ class OrderDelivery extends React.Component {
           width: 130,
           render: (text, row) => (
             <FormItem>
-              {getFieldDecorator(`sterilizationNo_${row.itemId}_${row.indexInSame}`, {
+              {getFieldDecorator(`sterilizationNo_${row.itemId}`, {
                 initialValue: row.sterilizationNo,
                 rules: [
                   {
@@ -1029,6 +1035,12 @@ class OrderDelivery extends React.Component {
                         }
                         input.value = ''
                         input.focus()
+                        orderBean.data[0].items.forEach((item, index) => {
+                          var batchNo = 'batchNo_' + index
+                          var sterilizationNo = 'sterilizationNo_' + index
+                          this.props.form.setFieldsValue({ [batchNo]: item.batchNo})
+                          this.props.form.setFieldsValue({ [sterilizationNo]: item.sterilizationNo})
+                        })
                       })
                       .then(() => {
                         delay(() => {

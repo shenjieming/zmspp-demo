@@ -46,7 +46,7 @@ const columns = ({ relationStatus }) => [{
       isShowContact: true,
       to: relationType - 1 ?
         `/contacts/newContactsRelationHQ/customerDetail/${sourceOrgId}` :
-        `/contacts/newContactsRelation/supplierDetail/${sourceOrgId}`,
+        `/contacts/newContactsRelationHQ/supplierDetail/${sourceOrgId}`,
       query: { status: status - 2 ? 3 : 1, isNewRelation: true },
     }
     return <CustmTabelInfo {...props} />

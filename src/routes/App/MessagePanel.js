@@ -9,8 +9,10 @@ import emptyMsg from '../../assets/emptyMsg.png'
 function MessagePanel(props) {
   const { dataSource, setOneRead, handleSetAllRead } = props
   var length = 0
-  if (dataSource.length) {
-    length = dataSource.length
+  if (dataSource) {
+    if (dataSource.length) {
+      length = dataSource.length
+    }
   }
   const msgTitle = (
     <div>

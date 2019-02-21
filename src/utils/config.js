@@ -68,9 +68,9 @@ let config = {
   // // 密码
   UPLOAD_PASSWORD: 'aek56.com',
   // 图片上传地址
-  IMG_UPLOAD: 'http://192.168.15.180:9003/aek-mspp/upload',
+  IMG_UPLOAD: 'http://192.168.8.34:9003/aek-mspp/upload',
   // 原始图片查看地址
-  IMG_ORIGINAL: 'http://192.168.15.180:9003/aek-mspp/download',
+  IMG_ORIGINAL: 'http://192.168.8.34:9003/aek-mspp/download',
   // 缩略图服务名
   IMG_COMPRESS: '',
   // 水印图服务名
@@ -96,7 +96,7 @@ let config = {
   // 上传密钥
   UPLOAD_KEY_EXCEL: 'FKMR0jo/7OfxrLnUsruBny3YZ/g=',
   // Excel下载
-  EXCEL_DOWNLOAD: 'http://192.168.15.180:9003/aek-mspp/download-temp',
+  EXCEL_DOWNLOAD: 'http://192.168.8.34:9003/aek-mspp/download-temp',
 
   /* Zip上传设置 */
   // 上传大小限制(MB)
@@ -108,14 +108,14 @@ let config = {
   // 上传密钥
   UPLOAD_KEY_ZIP: 'FjyBYes93mi1/UTA3ddmny/YP50=',
   // 下载地址
-  ZIP_DOWNLOAD: 'http://192.168.15.180:9003/download-temp',
+  ZIP_DOWNLOAD: 'http://192.168.8.34:9003/download-temp',
   // 自动登录跳转域名
   AUTO_LOGIN: 'http://localhost:8000/#/login',
 }
 
 // 内部测试环境测试
 if (CONFIG_ENV === 'test') {
-  const target = 'http://192.168.15.180:9003/aek-mspp'
+  const target = 'http://192.168.8.34:9003/aek-mspp'
 
   config = Object.assign({}, config, {
     baseURL: target,
@@ -126,7 +126,7 @@ if (CONFIG_ENV === 'test') {
   })
 } else if (NODE_ENV === 'production') {
   // 生产环境
-  const target = 'http://192.168.15.180:9003/aek-mspp'
+  const target = 'http://192.168.8.34:9003/aek-mspp'
   let publicPath = './'
   // if (THEME === 'yibei') {
   //   publicPath = 'http://fin.prod.youcdn.aek56.com/'
@@ -138,12 +138,12 @@ if (CONFIG_ENV === 'test') {
     mockURL: target,
     rapMockURL: target,
     devModel: false,
-    // IMG_UPLOAD: 'http://192.168.15.180:9003/aek-mspp/upload',
+    // IMG_UPLOAD: 'http://192.168.8.34:9003/aek-mspp/upload',
     publicPath,
     // UPYUN_BUCKET: 'aek-prod-image',
     // UPYUN_BUCKET_EXCEL: 'aek-prod-doc',
     // UPYUN_BUCKET_ZIP: 'aek-prod-finance',
-    // IMG_ORIGINAL: 'http://192.168.15.180:9003/aek-mspp/download',
+    // IMG_ORIGINAL: 'http://192.168.8.34:9003/aek-mspp/download',
     // UPLOAD_KEY: 'TAWioRGrsIMBmiqqKsk0l06E5p8=',
     // UPLOAD_KEY_EXCEL: 'ssKyym8pFmk6rfIrUU1wtU7xRzc=',
     // UPLOAD_KEY_ZIP: 'QLOlnvpb7yDNUqO1IsRorze6XVc=',
