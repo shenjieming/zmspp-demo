@@ -111,21 +111,6 @@ const genColumns = ({ formType, personalColumns }) => {
   }
   const other = [
     {
-      title: '生产日期',
-      dataIndex: 'produceDate',
-      key: 'produceDate',
-    },
-    {
-      title: '灭菌批次',
-      dataIndex: 'sterilizationNo',
-      key: 'sterilizationNo',
-    },
-    {
-      title: '灭菌效期',
-      dataIndex: 'sterilizationDate',
-      key: 'sterilizationDate',
-    },
-    {
       title: '生产厂家',
       dataIndex: 'factoryName',
       key: 'factoryName',

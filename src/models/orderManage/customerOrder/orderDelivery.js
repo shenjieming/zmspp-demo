@@ -42,11 +42,9 @@ const isSameBatch = (item, payload, dataType) => {
       'invoiceDate',
       'barcode',
       'batchNo',
-      'expiredDate',
-      'trackCode',
     ]
   } else {
-    compareArr = ['barcode', 'batchNo', 'expiredDate', 'trackCode']
+    compareArr = ['barcode', 'batchNo']
   }
   compareArr.forEach((key) => {
     if (item[key] && item[key] !== payload[key]) {

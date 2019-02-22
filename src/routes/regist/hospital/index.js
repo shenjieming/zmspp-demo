@@ -325,7 +325,7 @@ const Supplier = ({
             <Col span="6" />
             <Col span="18" className="aek-pt10">
               <Button loading={!!effects['regist/postResist']} className={styles.loginButton} htmlType="submit" type="primary" size="large">注册账户</Button>
-              <span className="aek-text-left aek-ml10 aek-font-small">点击注册，表示同意我们的<Link to="/useClause" target="_blank">使用条款</Link></span>
+              {/*<span className="aek-text-left aek-ml10 aek-font-small">点击注册，表示同意我们的<Link to="/useClause" target="_blank">使用条款</Link></span>*/}
               <p className="aek-mt20"><Link to="/login">已有账户？请登录</Link></p>
             </Col>
           </Row>

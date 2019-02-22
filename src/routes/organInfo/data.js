@@ -61,7 +61,7 @@ const leftData = ({ data, LogoProps }) => {
         <span>
           <Avatar
             size="large"
-            src={(logoUrl ? `${logoUrl}` : '') || Logo}
+            src={(logoUrl ? `${logoUrl}` : Logo)}
             style={{ float: 'left' }}
           />
           <div style={{ float: 'left' }}>

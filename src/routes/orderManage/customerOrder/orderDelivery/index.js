@@ -629,13 +629,25 @@ class OrderDelivery extends React.Component {
                   {
                     required: row.deliverQty,
                     message: '请输入批次'
+                  },
+                  {  validator: (rule, value, cb) => {
+                    if (value) {
+                      let flag = false
+                      orderBean.data[0].items.forEach((item, dindex) => {
+                        if (item.batchNo === value && index !== dindex) {
+                          flag = true
+                        }
+                      })
+                      if (flag) {
+                        cb('有相同批次号！')
+                      } else {
+                        cb ()
+                      }
+                    } else {
+                      cb ()
+                    }
                   }
-                  // {  validator: (rule, value, cb) => {
-                  //   if (row.deliverQty && !value) {
-                  //     cb('请输入批次号！')
-                  //   }
-                  // }
-                  // },
+                  },
                 ],
               })(
                 <Input
@@ -672,81 +684,81 @@ class OrderDelivery extends React.Component {
             />
           ),
         },
-        {
-          title: '灭菌批号',
-          dataIndex: 'sterilizationNo',
-          width: 130,
-          render: (text, row) => (
-            <FormItem>
-              {getFieldDecorator(`sterilizationNo_${row.itemId}`, {
-                initialValue: row.sterilizationNo,
-                rules: [
-                  {
-                    max: 30,
-                    message: '最多输入30位',
-                  },
-                ],
-              })(
-                <Input
-                  onChange={(event) => {
-                    dispatchAction({
-                      type: 'updateMaterialItem',
-                      payload: { target: row, prop: 'sterilizationNo', value: event.target.value },
-                    })
-                  }}
-                />,
-              )}
-            </FormItem>
-          ),
-        },
-        {
-          title: '灭菌效期',
-          dataIndex: 'sterilizationDate',
-          width: 120,
-          render: (text, row) => (
-            <DatePicker
-              style={{ width: '100%' }}
-              value={row.sterilizationDate && moment(row.sterilizationDate)}
-              onChange={(value) => {
-                dispatchAction({
-                  type: 'updateMaterialItem',
-                  payload: {
-                    target: row,
-                    prop: 'sterilizationDate',
-                    value: value ? value.format('YYYY-MM-DD') : value,
-                  },
-                })
-              }}
-            />
-          ),
-        },
-        {
-          title: '跟踪码',
-          dataIndex: 'trackCode',
-          width: 120,
-          render: (text, row) => (
-            <FormItem>
-              {getFieldDecorator(`trackCode_${row.itemId}_${row.indexInSame}`, {
-                initialValue: row.trackCode,
-                rules: [
-                  {
-                    max: 30,
-                    message: '最多输入30位',
-                  },
-                ],
-              })(
-                <Input
-                  onChange={(event) => {
-                    dispatchAction({
-                      type: 'updateMaterialItem',
-                      payload: { target: row, prop: 'trackCode', value: event.target.value },
-                    })
-                  }}
-                />,
-              )}
-            </FormItem>
-          ),
-        },
+        // {
+        //   title: '灭菌批号',
+        //   dataIndex: 'sterilizationNo',
+        //   width: 130,
+        //   render: (text, row) => (
+        //     <FormItem>
+        //       {getFieldDecorator(`sterilizationNo_${row.itemId}`, {
+        //         initialValue: row.sterilizationNo,
+        //         rules: [
+        //           {
+        //             max: 30,
+        //             message: '最多输入30位',
+        //           },
+        //         ],
+        //       })(
+        //         <Input
+        //           onChange={(event) => {
+        //             dispatchAction({
+        //               type: 'updateMaterialItem',
+        //               payload: { target: row, prop: 'sterilizationNo', value: event.target.value },
+        //             })
+        //           }}
+        //         />,
+        //       )}
+        //     </FormItem>
+        //   ),
+        // },
+        // {
+        //   title: '灭菌效期',
+        //   dataIndex: 'sterilizationDate',
+        //   width: 120,
+        //   render: (text, row) => (
+        //     <DatePicker
+        //       style={{ width: '100%' }}
+        //       value={row.sterilizationDate && moment(row.sterilizationDate)}
+        //       onChange={(value) => {
+        //         dispatchAction({
+        //           type: 'updateMaterialItem',
+        //           payload: {
+        //             target: row,
+        //             prop: 'sterilizationDate',
+        //             value: value ? value.format('YYYY-MM-DD') : value,
+        //           },
+        //         })
+        //       }}
+        //     />
+        //   ),
+        // },
+        // {
+        //   title: '跟踪码',
+        //   dataIndex: 'trackCode',
+        //   width: 120,
+        //   render: (text, row) => (
+        //     <FormItem>
+        //       {getFieldDecorator(`trackCode_${row.itemId}_${row.indexInSame}`, {
+        //         initialValue: row.trackCode,
+        //         rules: [
+        //           {
+        //             max: 30,
+        //             message: '最多输入30位',
+        //           },
+        //         ],
+        //       })(
+        //         <Input
+        //           onChange={(event) => {
+        //             dispatchAction({
+        //               type: 'updateMaterialItem',
+        //               payload: { target: row, prop: 'trackCode', value: event.target.value },
+        //             })
+        //           }}
+        //         />,
+        //       )}
+        //     </FormItem>
+        //   ),
+        // },
         {
           title: '发票号码',
           dataIndex: 'invoiceNo',

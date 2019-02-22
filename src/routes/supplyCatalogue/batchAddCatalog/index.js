@@ -416,33 +416,33 @@ class BatchAddCatalog extends React.Component {
       key: 'productCode',
       width: 140,
       dataIndex: 'productCode',
-      render(text, record, index) {
-        const props = {
-          placeholder: '请输入产品编号',
-          onChange(e) {
-            const data = cloneDeep(batchDataList)
-            data[index].productCode = e.target.value
-            thiz.changeUpdate(data)
-          },
-          maxLength: '32',
-          defaultValue: text,
-        }
-        return (
-          // <FormItem>
-          //   {getFieldDecorator(`productCode-${index}-${record.pscId || record.materialsSkuId}`, {
-          //     initialValue: text,
-          //     rules: [{
-          //       max: 32,
-          //       message: '最多输入32个字符',
-          //     }],
-          //   })(
-          <Input
-            {...props}
-          />
-          //   )}
-          // </FormItem>
-        )
-      },
+      // render(text, record, index) {
+      //   const props = {
+      //     placeholder: '请输入产品编号',
+      //     onChange(e) {
+      //       const data = cloneDeep(batchDataList)
+      //       data[index].productCode = e.target.value
+      //       thiz.changeUpdate(data)
+      //     },
+      //     maxLength: '32',
+      //     defaultValue: text,
+      //   }
+      //   return (
+      //     // <FormItem>
+      //     //   {getFieldDecorator(`productCode-${index}-${record.pscId || record.materialsSkuId}`, {
+      //     //     initialValue: text,
+      //     //     rules: [{
+      //     //       max: 32,
+      //     //       message: '最多输入32个字符',
+      //     //     }],
+      //     //   })(
+      //     <Input
+      //       {...props}
+      //     />
+      //     //   )}
+      //     // </FormItem>
+      //   )
+      // },
     }, {
       title: <span><span className="aek-red">*</span>价格</span>,
       key: 'price',

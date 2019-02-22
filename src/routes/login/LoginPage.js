@@ -18,19 +18,19 @@ function LoginPage({ children }) {
         <div className={styles.contentWrap}>
           <div className={styles.innerWrap}>
             <div className={styles.text}>
-              <div className="aek-pb20">用智慧服务优化医疗产业链</div>
-              <div>通过“互联网+”时代的“医疗智慧服务”</div>
-              <div>采用信息和通信技术手段感测、分析、整合医疗产业运行核心的关键信息</div>
-              <div>从而为医疗机构、企业提供全方位医疗物资供应链信息服务</div>
+              {/*<div className="aek-pb20">用智慧服务优化医疗产业链</div>*/}
+              {/*<div>通过“互联网+”时代的“医疗智慧服务”</div>*/}
+              {/*<div>采用信息和通信技术手段感测、分析、整合医疗产业运行核心的关键信息</div>*/}
+              {/*<div>从而为医疗机构、企业提供全方位医疗物资供应链信息服务</div>*/}
             </div>
             <div className={styles.form}>{children}</div>
           </div>
         </div>
       </div>
       <div className={styles.footer}>
-        <div className={styles.footerText}>
-          {footerText.split('\n').map((text, i) => <div key={i}>{text}</div>)}
-        </div>
+        {/*<div className={styles.footerText}>*/}
+          {/*{footerText.split('\n').map((text, i) => <div key={i}>{text}</div>)}*/}
+        {/*</div>*/}
       </div>
     </div>
   )

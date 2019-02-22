@@ -775,7 +775,7 @@ function SupplyCatalogueDetail({
     scroll: { x: 1300 },
   }
 
-  if (tabIndex === '4' || tabIndex === '6') {
+  if (tabIndex === '4' || tabIndex === '6' || tabIndex === '1') {
     delete tableProps.rowSelection
   }
 
@@ -920,7 +920,7 @@ function SupplyCatalogueDetail({
           <Breadcrumb routes={routes} />
         </div>
         <div style={{ float: 'right'}}>
-          {(tabIndex !== '4' && tabIndex !== '6') ? (
+          {(tabIndex !== '4' && tabIndex !== '6' && tabIndex !== '1') ? (
             <Dropdown overlay={menu()} disabled={selectedRowKeys.length === 0} trigger={['click']}>
               <Button>
                 批量操作<Icon type="down" />

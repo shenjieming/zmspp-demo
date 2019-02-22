@@ -37,6 +37,7 @@ const getOpera = (status, handleMenuClick, customerDetail) => [
       )
       let retArr
       const getRetArr = (val) => {
+        console.log(val)
         // 使用中 已拒绝 待推送
         if (val === '2') {
           retArr = (
@@ -56,7 +57,7 @@ const getOpera = (status, handleMenuClick, customerDetail) => [
               </Dropdown>
             </span>
           )
-        } else if (val === '2' || val === '3' ) {
+        } else if (val === '2' || val === '3' || val === '5' ) {
           retArr = (
             <span>
               <a
