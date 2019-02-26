@@ -619,7 +619,7 @@ class OrderDelivery extends React.Component {
           width: 100,
           render: (text, row, index) => (
             <FormItem>
-              {getFieldDecorator(`batchNo_${index}`, {
+              {getFieldDecorator(`batchNo_${index}_${row.serial}`, {
                 initialValue: row.batchNo,
                 rules: [
                   {
@@ -633,7 +633,7 @@ class OrderDelivery extends React.Component {
                   {  validator: (rule, value, cb) => {
                     if (value) {
                       let flag = false
-                      orderBean.data[0].items.forEach((item, dindex) => {
+                      orderBean.data[row.serial].items.forEach((item, dindex) => {
                         if (item.batchNo === value && index !== dindex) {
                           flag = true
                         }
@@ -1047,11 +1047,11 @@ class OrderDelivery extends React.Component {
                         }
                         input.value = ''
                         input.focus()
-                        orderBean.data[0].items.forEach((item, index) => {
-                          var batchNo = 'batchNo_' + index
-                          var sterilizationNo = 'sterilizationNo_' + index
-                          this.props.form.setFieldsValue({ [batchNo]: item.batchNo})
-                          this.props.form.setFieldsValue({ [sterilizationNo]: item.sterilizationNo})
+                        orderBean.data.forEach((item, index) => {
+                          item.items.forEach((dtem, dindex) => {
+                            let batchNo = 'batchNo_' + dindex + '_' + dtem.serial
+                            this.props.form.setFieldsValue({ [batchNo]: dtem.batchNo})
+                          })
                         })
                       })
                       .then(() => {

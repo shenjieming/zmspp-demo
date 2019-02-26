@@ -107,6 +107,12 @@ export default modelExtend({
           barcodeCustomerOrgId,
         },
       } = yield call(orderDeliveryService.orderDetailApi, { ...payload })
+      content.data.forEach((item, index) => {
+        item.items.forEach((dtem, dindex) => {
+          dtem.serial = index
+        })
+      })
+      console.log(content)
       yield update({ orderBean: content }) // 更新订单详情
       yield put({ type: 'setBarcodeOnly', payload: { orderBean: content } }) // 根据医院科室决定是否只能扫码发货
       yield put({ type: 'app/getPersonalityConfig', payload: { orgId: barcodeCustomerOrgId } }) // 获取机构个性化配置
