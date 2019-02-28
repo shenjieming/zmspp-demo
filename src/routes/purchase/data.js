@@ -258,7 +258,6 @@ const inUseColumns = ({
     title: '包装/条码',
     width: 100,
     render: (value, record) => {
-      console.log(record)
       // 维护条码
       let useType = 1
       return (

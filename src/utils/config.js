@@ -6,9 +6,8 @@ const CONFIG_ENV = process.env.CONFIG_ENV
 let config = {
   name: '零库存',
   prefix: 'aek',
-  footerText:
-    'Copyright © 2014-2017 HZ LKC. All Rights Reserved\n浙ICP备13028265号\n互联网药品信息服务资格证书(浙)－经营性－2015－0002',
-  logoText: '零库存',
+  footerText: '',
+  logoText: '',
   publicPath: './',
   baseURL: '/aek-mspp',
   mockURL: '/api/mock',

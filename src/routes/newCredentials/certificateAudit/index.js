@@ -253,7 +253,6 @@ const CertificatePush = ({ newCertificateAudit, loading }) => {
   // 批量操作 type:操作类型 refused批量拒绝 否则批量通过
   const handleBatchClick = (type) => {
     if (selectedRowKeys && selectedRowKeys.length) {
-      console.log(type)
       if (type && type === 'refused') {
         showConfirm(type, () => {
           dispatchAction({

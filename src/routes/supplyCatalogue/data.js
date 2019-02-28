@@ -37,7 +37,6 @@ const getOpera = (status, handleMenuClick, customerDetail) => [
       )
       let retArr
       const getRetArr = (val) => {
-        console.log(val)
         // 使用中 已拒绝 待推送
         if (val === '2') {
           retArr = (

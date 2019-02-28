@@ -270,7 +270,7 @@ function DictionSelect({
                     const certificateNos = data.certificateNos.join()
                     Modal.confirm({
                       title: '温馨提示',
-                      content: `因为“${data.customerOrgName}”在零库存采购平台管理证件，
+                      content: `因为“${data.customerOrgName}”在湘雅医院采购平台管理证件，
                         ${certificateNos}的物料无法添加，请先前往证件档案管理中心维护这些注册证，并推送给客户！`,
                       onOk() {
                         dispatch(routerRedux.push('/newCredentials/newMyCertificate?index=2'))
@@ -443,7 +443,7 @@ function DictionSelect({
                   const certificateNos = data.certificateNos.join()
                   Modal.confirm({
                     title: '温馨提示',
-                    content: `因为“${data.customerOrgName}”在零库存采购平台管理证件，
+                    content: `因为“${data.customerOrgName}”在湘雅医院采购平台管理证件，
                       ${certificateNos}的物料无法添加，请先前往证件档案管理中心维护这些注册证，并推送给客户！`,
                     onOk() {
                       dispatch(routerRedux.push('/newCredentials/newMyCertificate?index=2'))

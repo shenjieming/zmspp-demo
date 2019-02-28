@@ -1581,7 +1581,7 @@ class ReactImageLightbox extends Component {
               })
             }}
           >
-            <img src={imgUrl} alt={'零库存'} />
+            <img src={imgUrl} alt={'湘雅医院'} />
           </div>,
         )
       })
@@ -1730,7 +1730,7 @@ class ReactImageLightbox extends Component {
                     })
                   }}
                 >
-                  <img src={imgUrl} alt={'零库存'} />
+                  <img src={imgUrl} alt={'湘雅医院'} />
                 </a>
               </Element>
             </div>

@@ -112,7 +112,6 @@ export default modelExtend({
           dtem.serial = index
         })
       })
-      console.log(content)
       yield update({ orderBean: content }) // 更新订单详情
       yield put({ type: 'setBarcodeOnly', payload: { orderBean: content } }) // 根据医院科室决定是否只能扫码发货
       yield put({ type: 'app/getPersonalityConfig', payload: { orgId: barcodeCustomerOrgId } }) // 获取机构个性化配置
@@ -715,9 +714,9 @@ export default modelExtend({
       nowList[formIndex].items.forEach((item) => {
         if (item.pscId === pscId) {
           item.sameNum -= 1
-          if (item.indexInSame && item.indexInSame > indexInSame) {
-            item.indexInSame -= 1
-          }
+          // if (item.indexInSame && item.indexInSame > indexInSame) {
+          //   item.indexInSame -= 1
+          // }
         }
       })
       nowList[formIndex].items.splice(index, 1)
