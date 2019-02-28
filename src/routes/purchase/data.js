@@ -273,7 +273,7 @@ const inUseColumns = ({
                   },
                 })
                 dispatchAction({
-                  type: 'purchase/getPackageList',
+                  type: 'purchase/viewPackage',
                   payload: {
                     pscId: record.pscId,
                     useType,
@@ -291,7 +291,7 @@ const inUseColumns = ({
                   },
                 })
                 dispatchAction({
-                  type: 'purchase/getPackageList',
+                  type: 'purchase/viewPackage',
                   payload: {
                     pscId: record.pscId,
                     useType: 1,

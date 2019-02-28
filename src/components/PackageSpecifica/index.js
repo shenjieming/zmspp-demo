@@ -160,6 +160,7 @@ class PackageSpecifica extends React.Component {
             type="plus-circle-o"
             style={{ fontSize: 16 }}
             onClick={() => {
+              console.log(packageList)
               if (packageList.length >= 5) {
                 message.error('最多添加5条数据！', 3)
                 return

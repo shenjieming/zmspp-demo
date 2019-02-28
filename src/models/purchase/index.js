@@ -229,6 +229,22 @@ export default modelExtend({
         },
       })
     },
+    // 查看包装规格维护
+    * getPackageList({ payload }, { call, put, toAction}) {
+      yield put({
+        type: 'updateState',
+        payload: {
+          packageModalVisible: true,
+        },
+      })
+      const { content } = yield call(packageListData, payload)
+      yield toAction({
+        packageList: {
+          data: content,
+          ...payload,
+        },
+      })
+    },
     // 维护包装规格
     * editPackage({ payload }, { call, toAction }) {
       yield call(services.editPackage, payload)
@@ -422,22 +438,6 @@ export default modelExtend({
 
       yield put({
         type: 'getTableData',
-      })
-    },
-    // 查看包装规格维护
-    * getPackageList({ payload }, { call, put }) {
-      yield put({
-        type: 'updateState',
-        payload: {
-          packageModalVisible: true,
-        },
-      })
-      const { content } = yield call(packageListData, payload)
-      yield put({
-        type: 'updateState',
-        payload: {
-          packageList: content,
-        },
       })
     },
     // 审核证件拒绝
