@@ -13,7 +13,7 @@ const genColumns = ({ formType, personalColumns }) => {
       render: (text, _, index) => index + 1,
     },
     {
-      title: '物资名称',
+      title: '注册证名称',
       dataIndex: 'materialsName',
       key: 'materialsName',
     },
@@ -27,11 +27,11 @@ const genColumns = ({ formType, personalColumns }) => {
       dataIndex: 'batchNo',
       key: 'batchNo',
     },
-    {
-      title: '跟踪码',
-      dataIndex: 'trackCode',
-      key: 'trackCode',
-    },
+    // {
+    //   title: '跟踪码',
+    //   dataIndex: 'trackCode',
+    //   key: 'trackCode',
+    // },
     {
       title: '单价',
       dataIndex: 'materialsPrice',
@@ -115,11 +115,11 @@ const genColumns = ({ formType, personalColumns }) => {
       dataIndex: 'factoryName',
       key: 'factoryName',
     },
-    {
-      title: '省标编号',
-      dataIndex: 'inviteNo',
-      key: 'inviteNo',
-    },
+    // {
+    //   title: '省标编号',
+    //   dataIndex: 'inviteNo',
+    //   key: 'inviteNo',
+    // },
     {
       title: '发票号码',
       dataIndex: 'invoiceNo',

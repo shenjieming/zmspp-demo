@@ -8,6 +8,7 @@ import Bread from '../../components/Breadcrumb'
 import Styles from './index.less'
 import OrgManageTransModal from './orgManageTransfer' // 组织管理权
 import EditModal from './editEnterpriseInfo' // 编辑企业资料
+import PoolModal from './poolModal'
 import ScopeModal from '../organization/orgDetail/modal/ScopeModal' // 经营范围
 import EditCertificateModal from './editCompanyModal/ModalOrgInfo' // 编辑证件
 import { getBasicFn, getUploadAuth, manageFlag } from '../../utils/index'
@@ -36,6 +37,7 @@ function OrganInfo({ organInfo, addressList, loading }) {
     scopeModalVisible,
     modalVisible,
     eternalLifeObj,
+    poolModalVisible,
     certificates,
     reason,
     auditStatus,
@@ -180,6 +182,12 @@ function OrganInfo({ organInfo, addressList, loading }) {
       dispatchAction({ type: 'setScope' })
     },
   }
+  // 总库Id设置
+  const poolModalParam = {
+    dispatch: dispatchAction,
+    poolModalVisible,
+    orgDetail,
+  }
   // // 判断是企业还是医院
   // let orgType = ''
   // const typeId = {
@@ -254,7 +262,7 @@ function OrganInfo({ organInfo, addressList, loading }) {
       }
     },
   }
-  const downloadBtn = orgTypeCode === '02' &&
+    const downloadBtn = orgTypeCode === '02' &&
     !downloadKey &&
     !!orgErp && (
       <a
@@ -282,6 +290,23 @@ function OrganInfo({ organInfo, addressList, loading }) {
       <Icon style={{ marginRight: 8 }} type="save" />维护经营范围
     </a>
   )
+  const poolId =  orgTypeCode === '02' ?  (
+    (
+      <a
+        className={Styles.mr20}
+        key="download"
+        onClick={() => {
+          dispatchAction({
+            payload: {
+              poolModalVisible: true,
+            },
+          })
+        }}
+      >
+        <Icon style={{ marginRight: 8 }} type="edit" /> 总库ID配置
+      </a>
+    )
+  ) : ('')
   return (
     <div className="aek-layout">
       <div className="bread">
@@ -289,6 +314,7 @@ function OrganInfo({ organInfo, addressList, loading }) {
           <Bread />
         </div>
         <div className="aek-fr">
+          {poolId}
           {downloadBtn}
           {scopeBtn}
           <a
@@ -360,6 +386,7 @@ function OrganInfo({ organInfo, addressList, loading }) {
       <OrgManageTransModal {...ornManageTransProps} />
       <EditModal {...editProps} />
       <ScopeModal {...scopeParam} />
+      <PoolModal {...poolModalParam} />
       <EditCertificateModal {...editCompanyModalProps} />
     </div>
   )

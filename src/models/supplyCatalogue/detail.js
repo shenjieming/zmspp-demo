@@ -31,6 +31,7 @@ import {
   pendingPushDel, // 待推送删除
   getCertificateList,
   allTableData,
+  manageType,
 } from '../../services/supplyCatalogue/detail'
 import dvaModelExtend from '../../utils/modelExtend'
 import * as services from "../../services/purchase";
@@ -140,6 +141,7 @@ const initState = {
   selectedRowData: {}, // 选择的行数据
   refusedReasonVisible: false, // 拒绝原因
   refusedReasonList: [], // 拒绝原因数组
+  manageTypeList: [], // 管理类型字典
 }
 
 const getUrl = [
@@ -236,7 +238,13 @@ export default dvaModelExtend({
         },
       })
     },
-
+    /** 获取管理类型 */
+      * getManageTypeList({ payload }, { call, update }) {
+      const { content } = yield call(manageType, { dicKey: 'MANAGE_TYPE' })
+      yield update({
+        manageTypeList: content,
+      })
+    },
     // 获取使用中/已停用数据
     * getDisabledList({ payload }, { call, put, select }) {
       const { content } = yield call(catalogDisList, payload)
@@ -318,6 +326,7 @@ export default dvaModelExtend({
         },
       })
       const { content } = yield call(editMaterialListData, payload)
+      console.log(content)
       yield put({
         type: 'updateState',
         payload: {

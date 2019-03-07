@@ -59,6 +59,11 @@ export default modelExtend({
         saleType,
         distributeType,
       })
+      content.data.forEach(item => {
+        item.items.forEach(dtem => {
+          dtem.receiveAddress = item.receiveAddress || ''
+        })
+      })
       const { customerOrgId, data } = content
       const empty = []
       for (const item of data) {

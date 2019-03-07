@@ -17,7 +17,7 @@ const BarCode = ({
   dispatch,
   codeBarVisible,
   codeBarList,
-  customerId,
+  customerId, supplierOrgId,
   rowSelectData,
   form: { getFieldDecorator, validateFields, resetFields, setFields, getFieldsValue },
 }) => {
@@ -45,6 +45,7 @@ const BarCode = ({
             type: 'purchase/setCodeBarList',
             payload: {
               pscId: rowSelectData.pscId,
+              supplierOrgId: supplierOrgId,
               ...data,
               func: () => {
                 inputRef.focus()
@@ -160,5 +161,6 @@ BarCode.propTypes = {
   codeBarList: PropTypes.array,
   rowSelectData: PropTypes.object,
   customerId: PropTypes.any,
+  supplierOrgId: PropTypes.any
 }
 export default Form.create()(BarCode)

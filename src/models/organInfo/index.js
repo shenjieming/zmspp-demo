@@ -16,7 +16,7 @@ import {
   downloadFileData,
 } from '@services/home/organInfo'
 import modelExtend from '@utils/modelExtend'
-import {dicKey, getParentOrgList} from "../../services/organization";
+import {dicKey, getParentOrgList,savePoolId} from "../../services/organization";
 
 // 初始化数据
 const initState = {
@@ -33,7 +33,7 @@ const initState = {
   category68Ids: [], // 选中的树
   categoryTree: [], // 经营范围树
   scopeModalVisible: false, // 维护经营范围弹框
-
+  poolModalVisible: false,
   modalVisible: false, // 编辑企业证件弹框
   eternalLifeObj: {}, // 复选框选择数据
   certificates: [], // 审核机构详情页  扩展信息
@@ -272,6 +272,28 @@ export default modelExtend({
         expandedKeys: content,
         changeStatus: false,
       })
+    },
+    // 总库ID 更新
+    * upDatePool({ payload }, { select, call, update, put }) {
+      yield call(savePoolId, { ...payload })
+      message.success('保存成功')
+      yield update({
+        poolModalVisible: false,
+      })
+      yield put({ type: 'getOrgDetail' })
+      // const { category68Ids, changeStatus } = yield select(({ organInfo }) => organInfo)
+      // if (changeStatus) {
+      //   yield call(updateRunScope, { orgId, category68Ids })
+      //   message.success('修改成功')
+      //   yield update({
+      //     scopeModalVisible: false,
+      //     category68Ids: [],
+      //     autoExpandParent: true,
+      //     changeStatus: false,
+      //   })
+      // } else {
+      //   yield update({ scopeModalVisible: false, category68Ids: [], autoExpandParent: true })
+      // }
     },
     // 经营范围设置更新
     * setScope({ payload }, { select, call, update }) {

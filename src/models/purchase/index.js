@@ -2,7 +2,7 @@ import React from 'react'
 import { message, Modal } from 'antd'
 import { modelExtend, getSetup, getServices } from '../../utils'
 import * as services from '../../services/purchase'
-import {delSkuBarcodeData, getCodeBarListData, packageListData, setCodeBarListData} from "../../services/supplyCatalogue/detail";
+import {delSkuBarcodeData, getCodeBarListData, packageListData, setCustomerCodeBarListData} from "../../services/supplyCatalogue/detail";
 
 const servicesObj = getServices({
   refusedReasonList: '/system/dicValue/dicKey', // 拒绝原因
@@ -73,6 +73,7 @@ const initState = {
   barcodeList: [],
   certificateVisible: false,
   certificateData: {},
+  codeBarList: [],
   getCodeBarListData,
   viewModalVisible: false, // 审核弹框visible
   certificateDetail: {
@@ -100,6 +101,8 @@ const initState = {
   hatchCancelList: [], // 批量不通过数据
 
   cloneSelectRowData: [], // 拷贝数据
+
+  supplierOrgId: '',
 }
 
 export default modelExtend({
@@ -160,7 +163,7 @@ export default modelExtend({
     * delSkuBarcode({ payload }, { call, put, select }) {
       yield call(delSkuBarcodeData, payload)
       const codeBarList = yield select(
-        ({ supplyCatalogueDetail }) => supplyCatalogueDetail.codeBarList,
+        ({ purchase }) => purchase.codeBarList,
       )
       codeBarList.splice(payload.index, 1)
       message.success('物资删除成功！')
@@ -171,8 +174,9 @@ export default modelExtend({
         },
       })
       yield put({
-        type: 'getTableData',
+        type: 'suppliers',
       })
+
     },
     // Excel导入
     * excelInput({ payload }, { call, toAction }) {
@@ -410,7 +414,7 @@ export default modelExtend({
       console.log(orgInfo)
       // const obj = JSON.parse(localStorage.getItem(orgInfo.orgId))
       payload.customerOrgId = orgInfo.orgId
-      const data = yield call(setCodeBarListData, payload)
+      const data = yield call(setCustomerCodeBarListData, payload)
       let updateData = {
         codeBarList: data.content.data,
       }
@@ -437,7 +441,7 @@ export default modelExtend({
       payload.func()
 
       yield put({
-        type: 'getTableData',
+        type: 'suppliers',
       })
     },
     // 审核证件拒绝

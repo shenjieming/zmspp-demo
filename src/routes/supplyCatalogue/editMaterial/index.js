@@ -12,6 +12,7 @@ const EditMaterial = ({
   rowSelectData,
   dispatch,
   effects,
+                        manageTypeList,
   inviteRequired,
   tabIndex,
   packageUnit,
@@ -265,6 +266,7 @@ const EditMaterial = ({
           <GetFormItem
             formData={formData({
               rowSelectData,
+              manageTypeList,
               packageUnit,
               inviteRequired,
               selectChange,

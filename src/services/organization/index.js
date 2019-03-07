@@ -2,6 +2,7 @@ import { generateRequest } from '../../utils/'
 import { mockURL, baseURL, rapMockURL } from '../../utils/config'
 // const rapMockURL = mockURL
 export default {
+  savePoolId: generateRequest(`${baseURL}/organization/updateWH`, 'post'),
   // 分页获取所有组织机构
   getOrgList: generateRequest(`${baseURL}/organization/getOrgList`, 'post'),
   // 新增机构

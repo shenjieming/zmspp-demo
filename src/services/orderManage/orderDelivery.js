@@ -22,4 +22,6 @@ export default {
   getTableColumns: generateRequest(`${api}/base/print/config/deliver`, 'get'),
   // 获取操作人联系号码
   getPersonalMobile: generateRequest(`${api}/account/user/personal`, 'post'),
+  // 判断是否允许批号相同
+  getAscription: generateRequest(`${api}/organization/ascription`, 'get'),
 }

@@ -322,11 +322,10 @@ const tableColumns = [
     dataIndex: 'supplierOrgName',
   },
   {
-    title: '订单金额',
-    dataIndex: 'formAmount',
-    key: 'formAmount',
+    title: '供应商电话',
+    dataIndex: 'phone',
+    key: 'phone',
     className: 'aek-text-right',
-    render: text => `￥${text}`,
   },
   {
     title: '类型',

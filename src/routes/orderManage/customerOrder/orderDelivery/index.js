@@ -150,6 +150,7 @@ class OrderDelivery extends React.Component {
       loading,
     })
     const {
+      sameBatch,
       orderBean,
       deliveryDetail,
       deliveryCompanies,
@@ -468,10 +469,10 @@ class OrderDelivery extends React.Component {
         {
           title: '注册证/省标编号',
           dataIndex: 'certificateNo',
-          render: (text, row) => (
+          render: (text, row, index) => (
             <div style={{ minWidth: '300px' }}>
               <FormItem>
-                {getFieldDecorator(`certificateNo_${row.itemId}_${row.indexInSame}`, {
+                {getFieldDecorator(`certificateNo_${index}_${row.serial}_${row.pscId}`, {
                   initialValue: row.certificateNo,
                   rules: [
                     {
@@ -486,8 +487,11 @@ class OrderDelivery extends React.Component {
                   ],
                 })(
                   <Select
-                    showSearch={orderBean.orgManagementCertificate}
+                    showSearch={true}
                     mode="combobox"
+                    optionFilterProp= "children"
+                    filterOption={false}
+                    allowClear={true}
                     style={{ width: '100%' }}
                     notFoundContent={
                       getLoading('getCertificateList') ? <Spin size="small" /> : '无匹配结果'
@@ -496,11 +500,26 @@ class OrderDelivery extends React.Component {
                       this.certificateList(value, row)
                     }}
                     onChange={(value) => {
-                      dispatchAction({
-                        type: 'updateMaterialItem',
-                        payload: { target: row, prop: 'certificateNo', value },
-                      })
+                      const data = cloneDeep(row.certificateList)
+                      // console.log(data[index])
+                      // data[index] = value
+                      if (data.indexOf(value) !== -1) {
+                        dispatchAction({
+                          type: 'updateMaterialItem',
+                          payload: { target: row, prop: 'certificateNo', value },
+                        })
+                      } else {
+                        let certificateNo_ = 'certificateNo_'+ index + '_' + row.serial + '_' + row.pscId
+                        console.log(certificateNo_, row.certificateNo)
+                        this.props.form.setFieldsValue({ [certificateNo_]: row.certificateNo})
+                      }
                     }}
+                    // onChange={(value) => {
+                    //   dispatchAction({
+                    //     type: 'updateMaterialItem',
+                    //     payload: { target: row, prop: 'certificateNo', value },
+                    //   })
+                    // }}
                   >
                     {row.certificateList
                       ? row.certificateList.map(item => <Option key={item}>{item}</Option>)

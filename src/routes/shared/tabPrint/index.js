@@ -53,16 +53,27 @@ const ModalPrint = ({
       const {
         materialsName,
         materialsSku,
+        materialsCommonName,
         batchNo,
         expiredDate,
         trackCode,
+        receiveAddress,
+        factoryName,
       } = item
       return [
-        <div key="materialsName" className={'aek-text-overflow'}>名称：{materialsName}</div>,
-        <div key="materialsSku" className="aek-text-overflow">规格：{materialsSku}</div>,
-        <div key="batchNo" className="aek-text-overflow">批号：{batchNo}</div>,
-        <span key="expiredDate" style={{ display: 'inline-block', width: '50%' }} className="aek-text-overflow">效期：{expiredDate}</span>,
-        <span key="trackCode" style={{ display: 'inline-block', width: '50%' }} className="aek-text-overflow">跟踪码：{trackCode}</span>,
+        <div key="materialsName" >
+          <span style={{width: '40px',float:'left',margin: '0 5px 0 0'}}>
+            品名/规格 ：
+          </span>
+          <span> {materialsName}&{materialsCommonName}&{materialsSku} | {receiveAddress}</span>
+       </div>,
+        <br />,
+        <div key="batchNo">
+          <span style={{width: '40px',float:'left',margin: '0 5px 0 0'}}>
+            厂家 ：
+          </span>
+          <span>{factoryName} | 批次： {batchNo}</span>
+        </div>
       ]
     }
 

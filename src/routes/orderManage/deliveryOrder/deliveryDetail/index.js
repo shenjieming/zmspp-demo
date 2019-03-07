@@ -248,7 +248,6 @@ const DeliveryDetail = ({
               </Button>
             </div>
           )
-
         }
       >
         {wrapData.map((item, idx) => {
@@ -285,15 +284,23 @@ const DeliveryDetail = ({
             rowSelection: {
               selectedRowKeys: item.selectedRowKeys,
               onChange(keys, rows) {
+                let selectedRowKeys = []
+                let selectedRows = []
+                rows.forEach(rtem => {
+                  if (rtem.barcodeFlag === 1) {
+                    selectedRowKeys.push(rtem.itemId)
+                    selectedRows.push(rtem)
+                  }
+                })
                 const data = cloneDeep(wrapData)
-                data[idx].selectedRowKeys = keys
-                data[idx].selectedRows = rows
+                data[idx].selectedRowKeys = selectedRowKeys
+                data[idx].selectedRows = selectedRows
                 dispatchAction({
                   payload: {
                     wrapData: data,
                   },
                 })
-              },
+              }
             },
           }
           return <Table key={idx} {...tableParam} />

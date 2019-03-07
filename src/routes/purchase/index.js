@@ -79,6 +79,7 @@ function Purchase({ purchase, loading, packageUnit, functionList = {}, effects, 
     codeBarList,
     rowSelectData,
     customerId,
+    supplierOrgId
   } = purchase
 
   // 维护条码
@@ -89,6 +90,7 @@ function Purchase({ purchase, loading, packageUnit, functionList = {}, effects, 
     codeBarList,
     rowSelectData,
     customerId,
+    supplierOrgId
   }
 
   const funcButtonList = functionList['/purchase'] || [] // 功能按钮数组

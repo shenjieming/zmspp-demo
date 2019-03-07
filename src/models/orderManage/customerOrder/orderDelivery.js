@@ -28,6 +28,7 @@ const initialState = {
   modalVisible: false, // 重复弹框
   barcodeList: [], // 重复弹框列表
   personalMobile: '', // 操作人联系号码
+  sameBatch: false,
 }
 
 const isSameBatch = (item, payload, dataType) => {
@@ -115,6 +116,8 @@ export default modelExtend({
       yield update({ orderBean: content }) // 更新订单详情
       yield put({ type: 'setBarcodeOnly', payload: { orderBean: content } }) // 根据医院科室决定是否只能扫码发货
       yield put({ type: 'app/getPersonalityConfig', payload: { orgId: barcodeCustomerOrgId } }) // 获取机构个性化配置
+      const sameBatch = yield call(orderDeliveryService.getAscription, { })
+      yield update({ sameBatch: sameBatch.content }) // 更新订单详情
       let params
       if (saleType === 2) {
         params = {

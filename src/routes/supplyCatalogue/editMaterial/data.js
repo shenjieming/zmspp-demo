@@ -3,7 +3,7 @@ import { Button } from 'antd'
 import { trim } from 'lodash'
 import { FORM_ITEM_LAYOUT } from '../../../utils/constant'
 import { getOption } from '../../../utils'
-
+import moment from 'moment'
 const formData = ({
   rowSelectData,
   packageUnit,
@@ -12,23 +12,29 @@ const formData = ({
   sync,
   onSearchBrandListFun,
   branOptionList,
+                    manageTypeList,
 }) => {
   const {
     materialsName,
     materialsSku,
-    factoryName,
+    origin,
     certificateNo,
     certificateId,
     brandName,
-    inviteType,
-    inviteNo,
-    price,
+    // inviteType,
+    // inviteNo,
+    // price,
     materialsUnit,
     materialsUnitText,
     materialsCommenName,
     materialsSkuId,
     productCode,
+    hcbsCode,
+    importFlag,contractLife,
+    manageType,
+    inviteDate,
   } = rowSelectData
+  console.log(rowSelectData)
   return [
     <div style={{ clear: 'both' }}>
       <div style={{ display: 'inline-block' }} className="aek-form-head">基础信息</div>
@@ -75,13 +81,13 @@ const formData = ({
         },
       },
     }, {
-      label: '厂家',
-      field: 'factoryName',
+      label: '产地',
+      field: 'origin',
       view: true,
       col: 12,
       layout: FORM_ITEM_LAYOUT,
       options: {
-        initialValue: factoryName,
+        initialValue: origin,
       },
       component: {
         name: 'Input',
@@ -223,71 +229,154 @@ const formData = ({
       },
     },
     {
-      label: '招标信息',
-      field: 'inviteType',
-      col: 8,
-      layout: {
-        labelCol: {
-          span: 9,
-        },
-        wrapperCol: {
-          span: 12,
-        },
-      },
-      options: {
-        initialValue: `${inviteType}` || '1',
-      },
+      label: '卫计委HCBS码',
+      col: 12,
+      layout: FORM_ITEM_LAYOUT,
+      field: 'hcbsCode',
+      options: { initialValue: hcbsCode, rules: [{ max: 200, message: '最多输入200字' }] },
       component: {
-        name: 'Select',
+        name: 'Input',
         props: {
-          placeholder: '请选择',
-          children: getOption([{
-            id: '1',
-            name: '无',
-          }, {
-            id: '2',
-            name: '省标',
-          }, {
-            id: '3',
-            name: '市标',
-          }, {
-            id: '4',
-            name: '院标',
-          }]),
-          onSelect(value) {
-            selectChange(value)
-          },
+          placeholder: '请输入',
         },
       },
     },
     {
-      field: 'inviteNo',
+      label: '招标日期',
+      col: 12,
+      layout: FORM_ITEM_LAYOUT,
+      field: 'inviteDate',
       options: {
-        initialValue: inviteNo,
-        normaize: value => trim(value),
-        rules: [{
-          required: Number(inviteType) !== 1,
-          whitespace: true,
-          message: '请输入招标编号',
-        }, {
-          max: 50,
-          message: '最多输入50个字符',
-        }],
-      },
-      col: 4,
-      layout: {
-        wrapperCol: {
-          span: 24,
-        },
+        initialValue: inviteDate ? moment(inviteDate, 'YYYY-MM-DD') : undefined,
       },
       component: {
-        name: 'Input',
+        name: 'DatePicker',
+      },
+    },
+    {
+      label: '合同有效期',
+      col: 12,
+      layout: FORM_ITEM_LAYOUT,
+      field: 'contractLife',
+      options: {
+        initialValue: contractLife ? moment(contractLife, 'YYYY-MM-DD') : undefined,
+      },
+      component: {
+        name: 'DatePicker',
+      },
+    },
+    {
+      label: '是否进口',
+      col: 12,
+      layout: FORM_ITEM_LAYOUT,
+      field: 'importFlag',
+      options: {
+        initialValue: importFlag,
+        rules: [
+          {
+            required: true,
+            message: '请选择是否进口',
+          },
+        ],
+      },
+      component: {
+        name: 'RadioGroup',
         props: {
-          disabled: Number(inviteType) === 1,
-          placeholder: '请输入招标编号',
+          options: [{ label: '是', value: 0 }, { label: '否', value: 1 }],
         },
       },
     },
+    {
+      label: '管理分类',
+      col: 12,
+      layout: FORM_ITEM_LAYOUT,
+      // viewRender() {
+      //   return orderDetail.payTypeStr
+      // },
+      field: 'manageType',
+      options: {
+        initialValue: manageType,
+      },
+      component: {
+        name: 'Select',
+        props: {
+          placeholder: '请选择规格单位',
+          showSearch: true,
+          // labelInValue: true,
+          defaultActiveFirstOption: false,
+          optionFilterProp: 'children',
+          notFoundContent: false,
+          allowClear: true,
+          children: getOption(manageTypeList, { idStr: 'dicValue', nameStr: 'dicValueText' }),
+        },
+      },
+    }
+    // {
+    //   label: '招标信息',
+    //   field: 'inviteType',
+    //   col: 8,
+    //   layout: {
+    //     labelCol: {
+    //       span: 9,
+    //     },
+    //     wrapperCol: {
+    //       span: 12,
+    //     },
+    //   },
+    //   options: {
+    //     initialValue: `${inviteType}` || '1',
+    //   },
+    //   component: {
+    //     name: 'Select',
+    //     props: {
+    //       placeholder: '请选择',
+    //       children: getOption([{
+    //         id: '1',
+    //         name: '无',
+    //       }, {
+    //         id: '2',
+    //         name: '省标',
+    //       }, {
+    //         id: '3',
+    //         name: '市标',
+    //       }, {
+    //         id: '4',
+    //         name: '院标',
+    //       }]),
+    //       onSelect(value) {
+    //         selectChange(value)
+    //       },
+    //     },
+    //   },
+    // },
+    // {
+    //   field: 'inviteNo',
+    //   options: {
+    //     initialValue: inviteNo,
+    //     normaize: value => trim(value),
+    //     rules: [{
+    //       required: Number(inviteType) !== 1,
+    //       whitespace: true,
+    //       message: '请输入招标编号',
+    //     }, {
+    //       max: 50,
+    //       message: '最多输入50个字符',
+    //     }],
+    //   },
+    //   col: 4,
+    //   layout: {
+    //     wrapperCol: {
+    //       span: 24,
+    //     },
+    //   },
+    //   component: {
+    //     name: 'Input',
+    //     props: {
+    //       disabled: Number(inviteType) === 1,
+    //       placeholder: '请输入招标编号',
+    //     },
+    //   },
+    // },
   ]
 }
 

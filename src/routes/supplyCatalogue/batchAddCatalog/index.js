@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Modal, Spin, Button, Table, Form, Input, Select, Row, Col } from 'antd'
+import {Modal, Spin, Button, Table, Form, Input, Select, Row, Col, DatePicker, Radio} from 'antd'
 import { cloneDeep, debounce, trim } from 'lodash'
 import { getBasicFn } from '../../../utils'
 import { LkcInputNumber, LkcSelect } from '../../../components'
 import Styles from '../detail.less'
-
+import moment from 'moment'
+const RadioGroup = Radio.Group
 const FormItem = Form.Item
 class BatchAddCatalog extends React.Component {
   constructor(props) {
@@ -145,6 +146,7 @@ class BatchAddCatalog extends React.Component {
       effects,
       batchAddModalVisible,
       packageUnit,
+      manageTypeList,
       modalType, // 1 批量加入目录 2 批量编辑目录
       handleBack, // 返回
       handleSave, // 保存至待推送
@@ -186,7 +188,7 @@ class BatchAddCatalog extends React.Component {
         resetFields()
         handleBack()
       },
-      width: 1000,
+      width: 1200,
       footer: [
         <Button
           key="back"
@@ -444,36 +446,6 @@ class BatchAddCatalog extends React.Component {
       //   )
       // },
     }, {
-      title: <span><span className="aek-red">*</span>价格</span>,
-      key: 'price',
-      dataIndex: 'price',
-      width: 100,
-      render(text, record, index) {
-        const props = {
-          placeholder: '请输入单价',
-          onChange(values) {
-            const data = cloneDeep(batchDataList)
-            data[index].price = values
-            thiz.changeUpdate(data)
-          },
-        }
-        return (
-          <FormItem style={{ paddingTop: '18px' }}>
-            {getFieldDecorator(`price-${index}-${record.pscId || record.materialsSkuId}`, {
-              initialValue: text,
-              rules: [{
-                required: true,
-                message: '必填项不能为空',
-              }],
-            })(
-              <LkcInputNumber
-                {...props}
-              />,
-            )}
-          </FormItem>
-        )
-      },
-    }, {
       title: <span><span className="aek-red">*</span>单位</span>,
       key: 'materialsUnit',
       dataIndex: 'materialsUnit',
@@ -546,98 +518,142 @@ class BatchAddCatalog extends React.Component {
           defaultValue: text || record.commenName,
         }
         return (
-          // <FormItem>
-          //   {getFieldDecorator(`materialsCommenName-${index}-${record.pscId || record.materialsSkuId}`, {
-          //     initialValue: text,
-          //     rules: [{
-          //       max: 200,
-          //       message: '最多输入200个字符',
-          //     }],
-          //   })(
           <Input
             {...props}
           />
-          //   )}
-          // </FormItem>
         )
       },
-    }, {
-      title: '招标信息',
-      key: 'inviteType',
-      dataIndex: 'inviteType',
-      width: 260,
-      render(text, record, index) {
-        const getDiabled = () => {
-          if (text !== undefined) {
-            if (Number(text) === 1) {
-              return true
-            }
-            return false
+    },
+      {
+        title: '卫计委HCBS码',
+        key: 'hcbsCode',
+        dataIndex: 'hcbsCode',
+        width: 130,
+        render(text, record, index) {
+          const props = {
+            placeholder: '请输入卫计委HCBS码',
+            onChange(e) {
+              const data = cloneDeep(batchDataList)
+              data[index].hcbsCode = e.target.value
+              thiz.changeUpdate(data)
+            },
+            maxLength: '200',
+            defaultValue: text || record.hcbsCode,
           }
-          return true
-        }
-        return (
-          <Row span={24}>
-            <Col span={9} style={{ paddingTop: '18px' }}>
-              <FormItem>
-                {getFieldDecorator(`inviteType-${index}-${record.pscId || record.materialsSkuId}`, {
-                  initialValue: text ? `${text}` : '1',
-                  rules: [{
-                    required: true,
-                    message: '必填项不能为空',
-                  }],
-                })(
-                  <Select
-                    onSelect={(value) => { thiz.selectChange(value, `inviteNo-${index}-${record.pscId || record.materialsSkuId}`, index) }}
-                  >
-                    {[{
-                      id: '1',
-                      name: '无',
-                    }, {
-                      id: '2',
-                      name: '省标',
-                    }, {
-                      id: '3',
-                      name: '市标',
-                    }, {
-                      id: '4',
-                      name: '院标',
-                    }].map(item =>
-                      <Select.Option key={item.id} title={item.name}>{item.name}</Select.Option>)}
-                  </Select>,
-                )}
-              </FormItem>
-            </Col>
-            <Col span={14} offset={1} style={{ paddingTop: '18px' }}>
-              <FormItem>
-                {getFieldDecorator(`inviteNo-${index}-${record.pscId || record.materialsSkuId}`, {
-                  initialValue: record.inviteNo,
-                  normaize: value => trim(value),
-                  rules: [{
-                    required: !getDiabled(),
-                    whitespace: true,
-                    message: '必填项不能为空',
-                  }, {
-                    max: 50,
-                    message: '最多输入50个字符',
-                  }],
-                })(
-                  <Input
-                    disabled={getDiabled()}
-                    placeholder="请输入招标编号"
-                    // onChange={(values) => {
-                    //   const data = cloneDeep(batchDataList)
-                    //   data[index].inviteNo = values
-                    //   thiz.changeUpdate(data)
-                    // }}
-                  />,
-                )}
-              </FormItem>
-            </Col>
-          </Row>
-        )
+          return (
+            <Input
+              {...props}
+            />
+          )
+        },
       },
-    }]
+      {
+        title: '招标日期',
+        key: 'inviteDate',
+        dataIndex: 'inviteDate',
+        width: 250,
+        render(text, record, index) {
+          return (
+            <DatePicker
+              style={{ width: '100%' }}
+              value={record.inviteDate ? moment(record.inviteDate, 'YYYY-MM-DD') : undefined}
+              onChange={(value) => {
+                const data = cloneDeep(batchDataList)
+                data[index].inviteDate = value
+                thiz.changeUpdate(data)
+              }}
+            />
+          )
+        },
+      },
+      {
+        title: '合同有效期',
+        key: 'contractLife',
+        dataIndex: 'contractLife',
+        width: 250,
+        render(text, record, index) {
+          return (
+            <DatePicker
+              style={{ width: '100%' }}
+              value={record.contractLife ? moment(record.contractLife, 'YYYY-MM-DD') : undefined}
+              onChange={(value) => {
+                const data = cloneDeep(batchDataList)
+                data[index].contractLife = value
+                thiz.changeUpdate(data)
+              }}
+            />
+          )
+        },
+      },
+      {
+        title: '是否进口',
+        key: 'importFlag',
+        dataIndex: 'importFlag',
+        width: 130,
+        render(text, record, index) {
+          const props = {
+            onChange(e) {
+              const data = cloneDeep(batchDataList)
+              data[index].importFlag = e.target.value
+              thiz.changeUpdate(data)
+            },
+            options: [{ label: '是', value: 0 }, { label: '否', value: 1 }],
+            defaultValue: record.importFlag ? record.importFlag : 1
+          }
+          return (
+            <RadioGroup
+              {...props}
+            />
+          )
+        },
+      },
+      {
+        title: '管理分类',
+        key: 'manageType',
+        dataIndex: 'manageType',
+        width: 130,
+        render(text, record, index) {
+          const props = {
+            showSearch: true,
+            placeholder: '请选择管理分类',
+            optionFilterProp: 'children',
+            allowClear: true,
+            labelInValue: false,
+            onChange(values) {
+              const data = cloneDeep(batchDataList)
+              if (values) {
+                data[index].manageType = values.key
+              } else {
+                data[index].manageType = undefined
+              }
+              thiz.changeUpdate(data)
+            },
+            style: {
+              paddingTop: '18px',
+            },
+          }
+          return (
+            <FormItem>
+              {getFieldDecorator(`manageType-${index}-${record.pscId || record.manageType}`, {
+                initialValue: record.manageType,
+              })(
+                <Select
+                  {...props}
+                >
+                  {manageTypeList.map(item =>
+                    (<Select.Option
+                      title={item.dicValueText}
+                      key={item.dicValue}
+                    >
+                      {item.dicValueText}
+                    </Select.Option>))}
+                </Select>,
+              )}
+            </FormItem>
+          )
+        },
+      },
+    ]
 
 
     const retColumns = columns({ packageUnit })
@@ -658,7 +674,7 @@ class BatchAddCatalog extends React.Component {
       // scroll: { x: true },
       // className: Styles['aek-modal-table'],
       bordered: true,
-      style: { width: 1100, paddingRight: '16px' },
+      style: { width: 1200, paddingRight: '16px' },
     }
 
     return (
@@ -692,6 +708,7 @@ BatchAddCatalog.propTypes = {
   form: PropTypes.object,
   batchDataList: PropTypes.array,
   modalType: PropTypes.number,
+  manageTypeList: PropTypes.array,
   handleBack: PropTypes.func, // 返回
   handleSave: PropTypes.func, // 保存至待推送
   handlePush: PropTypes.func, // 推送审核

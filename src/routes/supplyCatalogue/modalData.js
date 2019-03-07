@@ -2,7 +2,8 @@ import React from 'react'
 import { Radio } from 'antd'
 import { debounce } from 'lodash'
 import { getOption } from '../../utils'
-
+import moment from 'moment'
+import {FORM_ITEM_LAYOUT} from "../../utils/constant";
 const formItemLayout = {
   labelCol: { span: 5 },
   wrapperCol: { span: 15 },
@@ -35,7 +36,7 @@ const viewFormData = ({
     materialsSku,
     certificateNo,
     certificateId,
-    factoryName,
+    origin,
     brandName,
     materialsUnit,
     materialsUnitText,
@@ -93,11 +94,11 @@ const viewFormData = ({
     }
   },
   {
-    label: '厂家',
+    label: '产地',
     layout: formItemLayout,
-    field: 'factoryName',
+    field: 'origin',
     options: {
-      initialValue: factoryName,
+      initialValue: origin,
       rules: [{ required: true, message: '必填项不能为空' }],
     },
     component: {
@@ -158,64 +159,67 @@ const editFormData = ({
   codeMust,
   onSearch,
   suppliersSelect,
-  initialValue: {
+                        manageTypeList,
+initialValue: {
     inviteType,
     inviteNo,
+    hcbsCode,
+    importFlag,contractLife,manageType,inviteDate,
     price,
     supplierOrgId,
     supplierName,
     materialsCommenName,
   } = {},
 } = {}) => [
-  {
-    label: '招标信息',
-    ...leftItemLayout,
-    field: 'inviteType',
-    options: {
-      initialValue: String(inviteType || 1),
-    },
-    component: {
-      name: 'Select',
-      props: {
-        optionLabelProp: 'title',
-        onSelect: (id) => {
-          selectEvent(!!(id - 1))
-        },
-        children: getOption([
-          {
-            id: '1',
-            name: '无',
-          },
-          {
-            id: '2',
-            name: '省标',
-          },
-          {
-            id: '3',
-            name: '市标',
-          },
-          {
-            id: '4',
-            name: '院标',
-          },
-        ]),
-      },
-    },
-  },
-  {
-    ...rightItemLayout,
-    field: 'inviteNo',
-    options: {
-      initialValue: inviteNo,
-      rules: codeMust ? [{ required: true, message: '请输入相应的招标编号' }] : undefined,
-    },
-    component: {
-      name: 'Input',
-      props: {
-        placeholder: '招标编号',
-      },
-    },
-  },
+  // {
+  //   label: '招标信息',
+  //   ...leftItemLayout,
+  //   field: 'inviteType',
+  //   options: {
+  //     initialValue: String(inviteType || 1),
+  //   },
+  //   component: {
+  //     name: 'Select',
+  //     props: {
+  //       optionLabelProp: 'title',
+  //       onSelect: (id) => {
+  //         selectEvent(!!(id - 1))
+  //       },
+  //       children: getOption([
+  //         {
+  //           id: '1',
+  //           name: '无',
+  //         },
+  //         {
+  //           id: '2',
+  //           name: '省标',
+  //         },
+  //         {
+  //           id: '3',
+  //           name: '市标',
+  //         },
+  //         {
+  //           id: '4',
+  //           name: '院标',
+  //         },
+  //       ]),
+  //     },
+  //   },
+  // },
+  // {
+  //   ...rightItemLayout,
+  //   field: 'inviteNo',
+  //   options: {
+  //     initialValue: inviteNo,
+  //     rules: codeMust ? [{ required: true, message: '请输入相应的招标编号' }] : undefined,
+  //   },
+  //   component: {
+  //     name: 'Input',
+  //     props: {
+  //       placeholder: '招标编号',
+  //     },
+  //   },
+  // },
   // {
   //   label: '单价（元）',
   //   layout: formItemLayout,
@@ -244,6 +248,96 @@ const editFormData = ({
       },
     },
   },
+  {
+    label: '卫计委HCBS码',
+    layout: formItemLayout,
+    field: 'hcbsCode',
+    options: { initialValue: hcbsCode, rules: [{ max: 200, message: '最多输入200字' }] },
+    component: {
+      name: 'Input',
+      props: {
+        placeholder: '请输入',
+      },
+    },
+  },
+  {
+    label: '招标日期',
+    layout: formItemLayout,
+    field: 'inviteDate',
+    options: {
+      initialValue: inviteDate ? moment(inviteDate, 'YYYY-MM-DD') : undefined,
+    },
+    component: {
+      name: 'DatePicker',
+    },
+  },
+  {
+    label: '合同有效期',
+    layout: formItemLayout,
+    field: 'contractLife',
+    options: {
+      initialValue: contractLife ? moment(contractLife, 'YYYY-MM-DD') : undefined,
+    },
+    component: {
+      name: 'DatePicker',
+    },
+  },
+  {
+    label: '是否进口',
+    layout: formItemLayout,
+    field: 'importFlag',
+    options: {
+      initialValue: importFlag,
+      rules: [
+        {
+          required: true,
+          message: '请选择是否进口',
+        },
+      ],
+    },
+    component: {
+      name: 'RadioGroup',
+      props: {
+        options: [{ label: '是', value: 0 }, { label: '否', value: 1 }],
+      },
+    },
+  },
+  {
+    label: '管理分类',
+    layout: formItemLayout,
+    // viewRender() {
+    //   return orderDetail.payTypeStr
+    // },
+    field: 'manageType',
+    options: {
+      initialValue: undefined,
+    },
+    component: {
+      name: 'Select',
+      props: {
+        placeholder: '请选择规格单位',
+        showSearch: true,
+        // labelInValue: true,
+        defaultActiveFirstOption: false,
+        optionFilterProp: 'children',
+        notFoundContent: false,
+        allowClear: true,
+        children: getOption(manageTypeList, { idStr: 'dicValue', nameStr: 'dicValueText' }),
+      },
+    },
+  },
+  // {
+  //   label: '卫计委HCBS码',
+  //   layout: formItemLayout,
+  //   field: 'hcbsCode',
+  //   options: { initialValue: hcbsCode, rules: [{ max: 200, message: '最多输入200字' }] },
+  //   component: {
+  //     name: 'Input',
+  //     props: {
+  //       placeholder: '请输入',
+  //     },
+  //   },
+  // },
 ]
 
 const refuseFromData = (refusedReasonList, onChange) => [

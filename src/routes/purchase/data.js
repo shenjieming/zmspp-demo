@@ -318,6 +318,12 @@ const inUseColumns = ({
                     pscId: record.pscId,
                   },
                 })
+                dispatchAction({
+                  type: 'purchase/updateState',
+                  payload: {
+                    supplierOrgId: record.supplierOrgId,
+                  },
+                })
               }}
             >{record.barcodeNumber || 0}</a>
             <a
@@ -333,6 +339,12 @@ const inUseColumns = ({
                   type: 'purchase/getCodeBarList',
                   payload: {
                     pscId: record.pscId,
+                  },
+                })
+                dispatchAction({
+                  type: 'purchase/updateState',
+                  payload: {
+                    supplierOrgId: record.supplierOrgId,
                   },
                 })
               }}

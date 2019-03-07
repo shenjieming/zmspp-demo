@@ -341,12 +341,12 @@ const genColumns = ({ printDeliverOrder, orgId }) =>
         return ''
       },
     },
-    {
-      title: '订单金额',
-      dataIndex: 'formAmount',
-      className: 'aek-text-right',
-      render: text => `￥${text}`,
-    },
+    // {
+    //   title: '订单金额',
+    //   dataIndex: 'formAmount',
+    //   className: 'aek-text-right',
+    //   render: text => `￥${text}`,
+    // },
     {
       title: '类型',
       dataIndex: 'formType',
@@ -370,33 +370,33 @@ const genColumns = ({ printDeliverOrder, orgId }) =>
       key: 'deliverTime',
       render: text => <span className="aek-text-overflow">{text}</span>,
     },
-    {
-      title: '操作',
-      key: 'action',
-      width: 100,
-      fixed: 'right',
-      render: (text, record) => {
-        const { formStatus: status, formNo, receiveOrgId } = record
-        if (status && Number(status) === 2 && receiveOrgId === orgId) {
-          return (
-            <Link
-              className="aek-link"
-              key={1}
-              to={`/purchaseManage/scanAcceptance?${stringify({ formNo })}`}
-            >
-              验收
-            </Link>
-          )
-        } else if (status && Number(status) === 3 && receiveOrgId === orgId) {
-          return (
-            <a className="aek-link" onClick={() => printDeliverOrder(record)}>
-              打印验收单
-            </a>
-          )
-        }
-        return ''
-      },
-    },
+    // {
+    //   title: '操作',
+    //   key: 'action',
+    //   width: 100,
+    //   fixed: 'right',
+    //   render: (text, record) => {
+    //     const { formStatus: status, formNo, receiveOrgId } = record
+    //     if (status && Number(status) === 2 && receiveOrgId === orgId) {
+    //       return (
+    //         <Link
+    //           className="aek-link"
+    //           key={1}
+    //           to={`/purchaseManage/scanAcceptance?${stringify({ formNo })}`}
+    //         >
+    //           验收
+    //         </Link>
+    //       )
+    //     } else if (status && Number(status) === 3 && receiveOrgId === orgId) {
+    //       return (
+    //         <a className="aek-link" onClick={() => printDeliverOrder(record)}>
+    //           打印验收单
+    //         </a>
+    //       )
+    //     }
+    //     return ''
+    //   },
+    // },
   ].filter(_ => !_.exclude)
 
 export default {

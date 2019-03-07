@@ -5,6 +5,7 @@ import GetFormItem from '../../components/GetFormItem/GetFormItem'
 import { viewFormData, editFormData } from './modalData'
 
 const propTypes = {
+  manageTypeList: PropTypes.array,
   editModalVisible: PropTypes.bool,
   loading: PropTypes.bool,
   codeMust: PropTypes.bool,
@@ -25,6 +26,7 @@ const ModalEditMaterial = ({
   packageUnit,
   modalInitValue = {},
   suppliersSelect,
+                             manageTypeList,
   form: {
     validateFieldsAndScroll,
     resetFields,
@@ -38,7 +40,7 @@ const ModalEditMaterial = ({
         showIcon: true,
         type: 'info',
         message: '平台已整理',
-        description: '平台已将该物料按照国家颁发的注册证进行统一归档整理，物料中的物资名称、规格型号、注册证、厂家、品牌信息将不可再修改',
+        description: '平台已将该物料按照国家颁发的注册证进行统一归档整理，物料中的物资名称、规格型号、注册证、产地、品牌信息将不可再修改',
       }
       return (<Alert {...alertProps} />)
     }
@@ -139,6 +141,7 @@ const ModalEditMaterial = ({
             initialValue: modalInitValue,
             codeMust,
             suppliersSelect,
+            manageTypeList,
             onSearch(keywords) {
               toAction({ keywords }, 'suppliersSelect')
             },

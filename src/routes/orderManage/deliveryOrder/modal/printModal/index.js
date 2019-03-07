@@ -143,7 +143,7 @@ class PrintModal extends React.Component {
               <div>{detailPageData.currentOrgName}</div>
               <div style={{ textAlign: 'center' }}>（配送单）</div>
             </div>
-            {formType && <img src={PicImg[formType]} className={styles.icon} alt="图片" />}
+            {/*{formType && <img src={PicImg[formType]} className={styles.icon} alt="图片" />}*/}
             {urgentFlag && <img src={urgentImg} className={styles.icon} alt="图片" />}
           </div>
           <div className={styles.codeArea}>{getCodeContent()}</div>

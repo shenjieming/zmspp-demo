@@ -168,34 +168,34 @@ const tableColumns = ({ tabIndex, handleMenuClick, customerDetail }) => {
     dataIndex: 'brandName',
     width: 55,
   },
-  {
-    key: 'inviteType',
-    title: '招标信息',
-    dataIndex: 'inviteType',
-    width: 100,
-    render(value, record) {
-      let str = ''
-      switch (value) {
-        case 1:
-          str = '无招标信息'
-          break
-        case 2:
-          str = '省标'
-          break
-        case 3:
-          str = '市标'
-          break
-        case 4:
-          str = '院标'
-          break
-        default:
-          break
-      }
-      return (
-        <p>{value === 1 ? str : `${str}-${record.inviteNo}`}</p>
-      )
-    },
-  },
+  // {
+  //   key: 'inviteType',
+  //   title: '招标信息',
+  //   dataIndex: 'inviteType',
+  //   width: 100,
+  //   render(value, record) {
+  //     let str = ''
+  //     switch (value) {
+  //       case 1:
+  //         str = '无招标信息'
+  //         break
+  //       case 2:
+  //         str = '省标'
+  //         break
+  //       case 3:
+  //         str = '市标'
+  //         break
+  //       case 4:
+  //         str = '院标'
+  //         break
+  //       default:
+  //         break
+  //     }
+  //     return (
+  //       <p>{value === 1 ? str : `${str}-${record.inviteNo}`}</p>
+  //     )
+  //   },
+  // },
   {
     key: 'packageNumber',
     dataIndex: 'packageNumber',

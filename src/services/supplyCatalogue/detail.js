@@ -2,6 +2,10 @@ import { generateRequest } from '../../utils/'
 import { mockURL, baseURL, rapMockURL } from '../../utils/config'
 // const rapMockURL = mockURL
 export default {
+  // 字典表
+  manageType: generateRequest(`${baseURL}/system/dicValue/dicKey`, 'post'),
+  // 保存供应商条码
+  setCustomerCodeBarListData: generateRequest(`${baseURL}/customer/save/catalog/barcodes`, 'post'),
   customerDetailData: generateRequest(`${baseURL}/supply/catalog/customer/statistic`, 'post'),
   // 分页获取客户列表
   customerListData: generateRequest(`${baseURL}/supply/catalog/customers`, 'post'),

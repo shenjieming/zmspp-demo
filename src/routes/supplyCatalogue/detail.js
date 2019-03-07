@@ -118,6 +118,7 @@ function SupplyCatalogueDetail({
     codeMust,
     suppliersSelect,
     modalType,
+    manageTypeList,
   } = supplyCatalogueDetail
 
 
@@ -368,9 +369,13 @@ function SupplyCatalogueDetail({
     dispatch,
     batchAddModalVisible: batchEditModalVisible,
     packageUnit,
+    manageTypeList,
     batchDataList: selectedRows,
     modalType: 2,
     handleBack() {
+      dispatchAction({
+        type: 'getManageTypeList',
+      })
       dispatchAction({
         payload: {
           batchEditModalVisible: false,
@@ -698,7 +703,9 @@ function SupplyCatalogueDetail({
             dispatchAction({
               type: 'app/getPackageUnit',
             })
-
+            dispatchAction({
+              type: 'getManageTypeList',
+            })
             dispatchAction({
               type: 'getEditMaterialList',
               payload: {
@@ -795,6 +802,7 @@ function SupplyCatalogueDetail({
     rowSelectData,
     dispatch,
     effects,
+    manageTypeList,
     inviteRequired,
     accuracy,
     accuracyDecimal,
@@ -856,6 +864,7 @@ function SupplyCatalogueDetail({
     suppliersSelect,
     packageUnit,
     modalType,
+    manageTypeList,
     toAction,
   }
   const modalExcelProps = {
@@ -881,6 +890,7 @@ function SupplyCatalogueDetail({
           editModalVisible: true,
           modalType: 'add',
         })
+        toAction('getManageTypeList')
         break
       case 'get':
         dispatchUrl({ pathname: `/supplyCatalogue/detail/${customerId}/dictionSelect` })
