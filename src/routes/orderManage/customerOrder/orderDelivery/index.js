@@ -467,7 +467,7 @@ class OrderDelivery extends React.Component {
           },
         },
         {
-          title: '注册证/省标编号',
+          title: '注册证',
           dataIndex: 'certificateNo',
           render: (text, row, index) => (
             <div style={{ minWidth: '300px' }}>
@@ -487,9 +487,9 @@ class OrderDelivery extends React.Component {
                   ],
                 })(
                   <Select
-                    showSearch={true}
-                    mode="combobox"
-                    optionFilterProp= "children"
+                    showSearch
+                    defaultActiveFirstOption={false}
+                    showArrow={false}
                     filterOption={false}
                     allowClear={true}
                     style={{ width: '100%' }}
@@ -527,30 +527,30 @@ class OrderDelivery extends React.Component {
                   </Select>,
                 )}
               </FormItem>
-              <div style={{ display: 'inline-block', marginTop: '4px', width: '100%' }}>
-                <span style={{ display: 'inline-block', width: '20%' }}>省标:</span>
-                <FormItem>
-                  {getFieldDecorator(`inviteNo_${row.itemId}_${row.indexInSame}`, {
-                    initialValue: row.inviteNo,
-                    rules: [
-                      {
-                        max: 50,
-                        message: '最多输入50个字符',
-                      },
-                    ],
-                  })(
-                    <Input
-                      style={{ width: '80%' }}
-                      onChange={(event) => {
-                        dispatchAction({
-                          type: 'updateMaterialItem',
-                          payload: { target: row, prop: 'inviteNo', value: event.target.value },
-                        })
-                      }}
-                    />,
-                  )}
-                </FormItem>
-              </div>
+              {/*<div style={{ display: 'inline-block', marginTop: '4px', width: '100%' }}>*/}
+                {/*<span style={{ display: 'inline-block', width: '20%' }}>省标:</span>*/}
+                {/*<FormItem>*/}
+                  {/*{getFieldDecorator(`inviteNo_${row.itemId}_${row.indexInSame}`, {*/}
+                    {/*initialValue: row.inviteNo,*/}
+                    {/*rules: [*/}
+                      {/*{*/}
+                        {/*max: 50,*/}
+                        {/*message: '最多输入50个字符',*/}
+                      {/*},*/}
+                    {/*],*/}
+                  {/*})(*/}
+                    {/*<Input*/}
+                      {/*style={{ width: '80%' }}*/}
+                      {/*onChange={(event) => {*/}
+                        {/*dispatchAction({*/}
+                          {/*type: 'updateMaterialItem',*/}
+                          {/*payload: { target: row, prop: 'inviteNo', value: event.target.value },*/}
+                        {/*})*/}
+                      {/*}}*/}
+                    {/*/>,*/}
+                  {/*)}*/}
+                {/*</FormItem>*/}
+              {/*</div>*/}
             </div>
           ),
         },

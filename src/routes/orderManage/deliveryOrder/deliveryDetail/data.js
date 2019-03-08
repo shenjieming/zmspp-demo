@@ -31,7 +31,7 @@ const genColumns = ({ formType, invoiceChange }) =>
       key: 'materialsSku',
     },
     {
-      title: '注册证号/省标编号',
+      title: '注册证号',
       dataIndex: 'certificateNo',
       key: 'certificateNo',
       render: (text, { inviteNo }) => (
@@ -124,24 +124,20 @@ const genColumns = ({ formType, invoiceChange }) =>
       ),
     },
     {
-      title: '灭菌批次/灭菌效期',
-      dataIndex: 'sterilizationNo',
-      key: 'sterilizationDate',
-      render: (text, { sterilizationDate }) => (
-        <span>
-          <p>{text || <span>&nbsp;</span>}</p>
-          <p>{sterilizationDate || <span>&nbsp;</span>}</p>
-        </span>
-      ),
-    },
-    {
-      title: '跟踪码/生产日期',
-      dataIndex: 'trackCode',
-      key: 'trackCode',
-      render: (text, { produceDate }) => (<span>
-        <p>{text}</p>
-        <p>{produceDate}</p>
-      </span>),
+      title: '能否打印',
+      dataIndex: 'barcodeFlag',
+      key: 'barcodeFlag',
+      render: (text, record) => {
+        let isbarcodePrint = '否'
+        if (text === 1) {
+          isbarcodePrint = '能'
+        }
+        return (
+          <span>
+            {isbarcodePrint}
+          </span>
+        )
+      },
     },
   ].filter(item => !item.exclude)
 const getDetailTopData = (detailPageData) => {
