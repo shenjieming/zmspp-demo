@@ -14,6 +14,7 @@ function ExpiryRemind({
   searchData,
   tabIndex,
   registTypeList,
+                        editFlag,
 }) {
   const dateEven = (e) => {
     dispatch({

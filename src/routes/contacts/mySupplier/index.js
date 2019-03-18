@@ -73,6 +73,15 @@ function MySupplier({
           },
         })
       },
+      radioChange (supplierOrgId, editFlag) {
+        toAction({ supplierOrgId })
+        confirm({
+          content: `您确定要${editFlag - 1 ? '开启' : '关闭'}证件修改？`,
+          onOk() {
+            toAction({ supplierOrgId }, editFlag - 1 ? 'open' : 'close')
+          },
+        })
+      }
     }),
     rowClassName: () => 'table-row-hover',
   }

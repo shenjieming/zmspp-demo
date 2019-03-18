@@ -153,15 +153,15 @@ const app = dva({
         } else if (inRange(code, ...REQUEST_FAIL_REGION)) {
           openConfirm({ content: data.message, title: '操作失败' })
         } else {
-          openConfirm({ content: `系统异常, 请联系客服: ${CONSUMER_HOTLINE}`, title: '操作失败' })
+          openConfirm({ content: '系统异常, 请联系管理员' })
         }
       } else if (!status) {
         openWarningConfirm({ content: '网络开小差了, 请检查网络环境' })
       } else {
-        openWarningConfirm({ content: `系统异常, 如果需要帮助请联系客服: ${CONSUMER_HOTLINE}` })
+        openWarningConfirm({ content: '系统异常, 请联系管理员'})
       }
     } else {
-      openConfirm({ content: `系统异常, 请联系客服: ${CONSUMER_HOTLINE}` })
+      openConfirm({ content: '系统异常, 请联系管理员'})
     }
   },
 })

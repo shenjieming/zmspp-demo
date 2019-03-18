@@ -41,6 +41,7 @@ function OrganInfo({ organInfo, addressList, loading }) {
     certificates,
     reason,
     auditStatus,
+    editFlag,
     secondGradeList,
     parentGradeList,
   } = organInfo
@@ -277,7 +278,7 @@ function OrganInfo({ organInfo, addressList, loading }) {
         <Icon style={{ marginRight: 8 }} type="download" />下载激活文件
       </a>
     )
-  const scopeBtn = manageFlag(orgTypeCode) ? (
+  const scopeBtn = manageFlag(orgTypeCode) || editFlag === 0 ? (
     ''
   ) : (
     <a
@@ -326,27 +327,29 @@ function OrganInfo({ organInfo, addressList, loading }) {
           >
             <Icon style={{ marginRight: 8 }} type="close-circle-o" />组织管理权转让
           </a>
-          <a
-            className={Styles.mr20}
-            key="editEnterprise"
-            onClick={() => {
-              dispatchAction({ payload: { orgEditVisible: true } })
-              dispatchAction({
-                type: 'firstLevel',
-              })
-              dispatchAction({
-                type: 'secondLevel',
-              })
-              dispatchAction({
-                type: 'queryParentOrgList',
-                payload: {
-                  orgName: '',
-                },
-              })
-            }}
-          >
-            <Icon style={{ marginRight: 8 }} type="edit" />编辑企业资料
-          </a>
+          {editFlag == 1 && (
+            <a
+              className={Styles.mr20}
+              key="editEnterprise"
+              onClick={() => {
+                dispatchAction({ payload: { orgEditVisible: true } })
+                dispatchAction({
+                  type: 'firstLevel',
+                })
+                dispatchAction({
+                  type: 'secondLevel',
+                })
+                dispatchAction({
+                  type: 'queryParentOrgList',
+                  payload: {
+                    orgName: '',
+                  },
+                })
+              }}
+            >
+              <Icon style={{ marginRight: 8 }} type="edit" />编辑企业资料
+            </a>
+          )}
         </div>
       </div>
       <div className="content" style={{ height: 'auto' }}>
@@ -363,7 +366,7 @@ function OrganInfo({ organInfo, addressList, loading }) {
             </Row>
           </Spin>
         </div>
-        {!includes(['05', '06', '01'], orgTypeCode) && ( // 银行，监管机构， 平台不用编辑证件
+        {!includes(['05', '06', '01'], orgTypeCode) && ( editFlag === 1)  && ( // 银行，监管机构， 平台不用编辑证件
           <div>
             <div className="aek-content-title">
               <span className="aek-title-left">企业证件</span>
@@ -378,6 +381,14 @@ function OrganInfo({ organInfo, addressList, loading }) {
               >
                 <Icon style={{ marginRight: 8 }} type="edit" />编辑企业证件
               </a>
+            </div>
+            <div>{plainList}</div>
+          </div>
+        )}
+        {!includes(['05', '06', '01'], orgTypeCode) && ( editFlag !== 1)  && ( // 银行，监管机构， 平台不用编辑证件
+          <div>
+            <div className="aek-content-title">
+              <span className="aek-title-left">企业证件</span>
             </div>
             <div>{plainList}</div>
           </div>

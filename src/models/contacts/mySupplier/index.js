@@ -86,6 +86,25 @@ export default modelExtend({
         message.error('你已经申请，请勿重复申请')
       }
     },
+    // 开启证件修改
+    * open({ payload }, { call, toAction }) {
+      yield call(services.open, payload)
+      yield toAction('suppliers')
+      message.success('开启成功')
+    },
+    // 关闭证件修改
+    * close({ payload }, { call, toAction }) {
+      const { code } = yield call(services.close, payload)
+      yield toAction('suppliers')
+      if (code === 201) {
+        yield toAction({
+          modalType: 'check',
+          editModalVisible: true,
+        })
+      } else if (code === 202) {
+        message.error('你已经申请，请勿重复申请')
+      }
+    },
     // 申请恢复供应商关系
     * recover({ payload }, { call, toAction, select }) {
       const { supplierOrgId } = yield select(({ mySupplier }) => mySupplier)

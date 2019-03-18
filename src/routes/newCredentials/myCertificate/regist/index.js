@@ -14,6 +14,7 @@ const formItemLayout = {
   wrapperCol: { span: 16 },
 }
 function Regist({
+                  editFlag,
   effects,
   dispatch,
   registDataSource,
@@ -488,9 +489,34 @@ function Regist({
         )
 
         const platformAuthStatus = record.platformAuthStatus
-
-        return (
-          <span>
+        if (editFlag == 0) {
+          return (
+            <span>
+              {platformAuthStatus !== 2 &&
+              <span>
+                <span className="ant-divider" />
+                <a
+                  onClick={() => {
+                    showConfirm({
+                      content: '确定要删除该证件吗？',
+                      handleOk() {
+                        dispatch({
+                          type: 'newMyCertificate/deleteRegist',
+                          payload: {
+                            certificateId: record.certificateId,
+                          },
+                        })
+                      },
+                    })
+                  }}
+                >删除</a>
+              </span>
+              }
+          </span>
+          )
+        } else {
+          return (
+            <span>
             <a
               onClick={() => {
                 const title = '编辑注册证'
@@ -514,7 +540,7 @@ function Regist({
                 })
               }}
             >编辑</a>
-            {platformAuthStatus !== 2 &&
+              {platformAuthStatus !== 2 &&
               <span>
                 <span className="ant-divider" />
                 <a
@@ -533,10 +559,10 @@ function Regist({
                   }}
                 >删除</a>
               </span>
-            }
-            {
-              platformAuthStatus === 2 &&
-              <span>
+              }
+              {
+                platformAuthStatus === 2 &&
+                <span>
                 <span className="ant-divider" />
                 <Dropdown overlay={menu} >
                   <a>
@@ -544,9 +570,11 @@ function Regist({
                   </a>
                 </Dropdown>
               </span>
-            }
+              }
           </span>
-        )
+          )
+        }
+
       },
     },
   ]

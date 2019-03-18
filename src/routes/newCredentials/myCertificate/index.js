@@ -99,7 +99,7 @@ function MyCertificate({
     viewStep, // 查看态弹框
     viewStatus, //
     viewRegistDetail, // 查看态详情信息
-
+    editFlag,
   } = newMyCertificate
   // 生产厂家下拉列表
   const handl = (value) => {
@@ -308,6 +308,7 @@ function MyCertificate({
   }
   // 效期提醒参数
   const expiryRemindProps = {
+    editFlag,
     effects,
     dispatch,
     dataSource,
@@ -318,6 +319,7 @@ function MyCertificate({
   }
   // 注册证
   const registProps = {
+    editFlag,
     effects,
     dispatch,
     registDataSource,
@@ -1012,6 +1014,7 @@ function MyCertificate({
   }
   // 生产厂家/总经销商
   const prodFactory = {
+    editFlag,
     effects,
     dispatch,
     factoryDataSource,
@@ -1066,6 +1069,7 @@ function MyCertificate({
   }
   // 授权书
   const authProps = {
+    editFlag,
     effects,
     dispatch,
     authDataSource,
@@ -1183,6 +1187,7 @@ function MyCertificate({
   }
   // 委托书
   const powerProps = {
+    editFlag,
     effects,
     dispatch,
     powerDataSource,
@@ -1306,6 +1311,7 @@ function MyCertificate({
   }
   // 其他证件
   const otherProps = {
+    editFlag,
     effects,
     dispatch,
     otherDataSource,

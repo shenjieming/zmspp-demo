@@ -50,7 +50,7 @@ const ModalOrgInfo = ({
       }
       if (auditStatus === 1) {
         alertProps.message = '审核中'
-        alertProps.description = `您的资料已提交，请联系客服审核，客服热线：${CONSUMER_HOTLINE}`
+        alertProps.description = ''
       } else {
         alertProps.message = '审核拒绝'
         alertProps.description = reason

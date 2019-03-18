@@ -37,7 +37,6 @@ const genColumns = ({ formType, invoiceChange }) =>
       render: (text, { inviteNo }) => (
         <span>
           <p>{text || <span>&nbsp;</span>}</p>
-          <p>{inviteNo || <span>&nbsp;</span>}</p>
         </span>
       ),
     },
@@ -124,7 +123,7 @@ const genColumns = ({ formType, invoiceChange }) =>
       ),
     },
     {
-      title: '能否打印',
+      title: '能否打印院内码',
       dataIndex: 'barcodeFlag',
       key: 'barcodeFlag',
       render: (text, record) => {

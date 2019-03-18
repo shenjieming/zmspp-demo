@@ -16,7 +16,7 @@ import {
   downloadFileData,
 } from '@services/home/organInfo'
 import modelExtend from '@utils/modelExtend'
-import {dicKey, getParentOrgList,savePoolId} from "../../services/organization";
+import {dicKey, getParentOrgList,savePoolId,getRelationEdit} from "../../services/organization";
 
 // 初始化数据
 const initState = {
@@ -70,6 +70,7 @@ const initState = {
   currentTab: '1',
   bankLevelList: [],
   changeTypeVisible: false,
+  editFlag: 0,
 }
 const riskTypeArr = ['I类', 'II类', 'III类']
 const riskTypeHelperArr = ['IL', 'IIL', 'IIIL']
@@ -114,6 +115,7 @@ export default modelExtend({
           dispatch({ type: 'getOrgCertificate' })
           // 获取68码树数据
           dispatch({ type: 'getSixEightCodeTree' })
+          dispatch({ type: 'getAuth' })
           if (Object.keys(query).length && query.from === 'msg') {
             dispatch({ type: 'organInfo/getCertificatesList' })
           }
@@ -340,6 +342,13 @@ export default modelExtend({
         const fileName = ''
         downFile(blob, fileName)
       }
+    },
+    // 证件管理权限调用
+    * getAuth({ payload }, { call, update }) {
+      const { content } = yield call(getRelationEdit, {})
+      yield update({
+        editFlag: content.editFlag,
+      })
     },
   },
   reducers: {},

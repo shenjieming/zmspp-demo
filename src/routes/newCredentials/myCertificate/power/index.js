@@ -10,6 +10,7 @@ const noLabelLayout = {
 }
 const Option = Select.Option
 function Power({
+                 editFlag,
   effects,
   dispatch,
   powerDataSource,
@@ -208,8 +209,19 @@ function Power({
             <Menu.Item key="2">{record.certificateStatus ? '启用' : '停用'}</Menu.Item>
           </Menu>
         )
-        return (
-          <span>
+        if (editFlag == 0) {
+          return (
+            <span>
+            {/*<Dropdown overlay={menu} trigger={['click']}>*/}
+              {/*<a>*/}
+                {/*更多<Icon type="down" />*/}
+              {/*</a>*/}
+            {/*</Dropdown>*/}
+          </span>
+          )
+        } else {
+          return (
+            <span>
             <a
               onClick={() => {
                 dispatch({
@@ -233,7 +245,9 @@ function Power({
               </a>
             </Dropdown>
           </span>
-        )
+          )
+        }
+
       },
     },
   ]

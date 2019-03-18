@@ -50,7 +50,7 @@ import {
 
   replaceUnbind, // 解除换证
   getCompareModalList, // 获取注册证标准信息对照
-
+  getRelationEdit, // 获取证件内容管理
   updateRegist, // 注册证更新
   deleteRegist, // 删除注册证
 } from '../../../services/newCredentials/myCertificate'
@@ -109,7 +109,7 @@ const initState = {
   status: 1, // 1 是新增 2 编辑 3 换证
   compareModalVisible: false,
   compareModalList: [{ title: '当前证件信息' }, { title: '标准证件信息' }],
-
+  editFlag: 0,
 
   viewRegistModalVisible: false, // 查看态注册证
   viewStep: 2, // 查看态弹框
@@ -150,7 +150,9 @@ export default dvaModelExtend({
           dispatch({
             type: 'app/getRegistList',
           })
-
+          dispatch({
+            type: 'getAuth',
+          })
           // 获取证件数量
           dispatch({ type: 'getCertificateNum' })
           // 获取拒绝原因
@@ -1042,6 +1044,14 @@ export default dvaModelExtend({
       const { content } = yield call(getOtherTypeOptions, payload)
       yield update({
         otherTypeOptions: content,
+      })
+    },
+    // 证件管理权限调用
+    * getAuth({ payload }, { call, update }) {
+      const { content } = yield call(getRelationEdit, {})
+      console.log(content)
+      yield update({
+        editFlag: content.editFlag,
       })
     },
   },

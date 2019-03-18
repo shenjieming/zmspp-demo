@@ -18,4 +18,8 @@ export default {
   addSuppliersList: generateRequest(`${requestURL}/contacts/apply/suppliers`, 'post'),
   // 申请添加供应商列表
   applyAddSuppliers: generateRequest(`${requestURL}/contacts/apply/supplier`, 'post'),
+  // 开启证件修改
+  open: generateRequest(`${requestURL}/contacts/supplier/relation/edit-open`, 'post'),
+  // 关闭证件修改
+  close: generateRequest(`${requestURL}/contacts/supplier/relation/edit-close`, 'post'),
 }

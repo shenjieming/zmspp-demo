@@ -97,9 +97,11 @@ export default {
 
   // 标准注册证对照
   getCompareModalList: generateRequest(`${baseURL}/certificate/supplier/compare`, 'post'),
-
+  // 获取证件管理
+  getRelationEdit: generateRequest(`${baseURL}/contacts/supplier/relation/edit`, 'get'),
   // 注册证更新
   updateRegist: generateRequest(`${baseURL}/certificate/supplier/register/sync`, 'post'),
   // 注册证删除
   deleteRegist: generateRequest(`${baseURL}/certificate/supplier/register/delete`, 'post'),
+
 }

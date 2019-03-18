@@ -5,6 +5,10 @@ export default {
   savePoolId: generateRequest(`${baseURL}/organization/updateWH`, 'post'),
   // 分页获取所有组织机构
   getOrgList: generateRequest(`${baseURL}/organization/getOrgList`, 'post'),
+  // 分页获取所有组织机构（后勤）
+  getOrgListHQ: generateRequest(`${baseURL}/organization/getOrgList/logistics`, 'post'),
+  // 分页获取所有组织机构（资装）
+  getOrgListZZ: generateRequest(`${baseURL}/organization/getOrgList/endowment`, 'post'),
   // 新增机构
   saveOrg: generateRequest(`${baseURL}/organization/saveOrg`, 'post'),
   // 审核机构
@@ -25,4 +29,6 @@ export default {
   bindAccount: generateRequest(`${baseURL}/bind/admin/account`, 'post'),
   // 获取token
   turnOther: generateRequest(`${baseURL}/login/getToken`, 'post'),
+  // 获取证件管理
+  getRelationEdit: generateRequest(`${baseURL}/contacts/supplier/relation/edit`, 'get'),
 }

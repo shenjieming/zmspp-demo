@@ -130,7 +130,7 @@ const routesTree = [
         ],
       },
       {
-        name: '新的往来关系（资装部）',
+        name: '新的往来关系（医学装备部）',
         path: 'newContactsRelationZZ',
         back: true,
         models: () => [import('../models/contacts/newContactsRelationZZ')],
@@ -145,9 +145,8 @@ const routesTree = [
         ],
       },
       {
-        name: '新的往来关系（后勤部）',
+        name: '新的往来关系（后勤装备部）',
         path: 'newContactsRelationHQ',
-        back: true,
         models: () => [import('../models/contacts/newContactsRelationHQ')],
         component: () => import('../routes/contacts/newContactsRelationHQ'),
         children: [
@@ -196,7 +195,7 @@ const routesTree = [
         path: 'customerCertificate',
         models: () => [import('../models/credentials/customerCertificate/index.js')],
         component: () => import('../routes/credentials/customerCertificate/index.js'),
-      },
+      }
     ],
   },
   /* 新证件档案管理 */
@@ -249,6 +248,20 @@ const routesTree = [
         path: 'recheckCertificateAudit',
         models: () => [import('../models/newCredentials/certificateAuditRecheck')],
         component: () => import('../routes/newCredentials/certificateAuditRecheck'),
+      },
+      /* 组织机构管理 */
+      {
+        name: '企业三证审核（后勤装备部）',
+        path: 'organizationHQ',
+        models: () => [import('../models/organizationHQ/organization.js')],
+        component: () => import('../routes/organizationHQ/organization'),
+      },
+      /* 组织机构管理 */
+      {
+        name: '企业三证审核（医学装备部）',
+        path: 'organizationZZ',
+        models: () => [import('../models/organizationZZ/organization.js')],
+        component: () => import('../routes/organizationZZ/organization')
       },
     ],
   },

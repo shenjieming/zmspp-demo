@@ -42,7 +42,7 @@ const ModalOrgInfo = ({
       if (auditStatus === 1) {
         alertProps.message = '审核中'
         // alertProps.description = `您的资料已提交，预计会在2个工作日内完成审核，审核通过后会短信通知至您手机，如果需要帮助，请联系客服人员：${CONSUMER_HOTLINE}`
-        alertProps.description = `您的资料已提交，请联系客服审核，客服热线：${CONSUMER_HOTLINE}`
+        alertProps.description = ''
       } else {
         alertProps.message = '审核拒绝'
         alertProps.description = reason

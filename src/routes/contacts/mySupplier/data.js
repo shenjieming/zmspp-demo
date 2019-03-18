@@ -3,8 +3,9 @@ import { Link } from 'dva/router'
 import CustmTabelInfo from '../../../components/CustmTabelInfo'
 import { getOption, segmentation } from '../../../utils'
 import { REGEXP_TELEPHONE } from '../../../utils/constant'
-import { Button } from 'antd'
-
+import { Button, Radio  } from 'antd'
+const RadioGroup = Radio.Group
+const radioProps =  [{ label: '开', value: 1 }, { label: '关', value: 0 }]
 const formItemLayout = {
   labelCol: { span: 6 },
   wrapperCol: { span: 16 },
@@ -12,7 +13,6 @@ const formItemLayout = {
 const noLabelLayout = {
   wrapperCol: { span: 22 },
 }
-
 const formItemData = [{
   layout: noLabelLayout,
   field: 'supplierStatus',
@@ -48,8 +48,7 @@ const formItemData = [{
     },
   },
 }]
-
-const columns = ({ editContact, relationChange }) => [{
+const columns = ({ editContact, relationChange, radioChange }) => [{
   title: '序号',
   dataIndex: 'order',
   className: 'aek-text-center',
@@ -92,14 +91,18 @@ const columns = ({ editContact, relationChange }) => [{
   title: '操作',
   dataIndex: 'operation',
   className: 'aek-text-center',
-  width: 150,
-  render: (text, { supplierOrgId, supplierStatus }) => (<span>
+  width: 220,
+  render: (text, { supplierOrgId, supplierStatus, editFlag }) => (<span>
     <Link
       to={`/contacts/mySupplier/detail/${supplierOrgId}?status=${supplierStatus}`}
     >查看</Link>
     <span className="ant-divider" />
     <a onClick={() => { relationChange(supplierOrgId, supplierStatus) }}>
       {`${supplierStatus - 1 ? '恢复' : '解除'}关系`}
+    </a>
+    <span className="ant-divider" />
+    <a onClick={() => { radioChange(supplierOrgId, editFlag) }}>
+      {`${editFlag - 1 ? '开启' : '关闭'}证件修改 `}
     </a>
   </span>),
 }]
