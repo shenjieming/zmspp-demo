@@ -28,6 +28,21 @@ const genColumns = ({ formType }) =>
       key: 'materialsSku',
     },
     {
+      title: '采购数量',
+      dataIndex: 'waitDeliverQty',
+      key: 'waitDeliverQty',
+      render: (text, row, index) => {
+        if (text) {
+          return (
+            <span>
+              {text}
+              {row.skuUnitText}
+            </span>
+          )
+        }
+      }
+    },
+    {
       title: '配送数量/验收数量',
       dataIndex: 'deliverQty',
       key: 'deliverQty',

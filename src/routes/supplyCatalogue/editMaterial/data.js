@@ -282,7 +282,7 @@ const formData = ({
       component: {
         name: 'RadioGroup',
         props: {
-          options: [{ label: '是', value: 0 }, { label: '否', value: 1 }],
+          options: [{ label: '是', value: 1 }, { label: '否', value: 0 }],
         },
       },
     },

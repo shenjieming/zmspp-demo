@@ -256,8 +256,8 @@ const Supplier = ({
             ],
           })(
             <Select defaultValue="3">
-              <Option value="1">资装办</Option>
-              <Option value="2">后勤</Option>
+              <Option value="1">医学装备部</Option>
+              <Option value="2">后勤保障部</Option>
               <Option value="3">全部</Option>
             </Select>
           )}

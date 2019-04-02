@@ -2,6 +2,7 @@ import React from 'react'
 import { Avatar, Upload } from 'antd'
 import { includes } from 'lodash'
 import Logo from '../../assets/lkc-org-logo.png'
+import PhotoWall from "../../components/PhotoWall";
 
 const leftData = ({ data, LogoProps }) => {
   const {
@@ -15,6 +16,7 @@ const leftData = ({ data, LogoProps }) => {
     legalPerson,
     arrayOrgRegAddr,
     registeredAddress,
+    orgLegalPersonUrls,
     logoUrl,
     businessScope,
   } = data
@@ -48,6 +50,15 @@ const leftData = ({ data, LogoProps }) => {
     {
       name: '法人',
       value: legalPerson,
+    },
+    {
+      name: '法人身份证',
+      exclude: !includes(['03'], orgTypeCode),
+      value: (
+        <span>
+          <PhotoWall urls={orgLegalPersonUrls} />
+        </span>
+      ),
     },
     {
       name: '机构注册地',

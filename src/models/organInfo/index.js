@@ -204,6 +204,13 @@ export default modelExtend({
     },
     // 编辑机构
     * editOrgDetail({ payload }, { call, put }) {
+      let str =  ''
+      if (payload.orgLegalPersonUrls.length) {
+        payload.orgLegalPersonUrls.forEach(item => {
+          str = str + item.url + ','
+        })
+        payload.orgLegalPersonUrls =  str.substring(0, str.length-1)
+      }
       const data = yield call(editOrgDetailData, payload)
       yield put({
         type: 'updateState',

@@ -129,12 +129,29 @@ const form = ({ orgDetail, addressList, asyncParentOrgList, parentGradeList, sec
     field: 'legalPerson',
     options: {
       initialValue: orgDetail.legalPerson,
+      rules: [{ required: true, message: '请输入' }],
     },
     col: 24,
     component: {
       name: 'Input',
       props: {
         placeholder: '输入法人姓名',
+      },
+    },
+  },
+  {
+    label: '法人身份证',
+    layout: formItemLayout,
+    exclude: !(orgDetail.orgTypeCode === '03'),
+    field: 'orgLegalPersonUrls',
+    options: {
+      rules: [{ required: true, message: '必填项不能为空' }],
+      imgSrc: orgDetail.orgLegalPersonUrls,
+    },
+    component: {
+      name: 'UploadButton',
+      props: {
+        placeholder: '请输入',
       },
     },
   },

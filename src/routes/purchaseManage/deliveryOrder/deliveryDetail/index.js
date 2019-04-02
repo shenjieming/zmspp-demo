@@ -156,10 +156,12 @@ const DeliveryDetail = ({
             columns: genColumns({ formType, accuracy }),
             bordered: true,
             footer: () => (
-              <span>
-                收货地址：{item.receiveAddress} {item.receiveDeptName} {item.receiveName}{' '}
-                {item.receivePhone}
-              </span>
+              <Row>
+                <Col span={8}>使用科室：{item.receiveDeptName}</Col>
+                <Col span={8}>收货人：{item.receiveName}</Col>
+                <Col span={8}>联系方式：{item.receivePhone}</Col>
+                <Col span={8}>收货库房：{item.receiveAddress}</Col>
+              </Row>
             ),
             dataSource: item.items,
             pagination: false,
