@@ -23,7 +23,7 @@ const propTypes = {
 const modalTitle = {
   editPersonInfo: '编辑个人资料',
   rePassword: '修改密码',
-  reMail: '更换邮箱',
+  // reMail: '更换邮箱',
   mailForm: '绑定邮箱',
   rePhone: '更换手机号',
 }

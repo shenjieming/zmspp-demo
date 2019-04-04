@@ -160,25 +160,25 @@ const mailForm = ({ modalInitValue: { userName, email }, other: { getCountTime }
       },
     },
   },
-  {
-    label: '邮箱',
-    layout: formItemLayout,
-    field: 'email',
-    options: {
-      initialValue: email,
-      rules: [
-        { required: true, message: '必填项不能为空' },
-        { type: 'email', message: '请输入正确的邮箱' },
-        { validator: asyncEmail },
-      ],
-    },
-    component: {
-      name: 'Input',
-      props: {
-        placeholder: '请输入',
-      },
-    },
-  },
+  // {
+  //   label: '邮箱',
+  //   layout: formItemLayout,
+  //   field: 'email',
+  //   options: {
+  //     initialValue: email,
+  //     rules: [
+  //       { required: true, message: '必填项不能为空' },
+  //       { type: 'email', message: '请输入正确的邮箱' },
+  //       { validator: asyncEmail },
+  //     ],
+  //   },
+  //   component: {
+  //     name: 'Input',
+  //     props: {
+  //       placeholder: '请输入',
+  //     },
+  //   },
+  // },
   {
     label: '验证码',
     layout: formItemLayout,

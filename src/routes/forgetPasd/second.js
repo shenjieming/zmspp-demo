@@ -33,18 +33,20 @@ const Second = ({
           通过验证手机
         </Radio>,
       )
-      option.push(
-        <Radio key="1" value="1" style={radioStyle}>
-          通过验证邮箱
-        </Radio>,
-      )
-    } else if (userInfo.email) {
-      option.push(
-        <Radio key="1" value="1" style={radioStyle}>
-          通过验证邮箱
-        </Radio>,
-      )
-    } else if (userInfo.mobile) {
+      // option.push(
+      //   <Radio key="1" value="1" style={radioStyle}>
+      //     通过验证邮箱
+      //   </Radio>,
+      // )
+    }
+    // else if (userInfo.email) {
+    //   option.push(
+    //     <Radio key="1" value="1" style={radioStyle}>
+    //       通过验证邮箱
+    //     </Radio>,
+    //   )
+    // }
+    else if (userInfo.mobile) {
       option.push(
         <Radio key="0" value="0" style={radioStyle}>
           通过验证手机
@@ -129,7 +131,7 @@ const Second = ({
       <FormItem {...FORM_ITEM_LAYOUT} label="真实姓名">
         <span className="ant-form-text">{userInfo ? userInfo.realName : ''}</span>
       </FormItem>
-      <FormItem {...FORM_ITEM_LAYOUT} wrapperCol={{ span: 16 }} label={selectType === 0 ? '已验证手机' : '已验证邮箱'}>
+      <FormItem {...FORM_ITEM_LAYOUT} wrapperCol={{ span: 16 }} label={'已验证手机'}>
         <span className="ant-form-text">
           {selectType === 0 ? userInfo.mobile : userInfo.email}
           <span style={{ marginLeft: '15px' }}>

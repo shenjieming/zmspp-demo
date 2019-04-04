@@ -380,32 +380,32 @@ const CreditManage = ({ creditManage, loading, addressList, form: { validateFiel
         },
       },
     },
-    {
-      label: '电子邮件',
-      layout: FORM_ITEM_LAYOUT,
-      field: 'email',
-      view: viewModel,
-      options: {
-        initialValue: detail.email,
-        rules: [
-          {
-            required: true,
-            message: '请填写有效邮箱',
-          },
-          {
-            pattern: REGEXP_EMAIL,
-            message: '邮箱不正确',
-          },
-        ],
-      },
-      component: {
-        name: 'Input',
-        props: {
-          placeholder: '请填写有效邮箱',
-          style: { maxWidth: InputMaxWidth },
-        },
-      },
-    },
+    // {
+    //   label: '电子邮件',
+    //   layout: FORM_ITEM_LAYOUT,
+    //   field: 'email',
+    //   view: viewModel,
+    //   options: {
+    //     initialValue: detail.email,
+    //     rules: [
+    //       {
+    //         required: true,
+    //         message: '请填写有效邮箱',
+    //       },
+    //       {
+    //         pattern: REGEXP_EMAIL,
+    //         message: '邮箱不正确',
+    //       },
+    //     ],
+    //   },
+    //   component: {
+    //     name: 'Input',
+    //     props: {
+    //       placeholder: '请填写有效邮箱',
+    //       style: { maxWidth: InputMaxWidth },
+    //     },
+    //   },
+    // },
     {
       label: '公司财务负责人',
       layout: FORM_ITEM_LAYOUT,

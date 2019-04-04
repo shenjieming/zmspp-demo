@@ -116,44 +116,44 @@ function PersonInfo({ personInfo, loading }) {
         </div>
       </div>
     ),
-    '邮箱|fill': (
-      <div>
-        <div>
-          {email || '无'}
-          {email ? (
-            <a
-              className="aek-ml10"
-              onClick={() => {
-                toAction({
-                  modalType: 'reMail',
-                  modalVisible: true,
-                  modalInitValue: {
-                    userName,
-                  },
-                })
-              }}
-            >
-              更换邮箱
-            </a>
-          ) : (
-            <a
-              className="aek-ml10"
-              onClick={() => {
-                toAction({
-                  modalType: 'mailForm',
-                  modalVisible: true,
-                  modalInitValue: {
-                    userName,
-                  },
-                })
-              }}
-            >
-              绑定邮箱
-            </a>
-          )}
-        </div>
-      </div>
-    ),
+    // '邮箱|fill': (
+    //   <div>
+    //     <div>
+    //       {email || '无'}
+    //       {email ? (
+    //         <a
+    //           className="aek-ml10"
+    //           onClick={() => {
+    //             toAction({
+    //               modalType: 'reMail',
+    //               modalVisible: true,
+    //               modalInitValue: {
+    //                 userName,
+    //               },
+    //             })
+    //           }}
+    //         >
+    //           更换邮箱
+    //         </a>
+    //       ) : (
+    //         <a
+    //           className="aek-ml10"
+    //           onClick={() => {
+    //             toAction({
+    //               modalType: 'mailForm',
+    //               modalVisible: true,
+    //               modalInitValue: {
+    //                 userName,
+    //               },
+    //             })
+    //           }}
+    //         >
+    //           绑定邮箱
+    //         </a>
+    //       )}
+    //     </div>
+    //   </div>
+    // ),
     '手机|fill': (
       <div>
         <div>

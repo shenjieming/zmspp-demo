@@ -332,27 +332,27 @@ const form = ({ orgDetail, addressList, asyncParentOrgList, parentGradeList, sec
       },
     },
   },
-  {
-    label: '邮箱',
-    layout: formItemLayout,
-    field: 'email',
-    options: {
-      initialValue: orgDetail.email,
-      rules: [
-        {
-          pattern: REGEXP_EMAIL,
-          message: '格式错误',
-        },
-      ],
-    },
-    col: 24,
-    component: {
-      name: 'Input',
-      props: {
-        placeholder: '输入邮箱',
-      },
-    },
-  },
+  // {
+  //   label: '邮箱',
+  //   layout: formItemLayout,
+  //   field: 'email',
+  //   options: {
+  //     initialValue: orgDetail.email,
+  //     rules: [
+  //       {
+  //         pattern: REGEXP_EMAIL,
+  //         message: '格式错误',
+  //       },
+  //     ],
+  //   },
+  //   col: 24,
+  //   component: {
+  //     name: 'Input',
+  //     props: {
+  //       placeholder: '输入邮箱',
+  //     },
+  //   },
+  // },
 ]
 export default {
   form,

@@ -210,11 +210,11 @@ const Tab = ({
       dataIndex: 'mobile',
       key: 'mobile',
     },
-    {
-      title: '邮箱',
-      dataIndex: 'email',
-      key: 'email',
-    },
+    // {
+    //   title: '邮箱',
+    //   dataIndex: 'email',
+    //   key: 'email',
+    // },
     {
       title: '出生日期',
       dataIndex: 'birthday',

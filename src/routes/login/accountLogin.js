@@ -44,7 +44,7 @@ const AccountLogin = ({
       })(
         <Input
           size="large"
-          placeholder="用户名/邮箱"
+          placeholder="用户名"
           prefix={<Icon type="user" />}
           suffix={
             getFieldValue(USERNAME) && (

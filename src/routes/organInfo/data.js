@@ -116,7 +116,7 @@ const rightData = ({ data }) => {
     '联系人手机号|fill': mobile,
     '固话|fill': phone,
     '传真|fill': fax,
-    '邮箱|fill': email,
+    // '邮箱|fill': email,
   }
 }
 

@@ -57,7 +57,7 @@ const data = (currentOrgDetail) => {
       手机号: mobile,
       固话: phone,
       传真: fax,
-      邮箱: email,
+      // 邮箱: email,
       注册地址: `${regArr && regArr.slice(3).join('')}  ${registeredAddress || ''}`,
       办公地址: `${officeArr && officeArr.slice(3).join('')}  ${officeAddress || ''}`,
       经营范围: <span className="aek-word-break">{businessScope}</span>,
@@ -79,7 +79,7 @@ const data = (currentOrgDetail) => {
       手机号: mobile,
       固话: phone,
       传真: fax,
-      邮箱: email,
+      // 邮箱: email,
       注册地址: `${regArr && regArr.slice(3).join('')}  ${registeredAddress || ''}`,
       办公地址: `${officeArr && officeArr.slice(3).join('')}  ${officeAddress || ''}`,
       诊疗科目: <span className="aek-word-break">{businessScope}</span>,
@@ -99,7 +99,7 @@ const data = (currentOrgDetail) => {
       联系负责人: principal,
       手机号: mobile,
       固话: phone,
-      邮箱: email,
+      // 邮箱: email,
       办公地址: `${officeArr && officeArr.slice(3).join('')}  ${officeAddress || ''}`,
     }
     rightData = {

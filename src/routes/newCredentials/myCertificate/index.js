@@ -226,7 +226,7 @@ function MyCertificate({
       rightButton = (<div style={{ float: 'right' }}>
         <a
           onClick={() => {
-            window.open(`${EXCEL_DOWNLOAD}/word/template/承诺书模板.doc`)
+            window.open(`${EXCEL_DOWNLOAD}/承诺书模板.doc`)
           }}
         >下载承诺书模板</a>
         <Button

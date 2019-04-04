@@ -57,7 +57,7 @@ const PersonDetail = ({ personAdminDetail, routes, dispatch, effects }) => {
     '用户名|fill': userName,
     '头像|fill': <Avatar size="large" src={imageUrl} />,
     '手机|fill': mobile,
-    '邮箱|fill': email,
+    // '邮箱|fill': email,
     '真实姓名|fill': realName,
     '出生日期|fill': birthday,
     '性别|fill': genderText,

@@ -75,7 +75,7 @@ function IndexPage({ personDetail, loading }) {
     性别: gender ? '男' : '女',
     出生日期: birthday,
     手机号: mobile,
-    邮箱: email,
+    // 邮箱: email,
     所属机构: belongOrg,
   }
   const rightData = {

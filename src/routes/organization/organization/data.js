@@ -223,21 +223,21 @@ const form = ({
         },
       },
     },
-    {
-      label: '邮箱',
-      layout: formItemLayout,
-      field: 'email',
-      options: {
-        rules: [{ type: 'email', message: '格式错误' }],
-      },
-      col: 24,
-      component: {
-        name: 'Input',
-        props: {
-          placeholder: '输入邮箱',
-        },
-      },
-    },
+    // {
+    //   label: '邮箱',
+    //   layout: formItemLayout,
+    //   field: 'email',
+    //   options: {
+    //     rules: [{ type: 'email', message: '格式错误' }],
+    //   },
+    //   col: 24,
+    //   component: {
+    //     name: 'Input',
+    //     props: {
+    //       placeholder: '输入邮箱',
+    //     },
+    //   },
+    // },
     {
       label: '注册地址',
       layout: formItemLayout,

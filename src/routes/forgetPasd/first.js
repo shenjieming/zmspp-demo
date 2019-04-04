@@ -48,7 +48,7 @@ const First = ({ imageCaptchaUrl, dispatch, form: { getFieldDecorator, validateF
               message: '请输入用户名',
             },
           ],
-        })(<Input className="ant-input" placeholder="登录名/邮箱" />)}
+        })(<Input className="ant-input" placeholder="登录名" />)}
       </FormItem>
       <FormItem {...FORM_ITEM_LAYOUT} label="验证码">
         {getFieldDecorator('imageCaptcha', {
