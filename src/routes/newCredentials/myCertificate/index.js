@@ -1,4 +1,4 @@
-import React from 'react'
+  import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { Button, Tabs, Modal, Alert, message } from 'antd'
@@ -379,6 +379,7 @@ function MyCertificate({
       const { standardCertificateId, platformAuthStatus, certificateType } = registDetail
 
       const getView = () => {
+        console.log(status)
         if (status === 1) {
           if (standardCertificateId) {
             return true
@@ -388,13 +389,15 @@ function MyCertificate({
           if (Number(certificateType) < 0) {
             return false
           }
-
-          if (standardCertificateId || platformAuthStatus === 2) {
+          // 2019/4/3 修改
+        // || platformAuthStatus === 2/
+          if (standardCertificateId) {
             return true
           }
           return false
         } else if (status === 3) {
-          if (standardCertificateId || platformAuthStatus === 2) {
+        // || platformAuthStatus === 2
+          if (standardCertificateId ) {
             return true
           }
           return false
@@ -403,7 +406,7 @@ function MyCertificate({
       }
 
       const flag = getView()
-
+      console.log(flag, data)
       if (!flag) {
         if (data.validDateLongFlag) {
           reqData.validDateStart = data.validDateEnd

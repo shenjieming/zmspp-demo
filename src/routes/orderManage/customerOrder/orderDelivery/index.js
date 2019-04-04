@@ -646,21 +646,23 @@ class OrderDelivery extends React.Component {
                     message: '最多输入30位',
                   },
                   {
-                    required: row.deliverQty,
+                    required: row.deliverQty || sameBatch,
                     message: '请输入批次'
                   },
                   {  validator: (rule, value, cb) => {
                     if (value) {
-                      let flag = false
-                      orderBean.data[row.serial].items.forEach((item, dindex) => {
-                        if (item.batchNo === value && index !== dindex && item.pscId === row.pscId) {
-                          flag = true
+                      if (!sameBatch) {
+                        let flag = false
+                        orderBean.data[row.serial].items.forEach((item, dindex) => {
+                          if (item.batchNo === value && index !== dindex && item.pscId === row.pscId) {
+                            flag = true
+                          }
+                        })
+                        if (flag) {
+                          cb('有相同批次号！')
+                        } else {
+                          cb ()
                         }
-                      })
-                      if (flag) {
-                        cb('有相同批次号！')
-                      } else {
-                        cb ()
                       }
                     } else {
                       cb ()
