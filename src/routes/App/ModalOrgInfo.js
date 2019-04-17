@@ -121,18 +121,18 @@ const ModalOrgInfo = ({
         }
         const mapperArr = certificateArr
           .filter(({ certificateType }) => mapper.includes(certificateType - 0))
-        if (orgType === typeId.supplier) {
-          const count = mapperArr
-            .filter(({ certificateType }) => [2, 4, 6].includes(certificateType - 0))
-            .reduce((a, b) => a + intactItem(b), 0)
-          if (!count) {
-            Modal.error({
-              title: '请完善信息',
-              content: '医疗器械经营许可证、医疗器械经营备案证、医疗器械生产许可证，三个非必填项至少要完整填写一项',
-            })
-            return null
-          }
-        }
+        // if (orgType === typeId.supplier) {
+        //   const count = mapperArr
+        //     .filter(({ certificateType }) => [2, 4, 6].includes(certificateType - 0))
+        //     .reduce((a, b) => a + intactItem(b), 0)
+        //   if (!count) {
+        //     Modal.error({
+        //       title: '请完善信息',
+        //       content: '医疗器械经营许可证、医疗器械经营备案证、医疗器械生产许可证，三个非必填项至少要完整填写一项',
+        //     })
+        //     return null
+        //   }
+        // }
         basicReq.data = mapperArr.filter(_ => intactItem(_))
         toAction(basicReq, 'complementInfo').then(() => {
           animateScroll.scrollToTop({

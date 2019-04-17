@@ -663,6 +663,8 @@ class OrderDelivery extends React.Component {
                         } else {
                           cb ()
                         }
+                      } else {
+                        cb()
                       }
                     } else {
                       cb ()

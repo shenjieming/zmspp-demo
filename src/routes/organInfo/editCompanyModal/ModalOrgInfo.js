@@ -107,23 +107,23 @@ const ModalOrgInfo = ({
           })
         }
         // 过滤出提交的证件
-        const mapperArr = certificateArr.filter(({ certificateType }) =>
-          mapper.includes(certificateType - 0),
-        )
-        // 证件完善个数判断
-        if (['03', '04', '07'].includes(orgType)) {
-          const count = mapperArr
-            .filter(({ certificateType }) => [2, 4, 6].includes(certificateType - 0))
-            .reduce((a, b) => a + intactItem(b), 0)
-          if (!count && handleType) {
-            Modal.error({
-              title: '请完善信息',
-              content:
-                '医疗器械经营许可证、医疗器械生产许可证、医疗器械经营备案证，三个非必填项至少要完整填写一项',
-            })
-            return null
-          }
-        }
+        // const mapperArr = certificateArr.filter(({ certificateType }) =>
+        //   mapper.includes(certificateType - 0),
+        // )
+        // // 证件完善个数判断
+        // if (['03', '04', '07'].includes(orgType)) {
+        //   const count = mapperArr
+        //     .filter(({ certificateType }) => [2, 4, 6].includes(certificateType - 0))
+        //     .reduce((a, b) => a + intactItem(b), 0)
+        //   if (!count && handleType) {
+        //     Modal.error({
+        //       title: '请完善信息',
+        //       content:
+        //         '医疗器械经营许可证、医疗器械生产许可证、医疗器械经营备案证，三个非必填项至少要完整填写一项',
+        //     })
+        //     return null
+        //   }
+        // }
         basicReq.data = certificateArr.filter(_ => intactItem(_))
         for (const obj of basicReq.data) {
           for (const oldObj of certificates) {
