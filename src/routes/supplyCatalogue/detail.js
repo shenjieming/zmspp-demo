@@ -287,6 +287,7 @@ function SupplyCatalogueDetail({
 
   // tabs页切换
   const tabsChange = (value) => {
+    console.log(value)
     if (value && !Array.isArray(value) && typeof value === 'object') {
       return
     }
@@ -930,6 +931,16 @@ function SupplyCatalogueDetail({
           <Breadcrumb routes={routes} />
         </div>
         <div style={{ float: 'right'}}>
+          {(tabIndex == '1') ? (<Button type="primary" style={{marginBottom: '10px'}}
+                                        onClick={() => {
+                                          dispatchAction({
+                                            type: 'exportTable',
+                                            payload: {
+                                              orgId: 'CCB2F7BE19354786B9466CB7837274AB'
+                                            }
+                                          })
+                                        }}
+          >导出</Button>): ('') }
           {(tabIndex !== '4' && tabIndex !== '6' && tabIndex !== '1') ? (
             <Dropdown overlay={menu()} disabled={selectedRowKeys.length === 0} trigger={['click']}>
               <Button>

@@ -1,5 +1,5 @@
 import { generateRequest } from '../../utils/'
-import { mockURL, baseURL, rapMockURL } from '../../utils/config'
+import { mockURL, baseURL, rapMockURL,exportUrl } from '../../utils/config'
 // const rapMockURL = mockURL
 export default {
   // 字典表
@@ -42,6 +42,10 @@ export default {
   allTableData: generateRequest(`${baseURL}/supply/catalog/review/all`, 'post'),
   // 使用中
   useTableData: generateRequest(`${baseURL}/supply/catalog/use/status/enable`, 'post'),
+  // 使用中导出
+  useTableDataExport: `${exportUrl}/supply/catalog/use/status/enable/export`,
+  // 获取用户菜单
+  getMenuData: generateRequest(`${baseURL}/menu/own`, 'post'),
   // 待审核
   pendingTableData: generateRequest(`${baseURL}/supply/catalog/review/status/pending-audit`, 'post'),
   // 待推送

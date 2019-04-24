@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import { Document, Page } from 'react-pdf'
+import { Document, Page } from 'react-pdf'
 import { Spin } from 'antd'
 import Styles from './index.less'
 
@@ -45,26 +45,26 @@ class PDF extends React.Component {
       }
       return pages
     }
-    // return (
-    //   <div className={`${Styles['aek-pdf']}`}>
-    //     <Spin
-    //       spinning={loading}
-    //       size="large"
-    //       style={{
-    //         height: '100%',
-    //         minHeight: '800px',
-    //       }}
-    //     >
-    //       <Document
-    //         file={pdfUrl}
-    //         onLoadSuccess={this.onDocumentLoad}
-    //         loading=""
-    //       >
-    //         {getPrintPage()}
-    //       </Document>
-    //     </Spin>
-    //   </div>
-    // )
+    return (
+      <div className={`${Styles['aek-pdf']}`}>
+        <Spin
+          spinning={loading}
+          size="large"
+          style={{
+            height: '100%',
+            minHeight: '800px',
+          }}
+        >
+          <Document
+            file={pdfUrl}
+            onLoadSuccess={this.onDocumentLoad}
+            loading=""
+          >
+            {getPrintPage()}
+          </Document>
+        </Spin>
+      </div>
+    )
   }
 }
 

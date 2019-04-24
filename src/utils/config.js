@@ -9,6 +9,7 @@ let config = {
   footerText: '',
   logoText: '',
   publicPath: './',
+  exportUrl: 'http://192.168.8.34:9003/aek-mspp',
   baseURL: '/aek-mspp',
   mockURL: '/api/mock',
   rapMockURL: '/api/rapMock',

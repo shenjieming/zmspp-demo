@@ -1,5 +1,6 @@
 import { message } from 'antd'
 import pathToRegexp from 'path-to-regexp'
+import { exportUrl } from '../../utils/config'
 import {
   customerDetailData,
   catalogDisList,
@@ -17,6 +18,7 @@ import {
   registSubmitData, // 保存单个或者批量保存注册证
   delSkuBarcodeData, // 删除条码
   useTableData, // 使用中
+  useTableDataExport,
   pendingTableData, // 待审核
   pushTableData, // 待推送
   refusedTableData, // 已拒绝
@@ -31,6 +33,7 @@ import {
   pendingPushDel, // 待推送删除
   getCertificateList,
   allTableData,
+  getMenuData,
   manageType,
 } from '../../services/supplyCatalogue/detail'
 import dvaModelExtend from '../../utils/modelExtend'
@@ -624,7 +627,11 @@ export default dvaModelExtend({
         certificateOptionList: a,
       })
     },
-
+    // 表格导出
+    * exportTable({ payload }, { call, update}) {
+      const { content } = yield call(getMenuData, payload)
+      window.open(useTableDataExport + '?=orgId=' + content.currentOrgId)
+    },
     // 获取条码列表
     * getCodeBarList({ payload }, { call, put }) {
       yield put({
