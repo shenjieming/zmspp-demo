@@ -29,6 +29,20 @@ const routesTree = [
     models: () => [import('../models/H5/confirmOrder')],
     component: () => import('../routes/H5/confirmOrder'),
   },
+  /* 登录功能页 */
+  {
+    name: '登录',
+    path: 'login',
+    models: () => [import('../models/login.js')],
+    component: () => import('../routes/login/index.js'),
+  },
+  /* 注册功能页 */
+  {
+    name: '注册',
+    path: 'regist',
+    models: () => [import('../models/regist.js')],
+    component: () => import('../routes/regist/index.js'),
+  },
   /* 基础配置 */
   {
     path: 'base',
@@ -244,10 +258,34 @@ const routesTree = [
         component: () => import('../routes/newCredentials/certificateAudit'),
       },
       {
+        name: '证件审核（后勤装备部）',
+        path: 'newCertificateAuditHQ',
+        models: () => [import('../models/newCredentials/certificateAuditHQ')],
+        component: () => import('../routes/newCredentials/certificateAuditHQ'),
+      },
+      {
+        name: '证件审核（医学装备部）',
+        path: 'newCertificateAuditZZ',
+        models: () => [import('../models/newCredentials/certificateAuditZZ')],
+        component: () => import('../routes/newCredentials/certificateAuditZZ'),
+      },
+      {
         name: '二次审核',
         path: 'recheckCertificateAudit',
         models: () => [import('../models/newCredentials/certificateAuditRecheck')],
         component: () => import('../routes/newCredentials/certificateAuditRecheck'),
+      },
+      {
+        name: '二次审核（后勤装备部）',
+        path: 'recheckCertificateAuditHQ',
+        models: () => [import('../models/newCredentials/certificateAuditRecheckHQ')],
+        component: () => import('../routes/newCredentials/certificateAuditRecheckHQ'),
+      },
+      {
+        name: '二次审核（医学装备部）',
+        path: 'recheckCertificateAuditZZ',
+        models: () => [import('../models/newCredentials/certificateAuditRecheckZZ')],
+        component: () => import('../routes/newCredentials/certificateAuditRecheckZZ'),
       },
       /* 组织机构管理 */
       {
@@ -445,20 +483,6 @@ const routesTree = [
     path: 'menuManage',
     models: () => [import('../models/menuManage.js')],
     component: () => import('../routes/menuManage/index.js'),
-  },
-  /* 登录功能页 */
-  {
-    name: '登录',
-    path: 'login',
-    models: () => [import('../models/login.js')],
-    component: () => import('../routes/login/index.js'),
-  },
-  /* 注册功能页 */
-  {
-    name: '注册',
-    path: 'regist',
-    models: () => [import('../models/regist.js')],
-    component: () => import('../routes/regist/index.js'),
   },
   /* 注册使用手册 */
   {

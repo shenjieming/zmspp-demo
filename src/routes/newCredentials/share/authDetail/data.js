@@ -98,29 +98,16 @@ const formData = (
   exclude: authDetail.factoryAuthFlag,
   view: modalTitle === '查看授权书',
   options: {
-    initialValue: authDetail.superiorAuthFactoryName && authDetail.superiorAuthFactoryId ?
-      { label: authDetail.superiorAuthFactoryName, key: `${authDetail.superiorAuthFactoryId}` } : undefined,
+    initialValue: authDetail.superiorAuthFactoryName,
     rules: [{
       required: true,
       message: '请输入上级授权单位',
     }],
   },
-  viewRender() {
-    return authDetail.superiorAuthFactoryName
-  },
   component: {
-    name: 'Select',
+    name: 'Input',
     props: {
-      disabled: modalTitle === '换证',
       placeholder: '请输入',
-      showSearch: true,
-      defaultActiveFirstOption: false,
-      filterOption: false,
-      notFoundContent: '',
-      allowClear: true,
-      children: getOption(authTypeInfoOptions, { idStr: 'supplierId', nameStr: 'supplierName' }),
-      labelInValue: true,
-      onSearch: produceOptionsSearch,
     },
   },
 }, {

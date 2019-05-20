@@ -630,7 +630,7 @@ export default dvaModelExtend({
     // 表格导出
     * exportTable({ payload }, { call, update}) {
       const { content } = yield call(getMenuData, payload)
-      window.open(useTableDataExport + '?=orgId=' + content.currentOrgId)
+      window.open(useTableDataExport + '?orgId=' + content.currentOrgId)
     },
     // 获取条码列表
     * getCodeBarList({ payload }, { call, put }) {

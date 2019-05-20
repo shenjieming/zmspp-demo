@@ -17,6 +17,7 @@ function Edit({
                 onSearchOrg,
                 secondGradeList,
                 parentGradeList,
+                orgLegalPersonUrls,
                 form: {validateFields, resetFields},
               }) {
   const { dispatchAction } = getBasicFn({ namespace, loading })
@@ -35,6 +36,8 @@ function Edit({
     onOk() {
       validateFields((error, values) => {
         if (!error) {
+          console.log(values)
+          // orgLegalPersonUrls
           dispatch({
             type: 'organInfo/editOrgDetail',
             payload: {

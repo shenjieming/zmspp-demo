@@ -187,44 +187,121 @@ const PushDetail = ({ pushDetail, loading }) => {
     ],
     onSearch: searchHandlder,
   }
-  const tableColumns = [
-    {
-      title: '序号',
-      key: 'index',
-      className: 'aek-text-center',
-      width: 50,
-      render: (value, row, index) => index + 1,
-    },
-    {
-      title: '注册证',
-      dataIndex: 'certificateNo',
-      render(text, row) {
-        return (
-          <span>
-            <div>{text}</div>
-            <div className="aek-gray">{row.productName}</div>
-          </span>
-        )
-      },
-    },
-    {
-      title: '厂家',
-      dataIndex: 'produceFactoryName',
-    },
-    {
-      title: '推送时间',
-      dataIndex: 'lastEditTime',
-    },
-    {
-      title: '操作',
-      key: 'oprate',
-      render: operateRenderArr[currentIndex],
-    },
-  ]
+  const tableColumns = (id)=> {
+    if (currentIndex === '2') {
+      return [
+          {
+            title: '序号',
+            key: 'index',
+            className: 'aek-text-center',
+            width: 50,
+            render: (value, row, index) => index + 1,
+          },
+          {
+            title: '注册证',
+            dataIndex: 'certificateNo',
+            render(text, row) {
+              return (
+                <span>
+                  <div>{text}</div>
+                  <div className="aek-gray">{row.productName}</div>
+                </span>
+              )
+            },
+          },
+          {
+            title: '厂家',
+            dataIndex: 'produceFactoryName',
+          },
+          {
+          title: '审批人',
+          dataIndex: 'lastEditName',
+          },
+          {
+            title: '推送时间',
+            dataIndex: 'lastEditTime',
+          },
+          {
+            title: '操作',
+            key: 'oprate',
+            render: operateRenderArr[currentIndex],
+          },
+      ]
+    } else {
+      return [
+          {
+            title: '序号',
+            key: 'index',
+            className: 'aek-text-center',
+            width: 50,
+            render: (value, row, index) => index + 1,
+          },
+          {
+            title: '注册证',
+            dataIndex: 'certificateNo',
+            render(text, row) {
+              return (
+                <span>
+                  <div>{text}</div>
+                  <div className="aek-gray">{row.productName}</div>
+                </span>
+              )
+            },
+          },
+          {
+            title: '厂家',
+            dataIndex: 'produceFactoryName',
+          },
+          {
+            title: '推送时间',
+            dataIndex: 'lastEditTime',
+          },
+          {
+            title: '操作',
+            key: 'oprate',
+            render: operateRenderArr[currentIndex],
+          }
+      ]
+    }
+  }
+  // const tableColumns = [
+  //   {
+  //     title: '序号',
+  //     key: 'index',
+  //     className: 'aek-text-center',
+  //     width: 50,
+  //     render: (value, row, index) => index + 1,
+  //   },
+  //   {
+  //     title: '注册证',
+  //     dataIndex: 'certificateNo',
+  //     render(text, row) {
+  //       return (
+  //         <span>
+  //           <div>{text}</div>
+  //           <div className="aek-gray">{row.productName}</div>
+  //         </span>
+  //       )
+  //     },
+  //   },
+  //   {
+  //     title: '厂家',
+  //     dataIndex: 'produceFactoryName',
+  //   },
+  //   {
+  //     title: '推送时间',
+  //     dataIndex: 'lastEditTime',
+  //   },
+  //   {
+  //     title: '操作',
+  //     key: 'oprate',
+  //     render: operateRenderArr[currentIndex],
+  //   },
+  // ]
   const tableProps = {
     bordered: true,
     rowKey: 'id',
-    columns: tableColumns,
+    columns: tableColumns(),
     pagination: getPagination(pageChange, pagination),
     dataSource: data,
   }

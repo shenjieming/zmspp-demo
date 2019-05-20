@@ -1167,10 +1167,6 @@ function MyCertificate({
         reqData.produceFactoryId = data.produceFactoryName.key
         reqData.produceFactoryName = data.produceFactoryName.label
       }
-      if (data.superiorAuthFactoryName) {
-        reqData.superiorAuthFactoryId = data.superiorAuthFactoryName.key
-        reqData.superiorAuthFactoryName = data.superiorAuthFactoryName.label
-      }
       if (data.factoryAuthFlag) {
         reqData.factoryAuthFlag = 1
       } else {

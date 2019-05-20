@@ -41,6 +41,7 @@ const initState = {
   auditStatus: undefined, // 拒绝状态
   parentOrgList: [],
   parentGradeList: [],
+  orgLegalPersonUrls: '',
   secondGradeList: [],
   registerAddressChanged: false,
   workAddressChanged: false,
@@ -204,14 +205,15 @@ export default modelExtend({
     },
     // 编辑机构
     * editOrgDetail({ payload }, { call, put }) {
+      console.log(payload)
       let str =  ''
       if (payload.orgLegalPersonUrls.length) {
         payload.orgLegalPersonUrls.forEach(item => {
-          str = str + item.url + ','
+          str = str + item.value + ','
         })
         payload.orgLegalPersonUrls =  str.substring(0, str.length-1)
       }
-      const data = yield call(editOrgDetailData, payload)
+      yield call(editOrgDetailData, payload)
       yield put({
         type: 'updateState',
         payload: {
