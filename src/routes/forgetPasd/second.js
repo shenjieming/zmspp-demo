@@ -229,7 +229,7 @@ const Second = ({
         }}
       >
         <p style={{ padding: '40px 0' }} className="aek-text-center">
-          如果需要帮助，请联系客服人员：{CONSUMER_HOTLINE}
+          如果需要帮助，请联系服务人员：{CONSUMER_HOTLINE}
         </p>
       </Modal>
     </Form>

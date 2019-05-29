@@ -403,7 +403,7 @@ export default dvaModelExtend({
       const { searchData, tabIndex } = yield select(({ newMyCertificate }) => newMyCertificate)
       const { content: { status, certificateNo } } = yield call(setRegistReplaceData, payload)
       if (status === 0) {
-        message.success('已提交至客服进行审核，请耐心等待，如果紧急请联系客服：400-052-5256')
+        message.success('已提交至客服进行审核，请耐心等待，如果紧急请联系客服：18767227225，13732248478')
         let url = 'getRegistList'
         if (tabIndex === '1') {
           url = 'getCertificateList'

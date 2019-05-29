@@ -115,7 +115,7 @@ export default modelExtend({
           title: '提交失败，请重试',
           content: (
             <span>
-              提交时出现了一些问题，请检查网络是否通畅，如果需要帮助，请联系客服
+              提交时出现了一些问题，请检查网络是否通畅，如果需要帮助，请联系服务人员
               <a href={`tel://${CONSUMER_HOTLINE}`}>{CONSUMER_HOTLINE}</a>
             </span>
           ),

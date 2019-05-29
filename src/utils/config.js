@@ -29,7 +29,7 @@ let config = {
   // 首页
   homePage: '/dashboard',
   // 客服热线
-  CONSUMER_HOTLINE: '4000525256',
+  CONSUMER_HOTLINE: '18767227225，13732248478',
   // 客服QQ
   CONSUMER_QQ: 2777618728,
   // 系统代号
