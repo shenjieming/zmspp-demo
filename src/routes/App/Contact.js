@@ -6,44 +6,35 @@ import telePhone from '../../assets/telephone.svg'
 import wechat from '../../assets/weChat.svg'
 import wechatQR from '../../assets/wechat-qrcode.png'
 import { CONSUMER_HOTLINE, CONSUMER_QQ } from '../../utils/config'
+import doc1 from '../gyszz.pdf'
+import doc2 from '../khtz.pdf'
+import doc3 from '../czscyy.docx'
+import doc4 from '../ptczsc.pdf'
 import styles from './Contact.less'
 
 function Contact({ className }) {
   return (
-    <div className={className}>
-      {/*<div className={`${styles.phone}`}>*/}
-        {/*/!*<div><span className="aek-text-bold">客服热线:</span>(工作日9:00~17:30)</div>*!/*/}
-        {/*/!*<div><span className={styles.hotLine}>{CONSUMER_HOTLINE}</span><span>(QQ同号)</span></div>*!/*/}
-      {/*</div>*/}
-      {/*<Row>*/}
-        {/*<Col span="8" style={{ textAlign: 'left' }}>*/}
-          {/*<Popover content={`客服电话: ${CONSUMER_HOTLINE}`} arrowPointAtCenter>*/}
-            {/*<Avatar src={telePhone} />*/}
-          {/*</Popover>*/}
-        {/*</Col>*/}
-        {/*<Col span="8" className="aek-text-center">*/}
-          {/*<Avatar*/}
-            {/*style={{ cursor: 'pointer' }}*/}
-            {/*onClick={() => {*/}
-              {/*document.getElementById('qqBox').click()*/}
-            {/*}}*/}
-            {/*src={QQ}*/}
-          {/*/>*/}
-        {/*</Col>*/}
-        {/*<Col span="8" style={{ textAlign: 'right' }}>*/}
-          {/*<Popover*/}
-            {/*content={*/}
-              {/*<div className={styles.qrcodeWrap}>*/}
-                {/*<img src={wechatQR} alt="微信二维码" />*/}
-              {/*</div>*/}
-            {/*}*/}
-            {/*arrowPointAtCenter*/}
-            {/*placement="top"*/}
-          {/*>*/}
-            {/*<Avatar src={wechat} />*/}
-          {/*</Popover>*/}
-        {/*</Col>*/}
-      {/*</Row>*/}
+    <div className={className} style={{textAlign: 'left'}}>
+      帮助文档
+
+      <div className={`${styles.phone}`}>
+        {/*<div><span className="aek-text-bold">客服热线:</span>(工作日9:00~17:30)</div>*/}
+        {/*<div><span className={styles.hotLine}>{CONSUMER_HOTLINE}</span><span>(QQ同号)</span></div>*/}
+      </div>
+      <Row>
+        <p className={styles.docTitle}>
+          <a href={doc1} target="_blank" title='供应商证件推送及送审注意事项'>供应商证件推送及送审注意事项</a>
+        </p>
+        <p className={styles.docTitle}>
+          <a href={doc2} target="_blank" title='中南大学湘雅医院供应商平台开户通知'>中南大学湘雅医院供应商平台开户通知</a>
+        </p>
+        <p className={styles.docTitle}>
+          <a href={doc3} target="_blank" title='中南大学湘雅医院平台操作手册（医院）'>中南大学湘雅医院平台操作手册（医院）</a>
+        </p>
+        <p className={styles.docTitle}>
+          <a href={doc4} target="_blank" title='中南大学湘雅医院供应商平台操作手册'>中南大学湘雅医院供应商平台操作手册</a>
+        </p>
+      </Row>
     </div>
   )
 }

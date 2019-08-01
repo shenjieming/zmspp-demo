@@ -200,9 +200,9 @@ class OrderDistribute extends React.Component {
             className="aek-mb10"
             disabled={checkedItems.length === 0}
             onClick={() => {
-              dispatchAction({ type: 'groupUpData' })
-              dispatchAction({ payload: { distributeConfirmVisible: true } })
-            }}
+            dispatchAction({ type: 'groupUpData' })
+            dispatchAction({ payload: { distributeConfirmVisible: true } })
+          }}
           >
             确认分发
           </Button>

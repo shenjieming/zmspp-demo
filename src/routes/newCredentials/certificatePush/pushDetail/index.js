@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'dva'
 import PropTypes from 'prop-types'
 import { Link } from 'dva/router'
-import { Table, Input, Button, Icon, Tabs, Spin, Modal } from 'antd'
+import { Table, Input, Button, Icon, Tabs, Spin, Modal, Row, Col  } from 'antd'
 
 import { getBasicFn, getPagination } from '../../../../utils'
 import { NO_LABEL_LAYOUT } from '../../../../utils/constant'
@@ -16,6 +16,7 @@ const TabPane = Tabs.TabPane
 const propTypes = {
   pushDetail: PropTypes.object,
   loading: PropTypes.object,
+  app: PropTypes.object,
 }
 const namespace = 'pushDetail'
 const PushDetail = ({ pushDetail, loading }) => {
@@ -25,6 +26,7 @@ const PushDetail = ({ pushDetail, loading }) => {
     numInfo,
     searchParams,
     data,
+    tabKey,
     pagination,
     viewModalVisble,
     certificateDetail,
@@ -38,6 +40,10 @@ const PushDetail = ({ pushDetail, loading }) => {
     dispatchAction({ type: 'getCurrentTabData', payload: { current, pageSize } })
   }
   const tabChange = (key) => {
+    dispatchAction({
+      type: 'updateState',
+      payload: {tabKey: key },
+    })
     dispatchAction({
       type: 'updateState',
       payload: { searchParams: {}, pagination: { current: 1, pageSize: 10 }, currentIndex: key },
@@ -354,11 +360,24 @@ const PushDetail = ({ pushDetail, loading }) => {
         <Spin spinning={getLoading('getCurrentTabData', 'getCertificateNum')}>
           <Tabs defaultActiveKey={currentIndex} onChange={tabChange}>
             <TabPane tab={titleWithNum('待审核', numInfo.pendingReviewNumber)} key="1" />
+            <TabPane tab={titleWithNum('待主任审核', numInfo.secondReviewNumber)} key="5" />
             <TabPane tab={titleWithNum('已拒绝', numInfo.refusedNumber)} key="2" />
             <TabPane tab={titleWithNum('已通过', numInfo.acceptNumber)} key="3" />
             <TabPane tab={titleWithNum('已撤销', numInfo.cancelNumber)} key="4" />
           </Tabs>
-          <SearchForm {...searhProps} />
+          <Row>
+            <Col span={15}> <SearchForm {...searhProps} /></Col>
+            <Col span={9} style={{textAlign: 'right'}}  >
+              {tabKey == 2 ? <Button type="primary"
+                                     onClick={() => {
+                                       dispatchAction({ type: 'exportTable', payload: { } })
+                                     }}
+              >
+                拒绝原因批量导出
+              </Button> : ''}
+            </Col>
+          </Row>
+
           <Table {...tableProps} />
         </Spin>
         <ViewModal {...viewModalProps} />

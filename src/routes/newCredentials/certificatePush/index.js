@@ -66,6 +66,10 @@ const CertificatePush = ({ certificatePush, loading }) => {
       dataIndex: 'pendingReviewNumber',
     },
     {
+      title: '待主任审核',
+      dataIndex: 'secondReviewNumber',
+    },
+    {
       title: '已拒绝',
       dataIndex: 'refusedNumber',
     },

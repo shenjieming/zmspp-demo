@@ -61,9 +61,9 @@
     "lint"
   ],
   "scripts": {
-    "start": "cross-env CONFIG_ENV=develop PROXY_URL=http://10.3.10.30:9003 roadhog server",
+    "start": "cross-env CONFIG_ENV=develop PROXY_URL=http://10.18.59.31:9003 roadhog server",
     "dev": "cross-env CONFIG_ENV=develop PROXY_URL=http://10.18.59.31:9003 roadhog server",
-    "test": "cross-env CONFIG_ENV=develop PROXY_URL=http://192.168.31.195:9003 roadhog server",
+    "test": "cross-env CONFIG_ENV=develop PROXY_URL=http://222.247.54.203:9003 roadhog server",
     "start:yibei:dev": "cross-env THEME=yibei CONFIG_ENV=develop PROXY_URL=http://192.168.1.81:9003 roadhog server",
     "start:yibei": "cross-env THEME=yibei CONFIG_ENV=develop PROXY_URL=http://192.168.1.83:9003 roadhog server",
     "start:mq": "cross-env CONFIG_ENV=develop PROXY_URL=http://192.168.3.129:9003 roadhog server",

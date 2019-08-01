@@ -3,8 +3,10 @@ import pathToRegexp from 'path-to-regexp'
 import { message, Modal } from 'antd'
 
 import modelExtend from '../../../utils/modelExtend'
-import { getServices } from '../../../utils'
-
+import {generateRequest, getServices} from '../../../utils'
+import {getMenuData, useTableDataExport} from "../../../services/supplyCatalogue/detail";
+import {baseURL, exportUrl} from '../../../utils/config'
+console.log(exportUrl)
 const services = getServices({
   // 用户详情
   customerDetail: '/supply/catalog/customer/statistic',
@@ -18,12 +20,17 @@ const services = getServices({
   acceptCertificate: '/certificate/supplier/register/push/list/accept',
   // 已撤销
   cancelNumberCertificate: '/certificate/supplier/register/push/list/cancel',
+  // 待主任审核
+  secondReviewNumber: '/certificate/supplier/register/push/list/second-review',
+  // getMenuData: generateRequest(`${baseURL}/menu/own`, 'post'),
+  getMenuData: { url: '/menu/own', type: 'post'},
   revertPush: '/certificate/register/push/status/cancel',
   repush: '/certificate/supplier/repush/certificate',
   deletePush: '/certificate/register/push/delete',
   // 获取审核证件列表
   certificateDetail: { url: '/certificate/register/push/detail', type: 'post' },
 })
+const tableExport = exportUrl + '/certificate/supplier/register/push/list/refused/export'
 const initState = {
   // 当前分页
   currentIndex: '1',
@@ -39,6 +46,7 @@ const initState = {
     pageSize: 10,
     total: undefined,
   },
+  tabKey: '',
   // 搜索参数
   searchParams: {},
   // 查看推送详情
@@ -115,6 +123,9 @@ export default modelExtend({
           break
         case '4':
           content = yield call(services.cancelNumberCertificate, { ...params })
+          break
+        case '5':
+          content = yield call(services.secondReviewNumber, { ...params })
           break
         default:
           break
@@ -203,6 +214,11 @@ export default modelExtend({
     * getDetail({ payload }, { call, update }) {
       const { content } = yield call(services.certificateDetail, payload)
       yield update({ certificateDetail: content })
+    },
+    // 表格导出
+    * exportTable({ payload }, { call, update}) {
+      const { content } = yield call(services.getMenuData, payload)
+      window.open(tableExport + '?orgId=' + content.currentOrgId +'&orgName=' + content.currentOrgName)
     },
   },
   reducers: {},
